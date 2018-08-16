@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var base_url = "https://www.ordiusits.com/lovegifts/";
+	var base_url = "http://localhost/lovegifts/";
 
 	$flag = 1;
    
@@ -110,7 +110,7 @@ $(document).ready(function(){
 				data:{cod:cod},
 				dataType:"json",
 				beforeSend: function(){
-                    $("#codMsg").html('<img src="https://www.ordiusits.com/lovegifts/assets/images/cod.gif">');
+                    $("#codMsg").html('<img src="http://localhost/lovegifts/assets/images/cod.gif">');
                 },
 				success:function(data){
 					//console.log(data.status.pin_pick_up);
@@ -273,7 +273,7 @@ $(document).ready(function(){
 				data:{cod:cod},
 				dataType:"json",
 				beforeSend: function(){
-					$("#codMsg1").html('<img src="https://www.ordiusits.com/lovegifts/assets/images/cod.gif">');
+					$("#codMsg1").html('<img src="http://localhost/lovegifts/assets/images/cod.gif">');
 				},
 				success:function(data){
 					//console.log(data);
@@ -358,7 +358,7 @@ $(document).ready(function(){
 			data:$("#contactQueryForm").serialize(),
 			dataType:"json",
 			beforeSend: function(){
-				$("#queryStatus").html('<img src="https://www.ordiusits.com/lovegifts/assets/images/cod.gif">');
+				$("#queryStatus").html('<img src="http://localhost/lovegifts/assets/images/cod.gif">');
 			},
 			success:function(data){
 				if(data.status=="status"){

@@ -1,6 +1,6 @@
 $(document).ready(function(){
-	var base_url = "https://www.ordiusits.com/lovegifts/admin/";
-    	var base_url1 = "https://www.ordiusits.com/lovegifts/";
+	var base_url = "http://localhost/lovegifts/admin/";
+    	var base_url1 = "http://localhost/lovegifts/";
 	$flag = 1;
    
     /***** Email Validation ****/
@@ -28,7 +28,7 @@ $(document).ready(function(){
             url:base_url+'products/checkProductSlugValue',
             data:{pro_title:pro_title},
             beforeSend: function(){
-                    $("#pro_title").html('<img src="https://www.ordiusits.com/lovegifts/assets/images/cod.gif">');
+                    $("#pro_title").html('<img src="http://localhost/lovegifts/assets/images/cod.gif">');
                 },
             success: function(data){
                 //alert(data);

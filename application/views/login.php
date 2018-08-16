@@ -88,7 +88,7 @@
 <script>
     $(document).ready(function(){
         $("#btnCheckLogin").click(function(){
-        var base_url = "https://www.ordiusits.com/lovegifts/";
+        var base_url = "http://localhost/lovegifts/";
             $.ajax({
                 method:"POST",
                 url:base_url+"welcome/login",
