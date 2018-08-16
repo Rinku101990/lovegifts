@@ -1,0 +1,78 @@
+[27-Jul-2018 13:52:53 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of Error given, called in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php on line 658 and defined in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php:190
+Stack trace:
+#0 /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php(658): CI_Exceptions->show_exception(Object(Error))
+#1 [internal function]: _exception_handler(Object(Error))
+#2 {main}
+  thrown in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php on line 190
+[27-Jul-2018 13:54:59 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of Error given, called in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php on line 658 and defined in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php:190
+Stack trace:
+#0 /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php(658): CI_Exceptions->show_exception(Object(Error))
+#1 [internal function]: _exception_handler(Object(Error))
+#2 {main}
+  thrown in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php on line 190
+[27-Jul-2018 13:57:11 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of Error given, called in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php on line 658 and defined in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php:190
+Stack trace:
+#0 /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php(658): CI_Exceptions->show_exception(Object(Error))
+#1 [internal function]: _exception_handler(Object(Error))
+#2 {main}
+  thrown in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php on line 190
+[30-Jul-2018 08:26:14 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of Error given, called in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php on line 658 and defined in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php:190
+Stack trace:
+#0 /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php(658): CI_Exceptions->show_exception(Object(Error))
+#1 [internal function]: _exception_handler(Object(Error))
+#2 {main}
+  thrown in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php on line 190
+[30-Jul-2018 08:29:40 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of Error given, called in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php on line 658 and defined in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php:190
+Stack trace:
+#0 /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php(658): CI_Exceptions->show_exception(Object(Error))
+#1 [internal function]: _exception_handler(Object(Error))
+#2 {main}
+  thrown in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php on line 190
+[30-Jul-2018 08:31:29 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of Error given, called in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php on line 658 and defined in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php:190
+Stack trace:
+#0 /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php(658): CI_Exceptions->show_exception(Object(Error))
+#1 [internal function]: _exception_handler(Object(Error))
+#2 {main}
+  thrown in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php on line 190
+[01-Aug-2018 11:31:53 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of Error given, called in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php on line 658 and defined in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php:190
+Stack trace:
+#0 /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php(658): CI_Exceptions->show_exception(Object(Error))
+#1 [internal function]: _exception_handler(Object(Error))
+#2 {main}
+  thrown in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php on line 190
+[01-Aug-2018 11:32:05 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of Error given, called in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php on line 658 and defined in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php:190
+Stack trace:
+#0 /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php(658): CI_Exceptions->show_exception(Object(Error))
+#1 [internal function]: _exception_handler(Object(Error))
+#2 {main}
+  thrown in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php on line 190
+[02-Aug-2018 12:26:56 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of ParseError given, called in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php on line 658 and defined in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php:190
+Stack trace:
+#0 /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php(658): CI_Exceptions->show_exception(Object(ParseError))
+#1 [internal function]: _exception_handler(Object(ParseError))
+#2 {main}
+  thrown in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php on line 190
+[02-Aug-2018 12:27:04 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of ParseError given, called in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php on line 658 and defined in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php:190
+Stack trace:
+#0 /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php(658): CI_Exceptions->show_exception(Object(ParseError))
+#1 [internal function]: _exception_handler(Object(ParseError))
+#2 {main}
+  thrown in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php on line 190
+[02-Aug-2018 12:27:36 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of ParseError given, called in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php on line 658 and defined in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php:190
+Stack trace:
+#0 /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php(658): CI_Exceptions->show_exception(Object(ParseError))
+#1 [internal function]: _exception_handler(Object(ParseError))
+#2 {main}
+  thrown in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php on line 190
+[02-Aug-2018 12:30:13 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of ParseError given, called in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php on line 658 and defined in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php:190
+Stack trace:
+#0 /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php(658): CI_Exceptions->show_exception(Object(ParseError))
+#1 [internal function]: _exception_handler(Object(ParseError))
+#2 {main}
+  thrown in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php on line 190
+[02-Aug-2018 12:32:53 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of ParseError given, called in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php on line 658 and defined in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php:190
+Stack trace:
+#0 /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php(658): CI_Exceptions->show_exception(Object(ParseError))
+#1 [internal function]: _exception_handler(Object(ParseError))
+#2 {main}
+  thrown in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php on line 190

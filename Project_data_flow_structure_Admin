@@ -1,0 +1,82 @@
+	
+
+	1- Login(Admin Only).
+		adm_id
+		adm_name
+		adm_email
+		adm_pass
+		adm_lastLoginDate
+		adm_lastLogoutDate
+		adm_created
+		
+	2- Products Added
+		pro_id
+		pro_title
+		pro_description
+		pro_price-
+			price varies according size(multi price)
+				pri_id
+				pro_id
+				pri_amounts
+				pr_status (NULL)
+				pri_create
+
+		pro_size
+			size_id
+			pro_id
+			size_param
+			size_status (NULL)
+			size_created
+
+		pro_picture(multiple picture)
+			pic_id
+			pro_id
+			pic_param
+			pic_status (NULL)
+			pic_created
+
+		pro_required_picture
+		pro_delivery_slot
+			deli_id
+			pro_id
+			deli_slots
+			deli_status (NULL)
+			deli_created
+		pro_theme
+		pro_availability
+		pro_offers
+		pro_videos
+		pro_message_on_card
+		pro_status (NULL)
+		pro_created
+
+	3-user profile
+		user_id
+		user_name
+		user_email
+		user_address1
+		user_address2
+		user_nearby_landmark
+		user_pincode
+		user_state
+		user_city
+		user_mobile_no
+		user_whatsapp_no
+		user_status (NULL)
+		user_created
+
+	4- order details
+		ord_id
+		pro_id_user_id
+		ord_qty
+		ord_price
+		ord_mode_of_payments
+		ord_status (NULL)
+		ord_created
+
+	5-payments detail
+		pay_id
+		ord_id
+		pay_trans_id
+		pay_trans_amounts
+		pay_created
