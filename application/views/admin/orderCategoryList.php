@@ -15,7 +15,9 @@
         <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Orders List <a href="<?php echo base_url('admin/products/orders');?>" class="btn btn-success btn-sm">View Order Category</a></h3>
+              <h3 class="box-title">Orders List 
+                <a href="<?php echo base_url('admin/products/orders');?>" class="btn btn-success btn-sm">View Order Category</a>
+              </h3>
             </div>
             <!-- /.box-header -->
             <?php if(!empty($level)){ ?>
@@ -57,15 +59,16 @@
 
                   <?php foreach($level as $level_name){?>
                   <td>
-                    <input type="hidden" name="ordid" value="<?php echo $level_name->cat_track_id;?>">
-                    <?php if(($orderslist->ord_photo_status)=="1"){?>
-                      <a href="#" class="trackLevelYes" id="trackLevelYes<?php echo $level_name->cat_track_id;?>" trackLevelYes="<?php echo $level_name->cat_track_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
-                    <?php }else if(($orderslist->ord_photo_status)=="0"){ ?>
-                      <a href="#" class="trackLevelNo" id="trackLevelNo<?php echo $level_name->cat_track_id;?>" trackLevelNo="<?php echo $level_name->cat_track_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
+                    <?php foreach($track_status as $levels){ ?>
+                    <?php if(($level_name->cat_track_id)==($levels->cat_track_id)){ ?>
+                    <?php if(($levels->track_status)=="1"){?>
+                      <a href="#" class="trackLevelYes" id="trackLevelYes<?php echo $orderslist->ord_id;?>" trackLevelYes="<?php echo $level_name->cat_track_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
+                    <?php }else if(($levels->track_status)=="0"){ ?>
+                      <a href="#" class="trackLevelNo" id="trackLevelNo<?php echo $orderslist->ord_id;?>" trackLevelNo="<?php echo $level_name->cat_track_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
                     <?php }else{ ?>
-                      <a href="#" class="trackLevelYes" id="trackLevelYes<?php echo $level_name->cat_track_id;?>" trackLevelYes="<?php echo $level_name->cat_track_id;;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
-                      <a href="#" class="trackLevelNo" id="trackLevelNo<?php echo $level_name->cat_track_id;?>" trackLevelNo="<?php echo $level_name->cat_track_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
-                    <?php } ?>
+                    <?php } } }?>
+                      <a href="#" class="trackLevelYes" id="trackLevelYes<?php echo $orderslist->ord_id;?>" ordid="<?php echo $orderslist->ord_id;?>" trackLevelYes="<?php echo $level_name->cat_track_id;;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
+                      <a href="#" class="trackLevelNo" id="trackLevelNo<?php echo $orderslist->ord_id;?>" ordid="<?php echo $orderslist->ord_id;?>" trackLevelNo="<?php echo $level_name->cat_track_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
                   </td>
                   <?php } ?>
 
@@ -112,9 +115,12 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-              <!-- <ul class="pagination pagination-sm no-margin pull-left downloadOrder"  data-toggle="modal" data-target="#downloadExcel" style="display: none">
-                <button class="btn btn-success btn-sm">Download Order In Excel</button>
-              </ul> -->
+              <ul class="pagination pagination-sm no-margin pull-left">
+              <form action="<?php echo base_url('admin/excel_export/action');?>" method="post">
+                <input type="hidden" name="category_id" id="category_id" value="<?php echo $level_name->cate_id;?>">
+                <input type="submit" name="submit" value="Excel File" class="btn btn-primary btn-sm">
+                </form>
+              </ul>
               <ul class="pagination pagination-sm no-margin pull-right">
                 <li><a href="#">&laquo;</a></li>
                 <li><a href="#">1</a></li>
@@ -128,23 +134,43 @@
             <?php } ?>
           </div>
           <!-- /.box -->
-          <!-- <div class="modal fade" id="downloadExcel"> -->
-            <!-- <div class="modal-dialog" style="margin-top:20%;width:16%">
+          <div class="modal fade" id="downloadExcel">
+            <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
                   <div class="panel panel-danger">
                     <div class="panel-body">
-                      <p class="text-danger"><b>This Feature are disabled.</b></p>
+                    <form action="/action_page.php">
+                      <div class="col-md-12">
+                      <div class="form-group">
+                          <label for="category">Category Name</label>
+                          <input type="text" class="form-control" id="category" name="category" value="<?php echo $level_name->cate_name;?>">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="to_date">To Date</label>
+                          <input type="date" class="form-control" name="to_date" id="to_date" placeholder="Select Date To">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="from_date">From Date</label>
+                          <input type="date" class="form-control" name="from_date" id="from_date" placeholder="Select Date From">
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                      <button type="submit" class="btn btn-default pull-right">Submit</button>
+                      </div>
+                    </form>
                     </div>
-                  </div> -->
+                  </div>
                 <!-- <div class="modal-footer">
                   <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
                 </div> -->
-              <!-- </div> -->
-              <!-- /.modal-content -->
-            <!-- </div> -->
-            <!-- /.modal-dialog -->
-          <!-- </div> -->
+              </div>
+            </div>
+          </div>
           <!-- /.modal -->
           <div class="modal fade" id="orderReport">
             <div class="modal-dialog" style="margin-top:5%;width:85%">

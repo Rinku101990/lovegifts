@@ -797,6 +797,12 @@ class Products extends CI_Controller {
 		$this->load->view('admin/includes/foot');
 		$this->load->view('admin/includes/footer');
 	}
+	public function getOrderListAccordingCategoryId()
+	{
+		$cate_id = $this->input->post('cate_id');
+		$result['order_list'] = $this->adPro->getOrderListByCategory($cate_id);
+		echo json_encode($result);
+	}
 	// GET ORDERS BY CATEGORY ID //
 	public function getOrderListByCategoryId()
 	{
@@ -804,6 +810,7 @@ class Products extends CI_Controller {
 		//echo $cate_id;
 		$data['level'] = $this->adPro->getAllOrderTrackLevelByCategoryId($cate_id);
 		$data['orders'] = $this->adPro->getAllOrderListAccordingCategory($cate_id);
+		$data['track_status'] = $this->adPro->getTrackLevelStatus();
 		// echo "<pre>";
 		// print_r($data);
 		

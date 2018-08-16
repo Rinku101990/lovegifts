@@ -393,9 +393,10 @@ class Admin_products extends CI_Model {
     // GET ORDER TRACK LEVEL LIST BY CATEGORY ID //
 	public function getAllOrderTrackLevelByCategoryId($cate_id)
 	{
-		$this->db->select('*');
-		$this->db->from('lovegift_category_track_level');
-		$this->db->where('cate_id', $cate_id);
+		$this->db->select('ct.cate_name,ctl.*');
+        $this->db->from('lovegift_category_track_level ctl');
+        $this->db->join('lovegift_category ct','ctl.cate_id=ct.cate_id','left');
+		$this->db->where('ctl.cate_id', $cate_id);
 		$query = $this->db->get();
 		//echo $this->db->last_query();
 		return $query->result();
@@ -418,6 +419,15 @@ class Admin_products extends CI_Model {
         $this->db->where('ord.cate_id',$cate_id);
         $query = $this->db->get();
         //echo $this->db->last_query();
+        return $query->result();
+    }
+    public function getOrderListByCategory($cate_id)
+    {
+        $this->db->select('*');
+        $this->db->from('lovegift_products');
+        $this->db->where('cate_id', $cate_id);
+        $query = $this->db->get();
+        // echo $this->db->last_query();
         return $query->result();
     }
 
@@ -543,6 +553,20 @@ class Admin_products extends CI_Model {
     	return $order_id;
     }
 
+    public function saveTrackLevelStatusOfOrders($data)
+    {
+        $this->db->insert('lovegift_order_track_status', $data);
+        return $this->db->insert_id();
+    }
+    // GET ALL TRACK STATUS //
+    public function getTrackLevelStatus()
+    {
+        $this->db->select('*');
+        $this->db->from('lovegift_order_track_status');
+        $query = $this->db->get();
+        //echo $this->db->last_query();
+        return $query->result();
+    }
     // PHOTO PACKED STATUS //
 
     public function updatePhotoPackedStatusYes($order_id, $data)
