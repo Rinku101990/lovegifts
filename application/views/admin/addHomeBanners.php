@@ -53,7 +53,8 @@
             </div>
             <div class="box-body">
             <?php if(!empty($banners)){ ?>
-              <table class="table table-bordered">
+              <table id="example1" class="table table-bordered table-striped">
+              <thead>
                 <tr>
                   <th style="width: 10px">S.N.</th>
                   <th>Title</th>
@@ -61,6 +62,8 @@
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
+              </thead>
+              <tbody>
                 <?php $i=1; foreach($banners as $list){ ?>
                 <tr>
                   <td><?php echo $i++;?></td>
@@ -82,6 +85,7 @@
                   </td>
                 </tr>
                 <?php } ?>
+              </tbody>
               </table>
             <?php }else{ ?>
               <center><p>No Banner List Found.</p></center>

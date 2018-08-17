@@ -20,7 +20,8 @@
             <!-- /.box-header -->
             <?php if(!empty($products)){ ?>
             <div class="box-body">
-              <table class="table table-bordered">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
                 <tr>
                   <th style="width: 10px">S.No.</th>
                   <th>Title</th>
@@ -30,6 +31,8 @@
                   <th style="width: 40px">Videos</th>
                   <th>Action</th>
                 </tr>
+              </thead>
+              <tbody>
                 <?php $i=1; foreach($products as $productslist){ ?>
                 <tr>
                   <td><?php echo $i++;?></td>
@@ -52,22 +55,13 @@
                   </td>
                 </tr>
                 <?php } ?>
+              </tbody>
               </table>
             </div>
             <!-- /.box-body -->
-            <div class="box-footer clearfix">
-              <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">&raquo;</a></li>
-              </ul>
-            </div>
             <?php }else{ ?>
                 <p style="text-align: center;margin-top: 20px;font-weight: bold;padding:30px">You haven't added any records yet!</p>
               <?php } ?>
-          </div>
           <!-- /.box -->
           <!-- /.modal -->
           <div class="modal fade" id="productReport">

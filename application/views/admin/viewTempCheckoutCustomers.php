@@ -20,7 +20,8 @@
             <!-- /.box-header -->
             <?php if(!empty($temp_orders)){ ?>
             <div class="box-body">
-              <table class="table table-bordered">
+              <table id="example1" class="table table-bordered table-striped">
+              <thead>
                 <tr>
                   <th style="width: 10px">S.No.</th>
                   <th>Customer Name</th>
@@ -31,6 +32,8 @@
                   <th>Price</th>
                   <th>Action</th>
                 </tr>
+              </thead>
+              <tbody>
                 <?php foreach($temp_orders as $temp_customer_checkout){ ?>
                 <tr>
                   <td><a href="#" data-toggle="modal" data-target="#tempCustoInfo"><span class="badge bg-blue viewtempCustomers" viewTempCusto="<?php echo $temp_customer_checkout->tmp_custo_id;?>"><i class="fa fa-eye"></i></span></a></td>
@@ -43,22 +46,13 @@
                   <td><a href="#" class="deleteTempCustomers" delTempCusto="<?php echo $temp_customer_checkout->tmp_custo_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a></td>
                 </tr>
                 <?php } ?>
+              </tbody>
               </table>
             </div>
             <!-- /.box-body -->
-            <div class="box-footer clearfix">
-              <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">&raquo;</a></li>
-              </ul>
-            </div>
             <?php }else{ ?>
                 <p style="text-align: center;margin-top: 20px;font-weight: bold;padding:30px">You haven't added any records yet!</p>
               <?php } ?>
-          </div>
           <!-- /.box -->
           
     <!-- /.modal -->

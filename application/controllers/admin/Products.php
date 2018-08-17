@@ -63,7 +63,7 @@ class Products extends CI_Controller {
 		$this->load->view('admin/includes/sidebar');
 		$this->load->view('admin/addHomeBanners',$data);
 		$this->load->view('admin/includes/foot');
-		$this->load->view('admin/includes/footer');
+		$this->load->view('admin/includes/dataTable_footer');
 	}
 	public function save_home_slider()
 	{
@@ -150,7 +150,7 @@ class Products extends CI_Controller {
 		$this->load->view('admin/includes/sidebar');
 		$this->load->view('admin/addViewCategories', $data);
 		$this->load->view('admin/includes/foot');
-		$this->load->view('admin/includes/footer');
+		$this->load->view('admin/includes/dataTable_footer');
 	}
 	public function saveCategory()
 	{
@@ -255,7 +255,7 @@ class Products extends CI_Controller {
 		$this->load->view('admin/includes/sidebar');
 		$this->load->view('admin/addViewSubCategories',$data);
 		$this->load->view('admin/includes/foot');
-		$this->load->view('admin/includes/footer');
+		$this->load->view('admin/includes/dataTable_footer');
 	}
 	
 	public function viewSubCategory()
@@ -674,7 +674,7 @@ class Products extends CI_Controller {
 		$this->load->view('admin/includes/sidebar');
 		$this->load->view('admin/viewProducts');
 		$this->load->view('admin/includes/foot');
-		$this->load->view('admin/includes/footer');
+		$this->load->view('admin/includes/dataTable_footer');
 	}
 	// VIEW ALL DISABLED PRODUCTS //
 	public function disabled()
@@ -686,7 +686,7 @@ class Products extends CI_Controller {
 		$this->load->view('admin/includes/sidebar');
 		$this->load->view('admin/viewDisabledProducts');
 		$this->load->view('admin/includes/foot');
-		$this->load->view('admin/includes/footer');
+		$this->load->view('admin/includes/dataTable_footer');
 	}
 	// INCOMPLITE CHECKOUT CUSTOMERS //
 	public function temp_orders()
@@ -698,7 +698,7 @@ class Products extends CI_Controller {
 		$this->load->view('admin/includes/sidebar');
 		$this->load->view('admin/viewTempCheckoutCustomers');
 		$this->load->view('admin/includes/foot');
-		$this->load->view('admin/includes/footer');
+		$this->load->view('admin/includes/dataTable_footer');
 	}
 
 	//  MANAGE PINCODE SECTION //
@@ -783,7 +783,7 @@ class Products extends CI_Controller {
 		$this->load->view('admin/includes/sidebar');
 		$this->load->view('admin/viewPincode', $data);
 		$this->load->view('admin/includes/foot');
-		$this->load->view('admin/includes/footer');
+		$this->load->view('admin/includes/dataTable_footer');
 	}
 
 	public function orders()
@@ -819,7 +819,7 @@ class Products extends CI_Controller {
 		$this->load->view('admin/includes/sidebar');
 		$this->load->view('admin/orderCategoryList', $data);
 		$this->load->view('admin/includes/foot');
-		$this->load->view('admin/includes/footer');
+		$this->load->view('admin/includes/dataTable_footer');
 	}
 
 	public function disable()
@@ -831,7 +831,7 @@ class Products extends CI_Controller {
 		$this->load->view('admin/includes/sidebar');
 		$this->load->view('admin/disableOrders', $data);
 		$this->load->view('admin/includes/foot');
-		$this->load->view('admin/includes/footer');
+		$this->load->view('admin/includes/dataTable_footer');
 	}
 
 	// CHANGE PHOTO STATUS ACCORDING USER RESPONSE //

@@ -22,7 +22,8 @@
             <!-- /.box-header -->
             <?php if(!empty($level)){ ?>
             <div class="box-body">
-              <table class="table table-bordered">
+              <table id="example1" class="table table-bordered table-striped">
+              <thead>
                 <tr>
                   <th>Records</th>
                   <th>Order.No.</th>
@@ -36,7 +37,9 @@
                   <th>Remarks</th>
                   <th>Action</th>
                 </tr>
+                </thead>
                 <?php if(!empty($orders)){ ?>
+                <tbody>
                 <?php foreach($orders as $orderslist){ ?>
                 <tr>
 
@@ -108,10 +111,11 @@
 
                 </tr>
                 <?php } ?>
-                <?php }else{ ?>
-                    <p style="text-align: center;margin-top: 20px;font-weight: bold;padding:30px">No Orders Found</p>
-                <?php } ?>
+                </tbody>
               </table>
+              <?php }else{ ?>
+                  <p style="text-align: center;margin-top: 20px;font-weight: bold;padding:30px">No Orders Found</p>
+              <?php } ?>
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
@@ -121,56 +125,12 @@
                 <input type="submit" name="submit" value="Excel File" class="btn btn-primary btn-sm">
                 </form>
               </ul>
-              <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">&raquo;</a></li>
-              </ul>
             </div>
             <?php }else{ ?>
                 <p style="text-align: center;margin-top: 20px;font-weight: bold;padding:30px">You haven't added any records yet!</p>
             <?php } ?>
           </div>
           <!-- /.box -->
-          <div class="modal fade" id="downloadExcel">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <div class="panel panel-danger">
-                    <div class="panel-body">
-                    <form action="/action_page.php">
-                      <div class="col-md-12">
-                      <div class="form-group">
-                          <label for="category">Category Name</label>
-                          <input type="text" class="form-control" id="category" name="category" value="<?php echo $level_name->cate_name;?>">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="to_date">To Date</label>
-                          <input type="date" class="form-control" name="to_date" id="to_date" placeholder="Select Date To">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="from_date">From Date</label>
-                          <input type="date" class="form-control" name="from_date" id="from_date" placeholder="Select Date From">
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                      <button type="submit" class="btn btn-default pull-right">Submit</button>
-                      </div>
-                    </form>
-                    </div>
-                  </div>
-                <!-- <div class="modal-footer">
-                  <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
-                </div> -->
-              </div>
-            </div>
-          </div>
           <!-- /.modal -->
           <div class="modal fade" id="orderReport">
             <div class="modal-dialog" style="margin-top:5%;width:85%">

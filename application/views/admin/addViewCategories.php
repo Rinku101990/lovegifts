@@ -74,13 +74,16 @@
             <!-- form start -->
             <div class="box-body">
               <?php if(!empty($category)){?>
-              <table class="table table-bordered">
+              <table id="example1" class="table table-bordered table-striped">
+              <thead>
                 <tr>
                   <th>S.N.</th>
                   <th>Category Name</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
+              </thead>
+              <tbody>
                 <?php $i=1; foreach($category as $cat_list){?>
                 <tr>
                   <td><?php echo $i++;?></td>
@@ -99,6 +102,7 @@
                   </td>
                 </tr>
                 <?php } ?>
+              </tbody>
               </table>
             <?php }else{ ?>
               <center><p><b>No Category Found!</b></p></center>
