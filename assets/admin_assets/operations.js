@@ -258,6 +258,25 @@ $(document).ready(function(){
         }
         return false;
     });
+    // DELETE HOME BANNERS //
+    $(".bannerDelete").click(function(){
+        var banner_id = $(this).attr("banDel");
+        if(confirm("Are yor sure want to delete home banner.")){
+            $.ajax({
+                method:'post',
+                url:base_url+'products/removeBanners',
+                data:{banner_id:banner_id},
+                success: function(data){
+                    if(data=="ok"){
+                        window.location.href = base_url+'products/banners';
+                    }else{
+                        window.location.href = base_url+'products/banners';
+                    }
+                }
+            });
+        }
+        return false;
+    });
     // SAVE EXTRA FIELD IN ADD PRODUCTS SECTION //
 
     var max_fields_limit_size_extra = 10; //set limit for maximum input fields

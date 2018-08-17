@@ -131,15 +131,16 @@ class Products extends CI_Controller {
 			echo "fail";
 		}
 	}
-	// public function viewBanner()
-	// {
-	// 	$this->load->view('admin/includes/head');
-	// 	$this->load->view('admin/includes/header');
-	// 	$this->load->view('admin/includes/sidebar');
-	// 	$this->load->view('admin/viewHomeBanners');
-	// 	$this->load->view('admin/includes/foot');
-	// 	$this->load->view('admin/includes/footer');
-	// }
+	public function removeBanners()
+	{
+		$banner_id = $this->input->post('banner_id');
+		$result = $this->adPro->deleteBannerById($banner_id);
+		if($result){
+			echo "ok";
+		}else{
+			echo "fail";
+		}
+	}
 	// MANAGE CATEGORY //
 	public function category()
 	{

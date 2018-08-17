@@ -78,10 +78,11 @@
                   </td>
                   <td>
                     <?php if(($list->bann_status)=='1'){ ?>
-                    <button type="button" class="btn btn-primary btn-sm bannerStatusEnable" bannStatuseE="<?php echo $list->bann_id;?>"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-success btn-sm bannerStatusEnable" bannStatuseE="<?php echo $list->bann_id;?>"><i class="fa fa-check"></i></button>
                     <?php }else{ ?>
-                    <button type="button" class="btn btn-danger btn-sm bannerStatusDisable" bannStatusD="<?php echo $list->bann_id;?>"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-sm bannerStatusDisable" bannStatusD="<?php echo $list->bann_id;?>"><i class="fa fa-close"  style="color:red"></i></button>
                     <?php } ?>
+                    <button type="button" class="btn btn-danger btn-sm bannerDelete" banDel="<?php echo $list->bann_id;?>"><i class="fa fa-trash"></i></button>
                   </td>
                 </tr>
                 <?php } ?>

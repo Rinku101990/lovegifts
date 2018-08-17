@@ -212,6 +212,12 @@ class Admin_products extends CI_Model {
         //echo $this->db->last_query();
         return $bann_id;
     }
+    public function deleteBannerById($banner_id)
+    {
+        $this->db->where('bann_id', $banner_id);
+        $this->db->delete('lovegifts_banners');
+        return $banner_id;
+    }
 
 	// GET PRODUCTS LIST //
 	public function getProductsList()
