@@ -343,6 +343,16 @@ class Admin_products extends CI_Model {
         //echo $this->db->last_query();
         return $query->result();
     }
+    // GET EXTRA FIELD BY PRODUCT ID //
+    public function getProductEditableExtraFieldById($editid)
+    {
+        $this->db->select('*');
+        $this->db->from('lovegifts_extra_info');
+        $this->db->where('pro_id', $editid);
+        $query = $this->db->get();
+        //echo $this->db->last_query();
+        return $query->result();
+    }
     // GET PRODUCT PICTURE BY ID //
     public function getProductsEditablePicById($editid)
     {
@@ -364,29 +374,35 @@ class Admin_products extends CI_Model {
         return $query->result();
     }
     //  UPDATE PRODUCT CHANGE INFORMATION //
-    // public function saveUpdatedProductInfo($pro_id,$productsArray)
-    // {
-    //     $this->db->where('pro_id', $pro_id);
-    //     $this->db->update('lovegift_products', $productsArray);
-    //     //echo $this->db->last_query();
-    //     return $pro_id;
-    // }
+    public function saveUpdatedProductInfo($pro_id,$productsArray)
+    {
+        $this->db->where('pro_id', $pro_id);
+        $this->db->update('lovegift_products', $productsArray);
+        //echo $this->db->last_query();
+        return $pro_id;
+    }
     // UPDATE PRODUCT SIZE INFORMATION //
-    // public function saveUpdatedPriceSizeInfo($pro_id,$prices)
-    // {
-    //     $this->db->where('pro_id', $pro_id);
-    //     $this->db->update_batch('lovegift_sizes', $prices);
-    //     echo $this->db->last_query();
-    //     return $pro_id;
-    // }
+    public function saveUpdatedPriceSizeInfo($prices)
+    {
+        $this->db->update_batch('lovegift_sizes', $prices, 'size_id');
+        //echo $this->db->last_query();
+        return $prices;
+    }
+    // UPDATE EXTRA FIELD INFORMATION BY ID //
+    public function saveUpdatedExtraFieldInfo($fields)
+    {
+        $this->db->update_batch('lovegifts_extra_info', $fields, 'extra_id');
+        //echo $this->db->last_query();
+        return $fields;
+    }
     // UPDATE PRODUCT META INFORMATION //
-    // public function saveUpdatedMetaDataInfo($pro_id,$metaDataArray)
-    // {
-    //     $this->db->where('pro_id', $pro_id);
-    //     $this->db->update('lovegift_meta_data', $metaDataArray);
-    //     //echo $this->db->last_query();
-    //     return $pro_id;
-    // }
+    public function saveUpdatedMetaDataInfo($pro_id,$metaDataArray)
+    {
+        $this->db->where('pro_id', $pro_id);
+        $this->db->update('lovegift_meta_data', $metaDataArray);
+        //echo $this->db->last_query();
+        return $pro_id;
+    }
     // UPDATE PRODUCT PICTURE INFO //
     // public function saveUpdatedProductPictureList($pro_id, $uploadData)
     // {

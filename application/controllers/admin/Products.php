@@ -482,8 +482,10 @@ class Products extends CI_Controller {
 		$editid = $this->uri->segment(4);
 		$data['edit_info'] = $this->adPro->getProductsEditableInfoById($editid);
 		$data['edit_size'] = $this->adPro->getProductsEditableSizeById($editid);
+		$data['edit_extra'] = $this->adPro->getProductEditableExtraFieldById($editid);
 		$data['edit_pic']  = $this->adPro->getProductsEditablePicById($editid); 
 		$data['edit_meta'] = $this->adPro->getProductsEditableMetaById($editid);
+		$data['category'] = $this->adPro->getAllCategoryList();
 		// echo "<pre>";
 		// print_r($data);die; 
 
@@ -499,99 +501,122 @@ class Products extends CI_Controller {
 	public function saveProductsChangeInfo()
 	{
 		$dataProducts = $this->input->post();
-		print_r($dataProducts);
-		// if(!empty($dataProducts)){
+		//print_r($dataProducts);die;
+		if(!empty($dataProducts)){
 			
-		// 	// SAVE PRODUCTS INFORMATION IN DATABASE //
-		// 	$pro_id = $this->input->post('productid');
-		// 	$productsArray = array(
-		// 		'pro_title' => $this->input->post('pro_title'),
-		// 		'pro_theme' => $this->input->post('pro_theme'),
-		// 		'pro_offers' => $this->input->post('pro_offers'),
-		// 		'pro_videos' => $this->input->post('pro_video'),
-		// 		'pro_required_picture' => $this->input->post('pro_required_pic'),
-		// 		'pro_message_on_card' => $this->input->post('pro_message_on_card'),
-		// 		'pro_description' => $this->input->post('pro_desc'),
-		// 		'pro_delivery_days_to' => $this->input->post('deliverd_to'),
-		// 		'pro_delivery_days_from' => $this->input->post('deliverd_from')
-		// 	);
-		// 	$pro_id = $this->adPro->saveUpdatedProductInfo($pro_id,$productsArray);
+			// SAVE PRODUCTS INFORMATION IN DATABASE //
+			$pro_id = $this->input->post('productid');
 
-		// 	// SAVE PINCODE AVAILABILITY //
-		// 	// $pin_code = $this->input->post('pro_available[]');
-		// 	// foreach($pin_code as $code){
-		// 	// 	$pincodeArray = array(
-		// 	// 		'pro_id' => $pro_id,
-		// 	// 		'pin_code' => $code,
-		// 	// 		'avail_created' => date('Y-m-d H:i:s')
-		// 	// 	);
-		// 	// 	$pin_code_id = $this->adPro->savePincodeInfo($pincodeArray);
-		// 	// }
+			$link = $this->input->post('pro_video');
+			if(!empty($link)){
+				$video_id = explode("?v=", $link);
+				$video_id = $video_id[1];
+			}else{
+				$video_id = '';
+			}
+
+			$productsArray = array(
+				'cate_id' => $this->input->post('pro_category'),
+				'pro_title' => $this->input->post('pro_title'),
+				'pro_theme' => $this->input->post('pro_theme'),
+				'pro_offers' => $this->input->post('pro_offers_price'),
+				'pro_offer_desc' => $this->input->post('pro_offers_desc'),
+				'pro_videos' => $video_id,
+				'pro_required_picture' => $this->input->post('pro_required_pic'),
+				'pro_message_on_card' => $this->input->post('pro_message_on_card'),
+				'pro_delivery_days_to' => $this->input->post('deliverd_to'),
+				'pro_delivery_days_from' => $this->input->post('deliverd_from'),
+				'pro_free_shipping' => $this->input->post('free_shipping'),
+				'pro_cash_on_delivery' => $this->input->post('product_on_cod'),
+				'pro_price_with_photo' => $this->input->post('price_with_photo'),
+				'pro_description' => $this->input->post('pro_desc'),
+				'pro_facebook_pixel' => $this->input->post('facebook_pixel')
+			);
+			$pro_id = $this->adPro->saveUpdatedProductInfo($pro_id, $productsArray);
+
+			// UPDATE PRODUCT SIZE DATA ACCORDING SIZE ID //
+
+			$sizeid = $this->input->post('size_id');
+			$productSize = $this->input->post('pro_size');
+			$productPrice = $this->input->post('pro_price');
+
+			$prices = array();
+			for ($i=0; $i < count($productSize); $i++) { 
+
+				$prices[] = array(
+					'size_id' => $sizeid[$i],
+					'size_param' => $productSize[$i],
+					'size_related_price' => $productPrice[$i]
+				);
+			} 
+			$size_id = $this->adPro->saveUpdatedPriceSizeInfo($prices);
+
+			// UPDATE EXTRA FIELD RECORD BY FILED ID //
+
+			$fieldid = $this->input->post('field_id');
+			$field_title = $this->input->post('extra_field_title');
+			$field_value = $this->input->post('extra_field_value');
+
+			$fields = array();
+			for ($i=0; $i < count($field_title); $i++) { 
+
+				$fields[] = array(
+					'extra_id' => $fieldid[$i],
+					'extra_field_keys' => $field_title[$i],
+					'extra_field_value' => $field_value[$i]
+				);
+			} 
+			$field_id = $this->adPro->saveUpdatedExtraFieldInfo($fields);
+
+			// SAVE META DATA RELATED PRODUCTS //
+			$metaDataArray = array(
+				'meta_title' => $this->input->post('meta_title'),
+				'meta_keywords' => $this->input->post('meta_keywords'),
+				'meta_description' => $this->input->post('meta_description')
+			);
+			$result = $this->adPro->saveUpdatedMetaDataInfo($pro_id, $metaDataArray);
+
+			// SAVE PRODUCTS IMAGES LIST RELATED TO PRODUCTS //
+			// $data = array();
+	        // // If file upload form submitted
+	        // if(!empty($_FILES['userfile']['name'])){
+	        //     $filesCount = count($_FILES['userfile']['name']);
+	        //     for($i = 0; $i < $filesCount; $i++){
+	        //         $_FILES['file']['name']     = $_FILES['userfile']['name'][$i];
+	        //         $_FILES['file']['type']     = $_FILES['userfile']['type'][$i];
+	        //         $_FILES['file']['tmp_name'] = $_FILES['userfile']['tmp_name'][$i];
+	        //         $_FILES['file']['error']    = $_FILES['userfile']['error'][$i];
+	        //         $_FILES['file']['size']     = $_FILES['userfile']['size'][$i];
+	                
+	        //         // File upload configuration
+	        //         $uploadPath = 'uploads/products/';
+	        //         $config['upload_path'] = $uploadPath;
+	        //         $config['allowed_types'] = 'jpg|jpeg|png|gif';
+	                
+	        //         // Load and initialize upload library
+	        //         $this->load->library('upload', $config);
+	        //         $this->upload->initialize($config);
+	                
+	        //         // Upload file to server
+	        //         if($this->upload->do_upload('file')){
+	        //             // Uploaded file data
+	        //             $fileData = $this->upload->data();
+	        //             $uploadData[$i]['pic_param'] = $uploadPath.''.$fileData['file_name'];
+	        //         }
+	        //     }
+	        //     $result = $this->adPro->saveUpdatedProductPictureList($pro_id, $uploadData);
+	        // }
+
+			$this->session->set_flashdata('message','<span class="alert alert-success">Product Updade Successfully.</span>');
 			
-
-		// 	// INSERT PRODUCT DATA IN MULTIDIMENSIONAL ARRAY THROUGH BATCH INSERT //
-		// 	$productSize = $this->input->post('pro_size');
-		// 	$productPrice = $this->input->post('pro_price');
-
-		// 	$prices = array();
-		// 	for ($i=0; $i < count($productSize); $i++) { 
-
-		// 	        $prices[] = array(
-		// 	        	'size_param' => $productSize[$i],
-		// 	        	'size_related_price' => $productPrice[$i]
-		// 	        );
-		// 	    } 
-		// 	$pro_id = $this->adPro->saveUpdatedPriceSizeInfo($pro_id, $prices);
-
-		// 	// SAVE META DATA RELATED PRODUCTS //
-		// 	$metaDataArray = array(
-		// 		'meta_title' => $this->input->post('meta_title'),
-		// 		'meta_keywords' => $this->input->post('meta_keywords'),
-		// 		'meta_description' => $this->input->post('meta_description')
-		// 	);
-		// 	$pro_id = $this->adPro->saveUpdatedMetaDataInfo($pro_id,$metaDataArray);
-
-		// 	// SAVE PRODUCTS IMAGES LIST RELATED TO PRODUCTS //
-		// 	$data = array();
-	 //        // If file upload form submitted
-	 //        if(!empty($_FILES['userfile']['name'])){
-	 //            $filesCount = count($_FILES['userfile']['name']);
-	 //            for($i = 0; $i < $filesCount; $i++){
-	 //                $_FILES['file']['name']     = $_FILES['userfile']['name'][$i];
-	 //                $_FILES['file']['type']     = $_FILES['userfile']['type'][$i];
-	 //                $_FILES['file']['tmp_name'] = $_FILES['userfile']['tmp_name'][$i];
-	 //                $_FILES['file']['error']    = $_FILES['userfile']['error'][$i];
-	 //                $_FILES['file']['size']     = $_FILES['userfile']['size'][$i];
-	                
-	 //                // File upload configuration
-	 //                $uploadPath = 'uploads/products/';
-	 //                $config['upload_path'] = $uploadPath;
-	 //                $config['allowed_types'] = 'jpg|jpeg|png|gif';
-	                
-	 //                // Load and initialize upload library
-	 //                $this->load->library('upload', $config);
-	 //                $this->upload->initialize($config);
-	                
-	 //                // Upload file to server
-	 //                if($this->upload->do_upload('file')){
-	 //                    // Uploaded file data
-	 //                    $fileData = $this->upload->data();
-	 //                    $uploadData[$i]['pic_param'] = $uploadPath.''.$fileData['file_name'];
-	 //                }
-	 //            }
-	 //            $result = $this->adPro->saveUpdatedProductPictureList($pro_id, $uploadData);
-	 //        }
-
-		// 	$this->session->set_flashdata('message','<span class="alert alert-success">Product Updade Successfully.</span>');
-			
-		// 	if($result){
-		// 		echo "done";
-		// 	}else{
-		// 		echo "fail";
-		// 	}
-		// }else{
-		// 	echo "Invalid Product Data.";
-		// }
+			if($result){
+				echo "done";
+			}else{
+				echo "fail";
+			}
+		}else{
+			echo "Invalid Product Data.";
+		}
 	}
 
 	// VIEW PRODUCT DETAIL BY PRODUCT ID //

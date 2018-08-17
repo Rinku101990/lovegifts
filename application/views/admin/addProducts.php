@@ -29,19 +29,19 @@
             <!-- form start -->
             <form role="form" id="formProduct" action="<?php echo base_url('admin/products/saveProducts');?>" method="post" enctype="multipart/form-data">
               <div class="box-body">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="pro_category">Product Category</label>
-                    <select class="form-control" name="pro_category" id="pro_category" required>
-                    <option></option>
-                    <?php foreach($category as $cate_list){?>
-                      <option value="<?php echo $cate_list->cate_id;?>"><?php echo $cate_list->cate_name;?></option>
-                    <?php } ?>
-                    </select>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="pro_category">Product Category</label>
+                      <select class="form-control" name="pro_category" id="pro_category" required>
+                      <option></option>
+                      <?php foreach($category as $cate_list){?>
+                        <option value="<?php echo $cate_list->cate_id;?>"><?php echo $cate_list->cate_name;?></option>
+                      <?php } ?>
+                      </select>
+                    </div>
                   </div>
                 </div>
-              </div>
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">

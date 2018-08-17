@@ -380,12 +380,12 @@ $(document).ready(function(){
             cache: false,
             processData:false,
             success:function(data){
-                alert(data);
-                // if(data=="done"){
-                //     window.location.href=base_url+"products/view";
-                // }else{
-                //     alert(data);
-                // }
+                //alert(data);
+                if(data=="done"){
+                    window.location.href=base_url+"products/view";
+                }else{
+                    alert(data);
+                }
             }
         });
     });
