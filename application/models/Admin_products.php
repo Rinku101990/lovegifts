@@ -433,6 +433,14 @@ class Admin_products extends CI_Model {
     	//echo $this->db->last_query();
     	return $query->result();
     }
+    // GET UNIQUE CATEGORY ID FROM ORDER LIST //
+    public function getUniqueCategoryIdFromOrders()
+    {
+        $this->db->select('DISTINCT(cate_id) as category_id');
+        $this->db->from('lovegift_orders');
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function getAllOrderListAccordingCategory($cate_id)
     {
         $this->db->select('pro.pro_title,ord.*');

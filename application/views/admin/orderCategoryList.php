@@ -51,6 +51,7 @@
                   </td>
 
                   <td><?php echo $orderslist->ord_reference_id;?></td>
+                  
                   <td>
                     <?php $date = $orderslist->ord_created;
                           $newDate = date('d-m-Y', strtotime($date));
@@ -113,8 +114,6 @@
                 <?php } ?>
                 </tbody>
               </table>
-              <?php }else{ ?>
-                  <p style="text-align: center;margin-top: 20px;font-weight: bold;padding:30px">No Orders Found</p>
               <?php } ?>
             </div>
             <!-- /.box-body -->

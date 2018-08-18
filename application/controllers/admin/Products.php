@@ -815,7 +815,9 @@ class Products extends CI_Controller {
 	public function orders()
 	{
 		$data['category'] = $this->adPro->getAllCategoryList();
-		//print_r($data);die;
+		$data['orders'] = $this->adPro->getUniqueCategoryIdFromOrders();
+		// echo "<pre>";
+		// print_r($data);die;
 		$this->load->view('admin/includes/head');
 		$this->load->view('admin/includes/header');
 		$this->load->view('admin/includes/sidebar');

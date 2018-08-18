@@ -23,8 +23,12 @@
               <div class="row">
                 <div class="col-md-3">
                 <?php foreach($category as $ordlist){ ?>
+                  <?php foreach($orders as $orderslist){?>
+                  <?php if(($ordlist->cate_id)==($orderslist->category_id)){ ?>
                   <a href="<?php echo base_url('admin/products/getOrderListByCategoryId');?>/<?php echo $ordlist->cate_id;?>" class="btn btn-success btn-sm"><?php echo $ordlist->cate_name;?></a>
-                <?php } ?>
+                  <?php }else{ ?>
+                  <?php } ?>
+                <?php } } ?>
                 </div>
               </div><br />
             </div>
