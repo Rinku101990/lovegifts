@@ -18,21 +18,37 @@
 						<th style="text-align:right">Total</th>
 					</tr>
 					<tr>
-						<td><?php echo $orderDetail->pro_title;?></td>
+						<td><?php echo $orderDetail->pro_title;?><br />
+						<li>Size-<?php echo $orderDetail->ord_product_size;?></li>
+						</td>
 						<td style="text-align:right"><span><i class="fa fa-inr"></i></span><?php echo $orderDetail->ord_price;?></td>
 					</tr>
 					<tr>
 						<th>Total Order Qty:</th>
 						<td style="text-align:right"><?php echo $orderDetail->ord_qty;?></td>
 					</tr>
+					
+					<?php if(($orderDetail->ord_shipping)=="0"){?>
+					<tr>
+						<th>Shipping Charges:</th>
+						<td style="text-align:right"><span><i class="fa fa-inr"></i></span>0</td>
+					</tr>
+					<?php }else{?>
 					<tr>
 						<th>Shipping Charges:</th>
 						<td style="text-align:right"><span><i class="fa fa-inr"></i></span><?php echo $orderDetail->ord_shipping;?></td>
 					</tr>
+					<?php } ?>
+					
+					
+					<?php if(($orderDetail->ord_mode_of_payments)=="0"){?>
+					<?php }else{?>
 					<tr>
 						<th>Discount Amt:</th>
 						<td style="text-align:right"><span><i class="fa fa-inr"></i></span><?php echo $orderDetail->pro_offers;?></td>
 					</tr>
+					<?php } ?>
+					
 					<tr>
 						<th>Total Payable Amount:</th>
 						<td style="text-align:right"><span><i class="fa fa-inr"></i></span><?php echo $orderDetail->ord_total_price;?></td>

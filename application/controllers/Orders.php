@@ -62,7 +62,10 @@ class Orders extends CI_Controller {
 				'ord_status' => '0',
 				'ord_created' => date('Y:m-d H:i:s')
 			);
-			$orders['ord_id'] = $this->front->saveOrderinformation($orderArray);
+			$ordid = $this->front->saveOrderinformation($orderArray);
+			//$ordid = $ord_reference_id->ord_id;
+			$orders['ord_id'] = $ordid;
+			$orders['reference_id'] = $this->front->getReferenceIdByOrderId($ordid);
 			// DELETE TEMPORARY CUSTOMER DETAIL FROM TEMPORARY CUSTOMER TABLE //
 			$tempCustoId = $this->input->post('tmp_hidden_custo_id');
 			$tempCutomer = $this->front->deleteTempCustomerDetailById($tempCustoId);
@@ -70,9 +73,9 @@ class Orders extends CI_Controller {
 			$tmpid = $this->input->post('tmp_id');
 			$temp_data = $this->front->deleteTempCheckoutProductDetailById($tmpid);
 			// CREATE SESSION FOR CUSTOMER ORDER //
-			$this->session->set_userdata(array('ord_id' => $orders));
+			$this->session->set_userdata(array('ord_reference_id' => $orders));
 			$orders['mode'] = $this->input->post('paymentmode');
-
+			//print_r($orders);die;
 			if($orders){
 				echo json_encode($orders);
 			}else{
@@ -112,7 +115,7 @@ class Orders extends CI_Controller {
 		}
 		unset($_POST);
 		
-		redirect('orders/orderSummery/'.$ord_id);
+		redirect('orders/orderSummary/'.$ord_id);
 	}
 
 	public function error(){
@@ -121,7 +124,7 @@ class Orders extends CI_Controller {
 		unset($_POST);
 		$this->session->set_flashdata('msg_error', "Your payment was failed. Try again..");
 		$ordid = $this->session->userdata('ord_id');
-		redirect('orders/orderSummery/'.$ord_id);
+		redirect('orders/orderSummary/'.$ord_id);
 	}
 
 	//Method that handles when payment was cancelled.
@@ -131,13 +134,15 @@ class Orders extends CI_Controller {
 		unset($_POST);
 		$this->session->set_flashdata('msg_error', "Your payment was cancelled. Try again..");
 		$ordid = $this->session->userdata('ord_id');
-		redirect('orders/orderSummery/'.$ord_id);
+		redirect('orders/orderSummary/'.$ord_id);
 	}
 
-	public function orderSummery(){
+	public function orderSummary(){
 
 		$ord_id = $this->uri->segment(3);
 		$data['orders'] = $this->front->getOrderLists($ord_id);
+		$data['category'] = $this->front->getAllCategoryList();
+		//$data['extra'] = $this->front->getExtrainfoById();
 
 		$this->load->view('includes/header');
 		$this->load->view('includes/top_header');

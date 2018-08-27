@@ -15,13 +15,17 @@
         <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Orders List </h3>
+              <h3 class="box-title">Orders List 
+              <?php $success= $this->session->flashdata('message'); if(!empty($success)) { ?>
+                <?php echo $this->session->flashdata('message'); ?>
+              <?php } ?>
+              </h3>
             </div>
             <!-- /.box-header -->
             <?php if(!empty($category)){ ?>
             <div class="box-body">
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-12">
                 <?php foreach($category as $ordlist){ ?>
                   <?php foreach($orders as $orderslist){?>
                   <?php if(($ordlist->cate_id)==($orderslist->category_id)){ ?>

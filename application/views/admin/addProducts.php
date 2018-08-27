@@ -19,7 +19,6 @@
             <div class="box-header with-border">
               <h3 class="box-title">Add Product 
                 <a href="<?php echo base_url('admin/products/view');?>" class="btn btn-info btn-sm">View Products</a> 
-                <a href="<?php echo base_url('admin/products/disabled');?>" class="btn btn-info btn-sm">Inactive Products</a>
                 <?php $success= $this->session->flashdata('message'); if(!empty($success)) { ?>
                   <?php echo $this->session->flashdata('message'); ?>
                 <?php } ?>

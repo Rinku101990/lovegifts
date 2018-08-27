@@ -209,6 +209,16 @@ class Frontend extends CI_Model {
 		//echo $this->db->last_query();
 		return $this->db->insert_id();
 	}
+	
+	public function getReferenceIdByOrderId($ordid)
+	{
+		$this->db->select('ord_reference_id');
+		$this->db->from('lovegift_orders');
+		$this->db->where('ord_id', $ordid);
+		$query = $this->db->get();
+		return $query->row();
+	}
+	
 	public function deleteTempCheckoutProductDetailById($tmpid)
 	{
 		$this->db->where('temp_ckout_id', $tmpid);
@@ -251,9 +261,16 @@ class Frontend extends CI_Model {
 		$this->db->from('lovegift_orders ord');
 		$this->db->join('lovegift_users usr','ord.user_id=usr.user_id','left');
 		$this->db->join('lovegift_products pro','ord.pro_id=pro.pro_id','left');
-		$this->db->where('ord.ord_id', $ord_id);
+		$this->db->where('ord.ord_reference_id', $ord_id);
 		$query = $this->db->get();
 		//echo $this->db->last_query();
+		return $query->result();
+	}
+	public function getExtrainfoById()
+	{
+		$this->db->select('*');
+		$this->db->from('lovegifts_extra_info');
+		$query = $this->db->get();
 		return $query->result();
 	}
 

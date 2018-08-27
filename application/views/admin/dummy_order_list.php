@@ -32,6 +32,8 @@
                   <?php foreach($level as $level_name){?>
                   <th><?php echo $level_name->cat_track_name;?></th>
                   <?php } ?>
+                  <th>Packed Done</th>
+                  <th>Despatched</th>
                   <th>Remarks</th>
                   <th>Action</th>
                 </tr>
@@ -57,30 +59,45 @@
                     ?>
                   </td>
 
-                  <td><?php echo $orderslist->pro_title; ?></td>
+                  <td><?php echo $orderslist->pro_title;?></td>
 
-                <?php foreach($level as $level_name){ ?>
+                  <?php foreach($level as $level_name){?>
                   <td>
-
                     <?php foreach($track_status as $levels){ ?>
-                      <?php if(($level_name->cat_track_id)==($levels->cat_track_id) && ($orderslist->ord_id)==($levels->ord_id)){ ?>
-
-                        <?php if(($levels->track_status)=="1"){ ?>
-                          <a href="#" class="trackLevelYes" id="trackLevelYes<?php echo $orderslist->ord_id;?>" trackLevelYes="<?php echo $level_name->cat_track_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
-                        <?php } ?>
-
-                        <?php if(($levels->track_status)=="0"){ ?>
-                          <a href="#" class="trackLevelNo" id="trackLevelNo<?php echo $orderslist->ord_id;?>" trackLevelNo="<?php echo $level_name->cat_track_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
-                        <?php } ?>
-                        
-                      <?php } ?>
-                    <?php } ?>
-                    
-                    <a href="#" class="trackLevelYes" id="trackLevelYes<?php echo $orderslist->ord_id;?>" ordid="<?php echo $orderslist->ord_id;?>" trackLevelYes="<?php echo $level_name->cat_track_id;;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
-                    <a href="#" class="trackLevelNo" id="trackLevelNo<?php echo $orderslist->ord_id;?>" ordid="<?php echo $orderslist->ord_id;?>" trackLevelNo="<?php echo $level_name->cat_track_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
-                  
+                    <?php if(($level_name->cat_track_id)==($levels->cat_track_id)){ ?>
+                    <?php if(($levels->track_status)=="1"){?>
+                      <a href="#" class="trackLevelYes" id="trackLevelYes<?php echo $orderslist->ord_id;?>" trackLevelYes="<?php echo $level_name->cat_track_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
+                    <?php }else if(($levels->track_status)=="0"){ ?>
+                      <a href="#" class="trackLevelNo" id="trackLevelNo<?php echo $orderslist->ord_id;?>" trackLevelNo="<?php echo $level_name->cat_track_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
+                    <?php }else{ ?>
+                    <?php } } }?>
+                      <a href="#" class="trackLevelYes" id="trackLevelYes<?php echo $orderslist->ord_id;?>" ordid="<?php echo $orderslist->ord_id;?>" trackLevelYes="<?php echo $level_name->cat_track_id;;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
+                      <a href="#" class="trackLevelNo" id="trackLevelNo<?php echo $orderslist->ord_id;?>" ordid="<?php echo $orderslist->ord_id;?>" trackLevelNo="<?php echo $level_name->cat_track_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
                   </td>
-                <?php } ?>
+                  <?php } ?>
+
+                  <td>
+                    <input type="hidden" name="ordid" value="<?php echo $orderslist->ord_id;?>">
+                    <?php if(($orderslist->ord_photo_status)=="1"){?>
+                      <a href="#" class="photoReceivedYes" id="photoyes<?php echo $orderslist->ord_id;?>" photoyes="<?php echo $orderslist->ord_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
+                    <?php }else if(($orderslist->ord_photo_status)=="0"){ ?>
+                      <a href="#" class="photoReceivedNo" id="photono<?php echo $orderslist->ord_id;?>" photono="<?php echo $orderslist->ord_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
+                    <?php }else{ ?>
+                      <a href="#" class="photoReceivedYes" id="photoyes<?php echo $orderslist->ord_id;?>" photoyes="<?php echo $orderslist->ord_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
+                      <a href="#" class="photoReceivedNo" id="photono<?php echo $orderslist->ord_id;?>" photono="<?php echo $orderslist->ord_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
+                    <?php } ?>
+                  </td>
+
+                  <td>
+                    <?php if(($orderslist->ord_shipping_required)=="1"){?>
+                      <a href="#" class="shippingYes" id="shippingYes<?php echo $orderslist->ord_id;?>" shippingyes="<?php echo $orderslist->ord_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
+                    <?php }else if(($orderslist->ord_shipping_required)=="0"){ ?>
+                      <a href="#" class="shippingNo" id="shipingNo<?php echo $orderslist->ord_id;?>" shippingno="<?php echo $orderslist->ord_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
+                    <?php }else{ ?>
+                      <a href="#" class="shippingYes" id="shippingYes<?php echo $orderslist->ord_id;?>" shippingyes="<?php echo $orderslist->ord_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
+                      <a href="#" class="shippingNo" id="shipingNo<?php echo $orderslist->ord_id;?>" shippingno="<?php echo $orderslist->ord_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
+                    <?php } ?>
+                  </td>
 
                   <?php if(!empty($orderslist->ord_txt_message)){?>
                   <td><?php echo $orderslist->ord_txt_message;?></td>

@@ -15,7 +15,7 @@
         <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Products List <a href="<?php echo base_url('admin/products/add');?>" class="btn btn-info btn-sm">Add Products</a> <a href="<?php echo base_url('admin/products/disabled');?>" class="btn btn-info btn-sm">Inactive Products</a></h3>
+              <h3 class="box-title">Products List <a href="<?php echo base_url('admin/products/add');?>" class="btn btn-info btn-sm">Add Products</a></h3>
             </div>
             <!-- /.box-header -->
             <?php if(!empty($products)){ ?>

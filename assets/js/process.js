@@ -339,10 +339,11 @@ $(document).ready(function(){
 			data: {tmp_customer_id:tmp_customer_id,tmp_cate_id:tmp_cate_id,tmp_id:tmp_id,fname:fname,add1:add1,add2:add2,landmark:landmark,pincode:pincode,city:city,state:state,cmob:cmob,wmob:wmob,email:email,messagetxt:messagetxt,product:product,product_size:product_size,price:price,offerAmount:offerAmount,qty:qty,shipping:shipping,paymentmode:paymentmode,total:total},
 			dataType:"json",
 			success: function (data) {
+				//console.log(data);
               if(data.mode !='0'){
-              	window.location.href=base_url+'payumoney/index/'+data.ord_id;
+              	window.location.href=base_url+'payumoney/index/'+data.reference_id.ord_reference_id;
               }else if(data.mode=='0'){
-              	window.location.href=base_url+'orders/orderSummery/'+data.ord_id;
+              	window.location.href=base_url+'orders/orderSummary/'+data.reference_id.ord_reference_id;
               }else{
 
               }

@@ -145,6 +145,7 @@ class Products extends CI_Controller {
 	public function category()
 	{
 		$data['category'] = $this->adPro->getAllCategoryList();
+		$data['level_list'] = $this->adPro->getTrackLevelList();
 
 		$this->load->view('admin/includes/head');
 		$this->load->view('admin/includes/header');
@@ -640,13 +641,13 @@ class Products extends CI_Controller {
 	public function deleteProducts()
     {
     	$product_id = $this->input->post('pro_id');
-    	$data['pro_status'] = '1'; 
-    	$delete = $this->adPro->deleteProductsById($product_id, $data);
+    	//$data['pro_status'] = '1'; 
+    	$delete = $this->adPro->deleteProductsById($product_id);
     	if($delete){
-    		$this->session->set_flashdata('message','<span class="alert alert-danger" style="padding: 6px;">Product Disabled Successfully.</span>');
+    		$this->session->set_flashdata('message','<span class="alert alert-danger" style="padding: 6px;">Product Deleted Successfully.</span>');
     		echo "ok";
     	}else{
-    		$this->session->set_flashdata('message','<span class="alert alert-danger" style="padding: 6px;">Product Not Disabled Successfully.</span>');
+    		$this->session->set_flashdata('message','<span class="alert alert-danger" style="padding: 6px;">Product Not Deleted Successfully.</span>');
     		echo "fail";
     	}
     }
@@ -862,259 +863,75 @@ class Products extends CI_Controller {
 		$this->load->view('admin/includes/dataTable_footer');
 	}
 
-	// CHANGE PHOTO STATUS ACCORDING USER RESPONSE //
-	public function photoReceivedYes()
+	// UPDATE TRACK LEVEL STATUS BY TRACK LEVEL ID AND ORDER ID //
+	public function trackStatusChange()
 	{
 		if(!empty($this->input->post())){
-			$order_id = $this->input->post('ord_id');
-			$data['ord_photo_status'] = '1';
-			$result = $this->adPro->updatePhotoStatusYes($order_id, $data);
-			if($result){
-				echo "PhotoYes";
+			$cat_track_id = $this->input->post('cat_track_id');
+			$ord_id = $this->input->post('ord_id');
+			//$data['track_status'] = $this->input->post('status');
+			$check = $this->adPro->checkParameterInTrackStatus($cat_track_id, $ord_id);
+			if($check){
+				$update_id = $check->ord_trk_id;
+				$statusUpdateArray = array(
+					'track_status' => $this->input->post('status')
+				);
+				$result = $this->adPro->updateStatusofTrackLevel($update_id, $statusUpdateArray);
+				if($result){
+					echo "access";
+				}else{
+					echo "denied";
+				}
 			}else{
-				echo "PhotoNo";
+				$statusSaveArray = array(
+					'cat_track_id' => $this->input->post('cat_track_id'),
+					'ord_id' => $this->input->post('ord_id'),
+					'track_status' => $this->input->post('status')
+				);
+				$result = $this->adPro->saveTrackLevelStatusOfOrders($statusSaveArray);
+				if($result){
+					echo "access";
+				}else{
+					echo "denied";
+				}
 			}
 		}else{
 			echo "No";
 		}
 	}
-
-	public function photoReceivedNo()
+	// UPDATE TRACK LEVEL STATUS BY TRACK LEVEL ID AND ORDER ID //
+	public function trackLevelNo()
 	{
 		if(!empty($this->input->post())){
-			$order_id = $this->input->post('ord_id');
-			$data['ord_photo_status'] = '0';
-			$result = $this->adPro->updatePhotoStatusNo($order_id, $data);
+			$data['cat_track_id'] = $this->input->post('cat_track_id');
+			$data['ord_id'] = $this->input->post('ord_id');
+			$data['track_status'] = '0';
+			$result = $this->adPro->saveTrackLevelStatusOfOrdersNo($data);
 			if($result){
-				echo "PhotoNo";
+				echo "TrackNo";
 			}else{
-				echo "PhotoYes";
+				echo "TrackYes";
 			}
 		}else{
 			echo "No";
 		}
 	}
-
-	// SHIPPING STATUS CHANGE //
-
-	public function shippingYes()
+	// DELETE ODER FROM ADMIN SECTION //
+	public function delete_order()
 	{
-		if(!empty($this->input->post())){
-			$order_id = $this->input->post('ord_id');
-			$data['ord_shipping_required'] = '1';
-			$result = $this->adPro->updateShippingStatusYes($order_id, $data);
-			if($result){
-				echo "shipYes";
-			}else{
-				echo "shipNo";
-			}
+		$cate_id = $this->uri->segment(4);
+		$ord_id = $this->uri->segment(5);
+		$result = $this->adPro->delete_order_by_id($ord_id);
+		//$check_category = $this->adPro->checkCategoryInOrder($cate_id);
+		if($result){
+			$this->session->set_flashdata('message','<span class="alert alert-danger" style="padding: 2px;">Order Deleted Successfully.</span>');
+    		redirect('admin/products/orders');
 		}else{
-			echo "No";
+			$this->session->set_flashdata('message','<span class="alert alert-danger" style="padding: 2px;">Order Delete Successfully.</span>');
+    		redirect('admin/products/orders');
 		}
 	}
-
-	public function shippingNo()
-	{
-		
-		if(!empty($this->input->post())){
-			
-			$order_id = $this->input->post('ord_id');
-			$data['ord_shipping_required'] = '0';
-			$result = $this->adPro->updateShippingStatusNo($order_id, $data);
-			if($result){
-				echo "shipNo";
-			}else{
-				echo "shipYes";
-			}
-		}else{
-			echo "No";
-		}
-	}
-
-	// CHANGE PHOTO CROPED STATUS //
-
-	public function photoCropYes()
-	{
-		if(!empty($this->input->post())){
-			$order_id = $this->input->post('ord_id');
-			$data['ord_photo_croped'] = '1';
-			$result = $this->adPro->updatePhotoCropStatusYes($order_id, $data);
-			if($result){
-				echo "cropYes";
-			}else{
-				echo "cropNo";
-			}
-		}else{
-			echo "No";
-		}
-	}
-
-	public function photoCropNo()
-	{
-		if(!empty($this->input->post())){
-			$photoStatus = $this->input->post();
-			$order_id = $this->input->post('ord_id');
-			$data['ord_photo_croped'] = '0';
-			$result = $this->adPro->updatePhotoCropStatusNo($order_id, $data);
-			if($result){
-				echo "cropNo";
-			}else{
-				echo "cropYes";
-			}
-		}else{
-			echo "No";
-		}
-	}
-	// PHOTO PRINTED OR NOT //
-
-	public function photoPrintedYes()
-	{
-		if(!empty($this->input->post())){
-			$order_id = $this->input->post('ord_id');
-			$data['ord_photo_printed'] = '1';
-			$result = $this->adPro->updatePhotoPrintedStatusYes($order_id, $data);
-			if($result){
-				echo "printYes";
-			}else{
-				echo "printNo";
-			}
-		}else{
-			echo "No";
-		}
-	}
-
-	public function photoPrintedNo()
-	{
-		if(!empty($this->input->post())){
-			$photoStatus = $this->input->post();
-			$order_id = $this->input->post('ord_id');
-			$data['ord_photo_printed'] = '0';
-			$result = $this->adPro->updatePhotoPrintedStatusNo($order_id, $data);
-			if($result){
-				echo "printNo";
-			}else{
-				echo "printYes";
-			}
-		}else{
-			echo "No";
-		}
-	}
-	// PHOTO CUTTING STATUS //
-	public function photoCuttingYes()
-	{
-		if(!empty($this->input->post())){
-			$order_id = $this->input->post('ord_id');
-			$data['ord_photo_cutting'] = '1';
-			$result = $this->adPro->updatePhotoCuttingStatusYes($order_id, $data);
-			if($result){
-				echo "cuttingYes";
-			}else{
-				echo "cuttingNo";
-			}
-		}else{
-			echo "No";
-		}
-	}
-
-	public function photoCuttingNo()
-	{
-		if(!empty($this->input->post())){
-			$photoStatus = $this->input->post();
-			$order_id = $this->input->post('ord_id');
-			$data['ord_photo_cutting'] = '0';
-			$result = $this->adPro->updatePhotoCuttingStatusNo($order_id, $data);
-			if($result){
-				echo "cuttingNo";
-			}else{
-				echo "cuttingYes";
-			}
-		}else{
-			echo "No";
-		}
-	}
-	// STATUS OF PHOTO PASTING //
-	public function photoPastingYes()
-	{
-		if(!empty($this->input->post())){
-			$order_id = $this->input->post('ord_id');
-			$data['orf_photo_pasting'] = '1';
-			$result = $this->adPro->updatePhotoPastingStatusYes($order_id, $data);
-			if($result){
-				echo "pastingYes";
-			}else{
-				echo "pastingNo";
-			}
-		}else{
-			echo "No";
-		}
-	}
-
-	public function photoPastingNo()
-	{
-		if(!empty($this->input->post())){
-			$photoStatus = $this->input->post();
-			$order_id = $this->input->post('ord_id');
-			$data['orf_photo_pasting'] = '0';
-			$result = $this->adPro->updatePhotoPastingStatusNo($order_id, $data);
-			if($result){
-				echo "pastingNo";
-			}else{
-				echo "pastingYes";
-			}
-		}else{
-			echo "No";
-		}
-	}
-	// PHOTO CHECKED STATUSN  //
-	public function photoCheckedYes()
-	{
-		if(!empty($this->input->post())){
-			$order_id = $this->input->post('ord_id');
-			$data['ord_photo_checked'] = '1';
-			$result = $this->adPro->updatePhotoCheckedStatusYes($order_id, $data);
-			if($result){
-				echo "checkedYes";
-			}else{
-				echo "checkedNo";
-			}
-		}else{
-			echo "No";
-		}
-	}
-
-	public function photoCheckedNo()
-	{
-		if(!empty($this->input->post())){
-			$photoStatus = $this->input->post();
-			$order_id = $this->input->post('ord_id');
-			$data['ord_photo_checked'] = '0';
-			$result = $this->adPro->updatePhotoCheckedStatusNo($order_id, $data);
-			if($result){
-				echo "checkedNo";
-			}else{
-				echo "checkedYes";
-			}
-		}else{
-			echo "No";
-		}
-	}
-
-	//PHOTO PACKED STATUS //
-	public function photoPackedYes()
-	{
-		if(!empty($this->input->post())){
-			$order_id = $this->input->post('ord_id');
-			$data['ord_photo_packed'] = '1';
-			$result = $this->adPro->updatePhotoPackedStatusYes($order_id, $data);
-			if($result){
-				echo "packedYes";
-			}else{
-				echo "packedNo";
-			}
-		}else{
-			echo "No";
-		}
-	}
+	// CHANGE PACKED ORDER STATUS //
 
 	public function photoPackedNo()
 	{

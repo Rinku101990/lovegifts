@@ -252,10 +252,10 @@ class Admin_products extends CI_Model {
     }
 
 	// DELETE PRODUCTS BY ID //
-    public function deleteProductsById($product_id, $data)
+    public function deleteProductsById($product_id)
     {
         $this->db->where('pro_id', $product_id);
-        $this->db->update('lovegift_products', $data);
+        $this->db->delete('lovegift_products');
         //echo $this->db->last_query();
         return $product_id;
 
@@ -583,10 +583,27 @@ class Admin_products extends CI_Model {
     	return $order_id;
     }
 
-    public function saveTrackLevelStatusOfOrders($data)
+    // UPDATE TRACK LEVEL STATUS BY CATEGORY TRACK ID AND ORDER ID //
+    public function saveTrackLevelStatusOfOrders($statusSaveArray)
     {
-        $this->db->insert('lovegift_order_track_status', $data);
+        $this->db->insert('lovegift_order_track_status', $statusSaveArray);
         return $this->db->insert_id();
+    }
+    public function checkParameterInTrackStatus($cat_track_id, $ord_id)
+    {
+        $this->db->select('ord_trk_id');
+        $this->db->from('lovegift_order_track_status');
+        $this->db->where('cat_track_id', $cat_track_id);
+        $this->db->where('ord_id', $ord_id);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
+    public function updateStatusofTrackLevel($update_id, $statusUpdateArray)
+    {
+        $this->db->where('ord_trk_id', $update_id);
+        $this->db->update('lovegift_order_track_status', $statusUpdateArray);
+        return $update_id;
     }
     // GET ALL TRACK STATUS //
     public function getTrackLevelStatus()
@@ -597,6 +614,15 @@ class Admin_products extends CI_Model {
         //echo $this->db->last_query();
         return $query->result();
     }
+	// GET ALL TRACK LEVEL LIST //
+	public function getTrackLevelList()
+	{
+		$this->db->select('*');
+        $this->db->from('lovegift_category_track_level');
+        $query = $this->db->get();
+        //echo $this->db->last_query();
+        return $query->result();
+	}
     // PHOTO PACKED STATUS //
 
     public function updatePhotoPackedStatusYes($order_id, $data)
@@ -630,11 +656,20 @@ class Admin_products extends CI_Model {
     	return $order_id;
     }
 
-    public function disableOrderById($ord_id, $orderArray)
+    public function delete_order_by_id($ord_id)
     {
         $this->db->where('ord_id', $ord_id);
-        $this->db->update('lovegift_orders', $orderArray);
+        $this->db->delete('lovegift_orders');
         //echo $this->db->last_query();
         return $ord_id;
     }
+    // CHECK CATEGORY ID IN ORDER TABLE //
+    // public function checkCategoryInOrder($cate_id)
+    // {
+    //     $this->db->select('cate_id');
+    //     $this->db->from('lovegift_orders');
+    //     $this->db->where('cate_id', $cate_id);
+    //     $query = $this->db->get();
+    //     return $query->result();
+    // }
 }

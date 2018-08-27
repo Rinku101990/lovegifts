@@ -79,15 +79,23 @@
                 <tr>
                   <th>S.N.</th>
                   <th>Category Name</th>
+				  <th>Track Level</th>
                   <th>Status</th>
-                  <th>Action</th>
+                  <th style="width:90px">Action</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody  style="overflow-x:scroll;width:100%">
                 <?php $i=1; foreach($category as $cat_list){?>
                 <tr>
                   <td><?php echo $i++;?></td>
                   <td><?php echo $cat_list->cate_name;?></td>
+				  <td>
+				  <?php foreach($level_list as $track_list){?>
+				  <?php if(($cat_list->cate_id)==($track_list->cate_id)){?>
+				  <?php echo $track_list->cat_track_name;?>
+				  <?php echo ",";} ?>
+				  <?php } ?>
+				  </td>
                   <td>
                     <?php if($cat_list->cate_status=='0'){?>
                       <span class="badge bg-green">Active</span>

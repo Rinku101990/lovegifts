@@ -17,11 +17,14 @@
             <div class="box-header with-border">
               <h3 class="box-title">Orders List 
                 <a href="<?php echo base_url('admin/products/orders');?>" class="btn btn-success btn-sm">View Order Category</a>
+                <?php $success= $this->session->flashdata('message'); if(!empty($success)) { ?>
+                  <?php echo $this->session->flashdata('message'); ?>
+                <?php } ?>
               </h3>
             </div>
             <!-- /.box-header -->
             <?php if(!empty($level)){ ?>
-            <div class="box-body">
+            <div class="box-body" style="overflow-x:scroll;width:100%">
               <table id="example1" class="table table-bordered table-striped">
               <thead>
                 <tr>
@@ -42,7 +45,6 @@
                 <tbody>
                 <?php foreach($orders as $orderslist){ ?>
                 <tr>
-
                   <td>
                     <!-- <input type="checkbox" name="download_excel" data-toggle="modal" data-target="#download_excel" class="minimal" style="position: relative;opacity: 1;"> -->
                     <a href="#" data-toggle="modal" data-target="#orderReport">
@@ -59,45 +61,55 @@
                     ?>
                   </td>
 
-                  <td><?php echo $orderslist->pro_title;?></td>
+                  <td><?php echo $orderslist->pro_title; ?></td>
 
-                  <?php foreach($level as $level_name){?>
+                <?php foreach($level as $level_name){ ?>
                   <td>
-                    <?php foreach($track_status as $levels){ ?>
-                    <?php if(($level_name->cat_track_id)==($levels->cat_track_id)){ ?>
-                    <?php if(($levels->track_status)=="1"){?>
-                      <a href="#" class="trackLevelYes" id="trackLevelYes<?php echo $orderslist->ord_id;?>" trackLevelYes="<?php echo $level_name->cat_track_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
-                    <?php }else if(($levels->track_status)=="0"){ ?>
-                      <a href="#" class="trackLevelNo" id="trackLevelNo<?php echo $orderslist->ord_id;?>" trackLevelNo="<?php echo $level_name->cat_track_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
-                    <?php }else{ ?>
-                    <?php } } }?>
-                      <a href="#" class="trackLevelYes" id="trackLevelYes<?php echo $orderslist->ord_id;?>" ordid="<?php echo $orderslist->ord_id;?>" trackLevelYes="<?php echo $level_name->cat_track_id;;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
-                      <a href="#" class="trackLevelNo" id="trackLevelNo<?php echo $orderslist->ord_id;?>" ordid="<?php echo $orderslist->ord_id;?>" trackLevelNo="<?php echo $level_name->cat_track_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
-                  </td>
+                  <?php foreach($track_status as $levels){ ?>
+                    <?php if(($level_name->cat_track_id)==($levels->cat_track_id) && ($orderslist->ord_id)==($levels->ord_id)){ ?>
+
+                     <?php if(($levels->track_status)=="0"){?>
+                      <span class="badge bg-yellow" id="statusValue<?php echo $orderslist->ord_id;?><?php echo $level_name->cat_track_id;;?>">In Process</span>
+                     <?php }  ?>
+
+                     <?php if(($levels->track_status)=="1"){ ?>
+                      <span class="badge bg-green" id="statusValue<?php echo $orderslist->ord_id;?><?php echo $level_name->cat_track_id;;?>">Completed</span>
+                     <?php } ?>
+
+                    <?php } ?>
                   <?php } ?>
 
-                  <td>
-                    <input type="hidden" name="ordid" value="<?php echo $orderslist->ord_id;?>">
-                    <?php if(($orderslist->ord_photo_status)=="1"){?>
-                      <a href="#" class="photoReceivedYes" id="photoyes<?php echo $orderslist->ord_id;?>" photoyes="<?php echo $orderslist->ord_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
-                    <?php }else if(($orderslist->ord_photo_status)=="0"){ ?>
-                      <a href="#" class="photoReceivedNo" id="photono<?php echo $orderslist->ord_id;?>" photono="<?php echo $orderslist->ord_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
-                    <?php }else{ ?>
-                      <a href="#" class="photoReceivedYes" id="photoyes<?php echo $orderslist->ord_id;?>" photoyes="<?php echo $orderslist->ord_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
-                      <a href="#" class="photoReceivedNo" id="photono<?php echo $orderslist->ord_id;?>" photono="<?php echo $orderslist->ord_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
-                    <?php } ?>
+                    <select id="track_status<?php echo $level_name->cat_track_id;?>" ordid="<?php echo $orderslist->ord_id;?>" cattrack="<?php echo $level_name->cat_track_id;;?>" name="track_status<?php echo $orderslist->ord_id;?>" class="track_status">
+                      <option value="">action</option>
+                      <option value="0">In process</option>
+                      <option value="1">Complete</option>
+                    </select>
                   </td>
 
-                  <td>
-                    <?php if(($orderslist->ord_shipping_required)=="1"){?>
-                      <a href="#" class="shippingYes" id="shippingYes<?php echo $orderslist->ord_id;?>" shippingyes="<?php echo $orderslist->ord_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
-                    <?php }else if(($orderslist->ord_shipping_required)=="0"){ ?>
-                      <a href="#" class="shippingNo" id="shipingNo<?php echo $orderslist->ord_id;?>" shippingno="<?php echo $orderslist->ord_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
-                    <?php }else{ ?>
-                      <a href="#" class="shippingYes" id="shippingYes<?php echo $orderslist->ord_id;?>" shippingyes="<?php echo $orderslist->ord_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
-                      <a href="#" class="shippingNo" id="shipingNo<?php echo $orderslist->ord_id;?>" shippingno="<?php echo $orderslist->ord_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
-                    <?php } ?>
-                  </td>
+                <?php } ?>
+
+                <td>
+                  <input type="hidden" name="ordid" value="<?php echo $orderslist->ord_id;?>">
+                  <?php if(($orderslist->ord_photo_packed)=="1"){?>
+                    <a href="#" class="photoPackedYes" id="photoPackedYes<?php echo $orderslist->ord_id;?>" photo_packed_yes="<?php echo $orderslist->ord_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
+                  <?php }else if(($orderslist->ord_photo_packed)=="0"){ ?>
+                    <a href="#" class="photoPackedNo" id="photoPackedNo<?php echo $orderslist->ord_id;?>" photo_packed_no="<?php echo $orderslist->ord_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
+                  <?php }else{ ?>
+                    <a href="#" class="photoPackedYes" id="photoPackedYes<?php echo $orderslist->ord_id;?>" photo_packed_yes="<?php echo $orderslist->ord_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
+                    <a href="#" class="photoPackedNo" id="photoPackedNo<?php echo $orderslist->ord_id;?>" photo_packed_no="<?php echo $orderslist->ord_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
+                  <?php } ?>
+                </td>
+
+                <td>
+                  <?php if(($orderslist->ord_photo_despatched)=="1"){?>
+                    <a href="#" class="photoDespatchedYes" id="photoDespatchedYes<?php echo $orderslist->ord_id;?>" photo_despatched_yes="<?php echo $orderslist->ord_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
+                  <?php }else if(($orderslist->ord_photo_despatched)=="0"){ ?>
+                    <a href="#" class="photoDespatchedNo" id="photoDespatchedNo<?php echo $orderslist->ord_id;?>" photo_despatched_no="<?php echo $orderslist->ord_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
+                  <?php }else{ ?>
+                    <a href="#" class="photoDespatchedYes" id="photoDespatchedYes<?php echo $orderslist->ord_id;?>" photo_despatched_yes="<?php echo $orderslist->ord_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
+                    <a href="#" class="photoDespatchedNo" id="photoDespatchedNo<?php echo $orderslist->ord_id;?>" photo_despatched_no="<?php echo $orderslist->ord_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
+                  <?php } ?>
+                </td>
 
                   <?php if(!empty($orderslist->ord_txt_message)){?>
                   <td><?php echo $orderslist->ord_txt_message;?></td>
@@ -107,7 +119,7 @@
 
                   <td>
                     <!-- <a href="#"><span class="badge bg-green"><i class="fa fa-edit"></i></span></a> -->
-                    <a href="javascript:(void)"><span class="badge bg-red disable" disable="<?php echo $orderslist->ord_id?>"><i class="fa fa-trash"></i></span></a>
+                    <a onclick="return confirm('are you sure want to delete!.');" href="<?php echo base_url('admin/products/delete_order');?>/<?php echo $orderslist->cate_id;?>/<?php echo $orderslist->ord_id;?>"><span class="badge bg-red disable"><i class="fa fa-trash"></i></span></a>
                   </td>
 
                 </tr>

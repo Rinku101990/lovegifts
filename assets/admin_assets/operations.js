@@ -331,7 +331,7 @@ $(document).ready(function(){
     // DELETE PRODUCT RECORD FROM TABLE //
     $(".btnProductsDelete").click(function(){
 		var pro_id = $(this).attr("proDelete");
-		if (confirm("Are you sure?")) {
+		if (confirm("Are you sure want to delete this product.?")) {
         	//alert(pro_id);
         	$.ajax({
         		method:'post',
@@ -453,264 +453,29 @@ $(document).ready(function(){
     });
     // END OF THE MULTIPLE SELECTION //
 
-    // PHOTO RECEIVED OR NOT //
-    // $(".photoReceivedYes").click(function(){
-    // 	var ord_id = $(this).attr("photoyes");
-    //     //alert(ord_id);
-    // 	$.ajax({
-    // 		method:"post",
-    // 		url:base_url+"products/photoReceivedYes",
-    // 		data:{ord_id:ord_id},
-    // 		success: function(data){
-    // 			if(data=="PhotoYes"){
-    // 				$("#photono"+ord_id).hide();
-    // 			}else{
+    // UPDATE ORDER STATUS BY USER SELCTION //
 
-    // 			}
-    // 		}
-    // 	});
-    // });
-    // $(".photoReceivedNo").click(function(){
-    	
-    // 	var ord_id = $(this).attr("photono");
-    //     //alert(ord_id);
-    // 	$.ajax({
-    // 		method:"post",
-    // 		url:base_url+"products/photoReceivedNo",
-    // 		data:{ord_id:ord_id},
-    // 		success: function(data){
-    // 			if(data=="PhotoNo"){
-    // 				$("#photoyes"+ord_id).hide();
-    // 			}else{
-
-    // 			}
-    // 		}
-    // 	});
-    // });
-    // // SHIPPING REQUIRED //
-
-    // $(".shippingYes").click(function(){
-    // 	var ord_id = $(this).attr("shippingyes");
-    // 	//alert(status);
-    // 	$.ajax({
-    // 		method:"post",
-    // 		url:base_url+"products/shippingYes",
-    // 		data:{ord_id:ord_id},
-    // 		success: function(data){
-    // 			if(data=="shipYes"){
-    // 				$("#shipingNo"+ord_id).hide();
-    // 			}else{
-
-    // 			}
-    // 		}
-    // 	});
-    // });
-
-    // $(".shippingNo").click(function(){
-    // 	var ord_id = $(this).attr("shippingno");
-    // 	//alert(ord_id);
-    // 	$.ajax({
-    // 		method:"post",
-    // 		url:base_url+"products/shippingNo",
-    // 		data:{ord_id:ord_id},
-    // 		success: function(data){
-    // 			if(data=="shipNo"){
-    // 				$("#shippingYes"+ord_id).hide();
-    // 			}else{
-
-    // 			}
-    // 		}
-    // 	});
-    // });
-    // // PHOTO CROPED STATUS //
-
-    // $(".photoCropYes").click(function(){
-    // 	var ord_id = $(this).attr("photo_crop_yes");
-    // 	//alert(status);
-    // 	$.ajax({
-    // 		method:"post",
-    // 		url:base_url+"products/photoCropYes",
-    // 		data:{ord_id:ord_id},
-    // 		success: function(data){
-    // 			if(data=="cropYes"){
-    // 				$("#photoCropNo"+ord_id).hide();
-    // 			}else{
-
-    // 			}
-    // 		}
-    // 	});
-    // });
-    // $(".photoCropNo").click(function(){
-    // 	var ord_id = $(this).attr("photo_crop_no");
-    // 	//alert(status);
-    // 	$.ajax({
-    // 		method:"post",
-    // 		url:base_url+"products/photoCropNo",
-    // 		data:{ord_id:ord_id},
-    // 		success: function(data){
-    // 			if(data=="cropNo"){
-    // 				$("#photoCropYes"+ord_id).hide();
-    // 			}else{
-
-    // 			}
-    // 		}
-    // 	});
-    // });
-    // // STATUS OF PHOTO PRINT OR NOT //
-    // $(".photoPrintedYes").click(function(){
-    // 	var ord_id = $(this).attr("photo_printed_yes");
-    // 	//alert(status);
-    // 	$.ajax({
-    // 		method:"post",
-    // 		url:base_url+"products/photoPrintedYes",
-    // 		data:{ord_id:ord_id},
-    // 		success: function(data){
-    // 			if(data=="printYes"){
-    // 				$("#photoPrintedNo"+ord_id).hide();
-    // 			}else{
-
-    // 			}
-    // 		}
-    // 	});
-    // });
-    // $(".photoPrintedNo").click(function(){
-    // 	var ord_id = $(this).attr("photo_printed_no");
-    // 	//alert(status);
-    // 	$.ajax({
-    // 		method:"post",
-    // 		url:base_url+"products/photoPrintedNo",
-    // 		data:{ord_id:ord_id},
-    // 		success: function(data){
-    // 			if(data=="printNo"){
-    // 				$("#photoPrintedYes"+ord_id).hide();
-    // 			}else{
-
-    // 			}
-    // 		}
-    // 	});
-    // });
-
-    // // STATUS OF PHOTO CUTTING //
-    // $(".photoCuttingYes").click(function(){
-    // 	var ord_id = $(this).attr("photo_cutting_yes");
-    // 	//alert(status);
-    // 	$.ajax({
-    // 		method:"post",
-    // 		url:base_url+"products/photoCuttingYes",
-    // 		data:{ord_id:ord_id},
-    // 		success: function(data){
-    // 			if(data=="cuttingYes"){
-    // 				$("#photoCuttingNo"+ord_id).hide();
-    // 			}else{
-
-    // 			}
-    // 		}
-    // 	});
-    // });
-    // $(".photoCuttingNo").click(function(){
-    // 	var ord_id = $(this).attr("photo_cutting_no"); 
-    // 	//alert(status);
-    // 	$.ajax({
-    // 		method:"post",
-    // 		url:base_url+"products/photoCuttingNo",
-    // 		data:{ord_id:ord_id},
-    // 		success: function(data){
-    // 			if(data=="cuttingNo"){
-    // 				$("#photoCuttingYes"+ord_id).hide();
-    // 			}else{
-
-    // 			}
-    // 		}
-    // 	});
-    // });
-    // // PHOTO PASTING STATUS //
-    // $(".photoPastingYes").click(function(){
-    // 	var ord_id = $(this).attr("photo_pasting_yes");
-    // 	//alert(status);
-    // 	$.ajax({
-    // 		method:"post",
-    // 		url:base_url+"products/photoPastingYes",
-    // 		data:{ord_id:ord_id},
-    // 		success: function(data){
-    // 			if(data=="pastingYes"){
-    // 				$("#photoPastingNo"+ord_id).hide();
-    // 			}else{
-
-    // 			}
-    // 		}
-    // 	});
-    // });
-    // $(".photoPastingNo").click(function(){
-    // 	var ord_id = $(this).attr("photo_pasting_no");
-    // 	//alert(status);
-    // 	$.ajax({
-    // 		method:"post",
-    // 		url:base_url+"products/photoPastingNo",
-    // 		data:{ord_id:ord_id},
-    // 		success: function(data){
-    // 			if(data=="pastingNo"){
-    // 				$("#photoPastingYes"+ord_id).hide();
-    // 			}else{
-
-    // 			}
-    // 		}
-    // 	});
-    // });
-    // // PHOTO CHECKED STATUS //
-    // $(".photoCheckedYes").click(function(){
-    // 	var ord_id = $(this).attr("photo_checked_yes"); 
-    // 	//alert(status);
-    // 	$.ajax({
-    // 		method:"post",
-    // 		url:base_url+"products/photoCheckedYes",
-    // 		data:{ord_id:ord_id},
-    // 		success: function(data){
-    // 			if(data=="checkedYes"){
-    // 				$("#photoCheckedNo"+ord_id).hide();
-    // 			}else{
-
-    // 			}
-    // 		}
-    // 	});
-    // });
-    // $(".photoCheckedNo").click(function(){
-    // 	var ord_id = $(this).attr("photo_checked_no");
-    // 	//alert(status);
-    // 	$.ajax({
-    // 		method:"post",
-    // 		url:base_url+"products/photoCheckedNo",
-    // 		data:{ord_id:ord_id},
-    // 		success: function(data){
-    // 			if(data=="checkedNo"){
-    // 				$("#photoCheckedYes"+ord_id).hide();
-    // 			}else{
-
-    // 			}
-    // 		}
-    // 	});
-    // });
-
-
-    // UPDATE CATEGORY TRACK LEVEL BY THEIR STATUS //
-
-    $(".trackLevelYes").click(function(){
-        var cat_track_id = $(this).attr("tracklevelyes");
+    $(".track_status").on("change",function(){
+        var cat_track_id = $(this).attr("cattrack");
         var ord_id = $(this).attr("ordid");
+        var status = $(this).val();
+        //alert(status);
         $.ajax({
     		method:"post",
-    		url:base_url+"products/trackLevelYes",
-    		data:{cat_track_id:cat_track_id,ord_id:ord_id},
+    		url:base_url+"products/trackStatusChange",
+    		data:{cat_track_id:cat_track_id,ord_id:ord_id,status:status},
     		success: function(data){
                 //alert(data);
-    			if(data=="trackYes"){
-    				$("#trackLevelNo"+ord_id).hide();
+    			if(data=="access"){
+                   location. reload(true);
+    			}else if(data=="denied"){
+                    location. reload(true);
     			}else{
 
-    			}
+                }
     		}
     	});
     });
-    // PHOTO PACKED STATUS //
 
     $(".photoPackedYes").click(function(){
     	var ord_id = $(this).attr("photo_packed_yes");
@@ -780,21 +545,6 @@ $(document).ready(function(){
     	});
     });
 
-
-    // DISABLE ORDER //
-    $(".disable").click(function(){
-        var ord_id = $(this).attr("disable");
-        $.ajax({
-            method:"post",
-            url:base_url+"products/orderDisable",
-            data:{ord_id:ord_id},
-            success: function(data){
-                if(data=="done"){
-                    window.location.href = base_url+"products/orders";
-                }
-            }
-        });
-    });
 
     // VIEW CUSTOMER DETAIL WITH  ORDERS //
     $(".info").click(function(){
