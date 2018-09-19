@@ -77,7 +77,7 @@
     </div>      
 <!-- end here LoveGifts.in Promise -->
  <br>
-<h1 class="text-center textdecorationheader">FEAUTRED GIFT</h1>
+<h1 class="text-center textdecorationheader">FEAUTRED GIFTS</h1>
     <section class="pv-30">
         <div class="container">
           	<div class="row" >
@@ -127,13 +127,13 @@
 					</div>
 				</div>
              	<div class="col-lg-6" style="margin-bottom: 20px">
-              		<h3 class="mt-4 textdecorationheader"><?php echo $productslist->pro_title;?></h3><hr>
+              		<h1 class="mt-4 textdecorationheader"><?php echo $productslist->pro_title;?></h1><hr>
               			<div class="separator-2"></div>
 			   				<div class="inner-info">
 			   					<?php $i = 0; foreach($price as $pricelist){ ?>
 			   						<?php if(($productslist->pro_id)==($pricelist->pro_id)){ ?>
 			   							<?php if($i < 1) {?>
-                        				<h3><i class="fa fa-rupee"></i><span>&nbsp<?php echo $pricelist->size_related_price?></span></h3><hr>
+                        				<h4><i class="fa fa-rupee"></i><span>&nbsp<?php echo $pricelist->size_related_price?></span></h4><hr>
                         			<?php }$i++; ?>
                         			<?php } ?>
                         		<?php } ?>
@@ -150,11 +150,10 @@
 							   </div><br>
                     		<div class="row">
                         		<div class="col-md-6 cta-button">
-                        			<input type="hidden" name="productid" id="productid" value="<?php echo $productslist->pro_id?>">
-                            		<a href="<?php echo base_url('products/details');?>/<?php echo $productslist->pro_title_slug;?>" class="btn btn-lg btn-block btn-danger"><i class="fa fa-eye" aria-hidden="true"></i>&nbspView Product</a>
+                            		<a href="<?php echo base_url('products/details');?>/<?php echo $productslist->pro_title_slug;?>" class="btn btn-lg btn-block btn-danger"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;View Product</a>
                         		</div>
 								<div class="col-md-6 cta-button">
-		                            <a href="javascript:(void)" class="btn btn-lg btn-block btn-danger"><span><i class="fa fa-shopping-bag"></i></span>&nbspBuy Now</a>
+									<a href="javascript:(void)" chkout1="<?php echo $productslist->pro_id;?>" pcate="<?php echo $productslist->cate_id;?>" pslug="<?php echo $productslist->pro_title_slug;?>" psize="<?php echo $pricelist->size_id;?>"  class="btn btn-lg btn-block btn-danger btnProductCheckout1"><span><i class="fa fa-shopping-bag"></i></span>&nbsp; Buy Now</a>
 		                        </div>
                      	</div><br>
                 </div>

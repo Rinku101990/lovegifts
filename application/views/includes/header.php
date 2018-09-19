@@ -19,7 +19,7 @@
 <?php } ?>
 <!--Bootstrap-->
 <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css');?>" />
-<link href="<?php echo base_url('assets/');?>css/full-slider.css" rel="stylesheet">
+<link href="<?php echo base_url('assets/');?>/css/full-slider.css" rel="stylesheet">
 <!--Bootstrap-->
 <!--Main Menu File-->
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url('assets/css/webslidemenu.css');?>" />
@@ -31,6 +31,7 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.carousel.min.css');?>" />
 <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.theme.default.min.css');?>" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url('assets/css/style.css');?>" />
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url('assets/fontnew/style.css');?>" />
 <?php if(!empty($title->pro_facebook_pixel)){ ?>
 <?php echo $title->pro_facebook_pixel;?>
 <?php }else{ ?>

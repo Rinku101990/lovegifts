@@ -7,7 +7,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('admin/dashboard');?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">404 error</li>
+        <li class="active">Home Banners</li>
       </ol>
       <div class="row">
         <!-- left column -->
@@ -80,7 +80,7 @@
                     <?php if(($list->bann_status)=='1'){ ?>
                     <button type="button" class="btn btn-success btn-sm bannerStatusEnable" bannStatuseE="<?php echo $list->bann_id;?>"><i class="fa fa-check"></i></button>
                     <?php }else{ ?>
-                    <button type="button" class="btn btn-sm bannerStatusDisable" bannStatusD="<?php echo $list->bann_id;?>"><i class="fa fa-close"  style="color:red"></i></button>
+                    <button type="button" class="btn btn-sm bannerStatusDisable" bannStatusD="<?php echo $list->bann_id;?>"><i class="fa fa-close" style="color:red"></i></button>
                     <?php } ?>
                     <button type="button" class="btn btn-danger btn-sm bannerDelete" banDel="<?php echo $list->bann_id;?>"><i class="fa fa-trash"></i></button>
                   </td>

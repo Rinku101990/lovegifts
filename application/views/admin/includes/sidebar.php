@@ -8,7 +8,7 @@
           <img src="<?php echo base_url('assets/admin_assets/dist/img/user2-160x160.jpg');?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>Lovegifts.in</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -83,8 +83,6 @@
             <li><a href="<?php echo base_url('admin/products/pincode');?>"><i class="fa fa-circle-o"></i>Pincode</a></li>
             <li><a href="<?php echo base_url('admin/products/temp_orders');?>"><i class="fa fa-circle-o"></i>Incomplete Order</a></li>
             <li><a href="<?php echo base_url('admin/products/orders');?>"><i class="fa fa-circle-o"></i>Orders</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Disable Orders</a></li>
-            <li><a href="<?php echo base_url('admin/dashboard');?>"><i class="fa fa-circle-o"></i>Delivered</a></li>
           </ul>
         </li>
         <li class="header">LABELS</li>

@@ -2,82 +2,82 @@
 	<div class="container">
     	<div class="row vdivide">
     		<div class="col-md-2 widget">
-            <h2>Gift By Relation</h2>
+        	    <h2>Gift By Relation</h2>
                 <article class="widget_content">
     				<table>
                         <tr>
-                        <td>  <a href="https://lovegifts.in"> Gift for Wife</a> </td>
+                        <td>  <a href="http://lovegifts.in"> Gift for Wife</a> </td>
                         </tr>
                         <tr>
-                            <td><a href="https://lovegifts.in">Gift for Husband</a></td>
+                            <td><a href="http://lovegifts.in">Gift for Husband</a></td>
                         </tr>
                         <tr>
-                            <td><a href="https://lovegifts.in">Gift for Boyfriend</a></td>
+                            <td><a href="http://lovegifts.in">Gift for Boyfriend</a></td>
                         </tr>
                         <tr>
-                            <td><a href="https://lovegifts.in">Gift for GirlFriend</a></td>
+                            <td><a href="http://lovegifts.in">Gift for GirlFriend</a></td>
                         </tr>
                         <tr>
-                            <td><a href="https://lovegifts.in">Gift for Friend</a></td>
+                            <td><a href="http://lovegifts.in">Gift for Friend</a></td>
                         </tr>
                         <tr>
-                            <td><a href="https://lovegifts.in">Gift for Parents</a></td>
+                            <td><a href="http://lovegifts.in">Gift for Parents</a></td>
                         </tr>
                     </table>      
                 </article>
-    		</div>
+    		</div>btnProductCheckout1
 			<div class="col-md-3 widget">
-            <h2>Gift By Occasions</h2>
+        	    <h2>Gift By Occasions</h2>
                 <article class="widget_content">
     				<table>
                         <tr>
-                            <td><a href="https://lovegifts.in">Gift for Anniversary</a></td>
+                            <td><a href="http://lovegifts.in">Gift for Anniversary</a></td>
                         </tr>
                         <tr>
-                            <td><a href="https://lovegifts.in">Gift for Marriage</a></td>
+                            <td><a href="http://lovegifts.in">Gift for Marriage</a></td>
                         </tr>
                         <tr>
-                            <td><a href="https://lovegifts.in">Gift for Valentine day</a></td>
+                            <td><a href="http://lovegifts.in">Gift for Valentine day</a></td>
                         </tr>
                         <tr>
-                            <td><a href="https://lovegifts.in">Gift for Birthday</a></td>
+                            <td><a href="http://lovegifts.in">Gift for Birthday</a></td>
                         </tr>
                         <tr>
-                            <td><a href="https://lovegifts.in">Gift for Mother's day</a></td>
+                            <td><a href="http://lovegifts.in">Gift for Mothers day</a></td>
                         </tr>
                         <tr>
-                            <td><a href="https://lovegifts.in">Romantic Gifts for all occasions<a></td>
+                            <td><a href="http://lovegifts.in">Romantic Gifts for all occasions<a></td>
                         </tr>
                     </table>     
                 </article>
     		</div>
 			<div class="col-md-2 widget">
-            <h2>Gift By Cities</h2>
+        	    <h2>Gift By Cities</h2>
                 <article class="widget_content">
     				<table>
                         <tr>
-                            <td><a href="https://lovegifts.in">Gift in Mumbai</a></td>
+                            <td><a href="http://lovegifts.in">Gift in Mumbai</a></td>
                         </tr>
                         <tr>
-                            <td><a href="https://lovegifts.in">Gift in Delhi</a></td>
+                            <td><a href="http://lovegifts.in">Gift in Delhi</a></td>
                         </tr>
                         <tr>
-                            <td><a href="https://lovegifts.in">Gift in Hyderabad</a></td>
+                            <td><a href="http://lovegifts.in">Gift in Hyderabad</a></td>
                         </tr>
                         <tr>
-                            <td><a href="https://lovegifts.in">Gift in Pune</a></td>
+                            <td><a href="http://lovegifts.in">Gift in Pune</a></td>
                         </tr>
                         <tr>
-                            <td><a href="https://lovegifts.in">Gift in Bengaluru</a></td>
+                            <td><a href="http://lovegifts.in">Gift in Bengaluru</a></td>
                         </tr>
                         <tr>
-                            <td><a href="https://lovegifts.in">and More...</a></td>
+                            <td><a href="http://lovegifts.in">and More...</a></td>
                         </tr>
                     </table>      
                 </article>
     		</div>
 			<div class="col-md-2 widget">
-            <h2>Lovegifts.in</h2>
+        	    <h2>Lovegifts.in</h2>
                 <article class="widget_content">
     				<table>
                         <tr>
@@ -203,19 +203,21 @@ $(document).ready(function() {
         });
 
         $(".btnProductCheckout1").click(function(){
-            var product_id = $(this).attr("chkout1");
-            var product_slug = $("#product_slug").val()
-            var product_size = $("#productSize").val();
-            var product_cod = $("#cod1").val();
-            //alert(product_slug);
+            var product_id   = $(this).attr("chkout1");
+			var pro_category = $(this).attr("pcate");
+            var product_slug = $(this).attr("pslug");
+            var product_size = $(this).attr("psize");
+            
+            //alert(product_size);
 
             if(product_id !=''){
                 $.ajax({
                     method:'POST',
                     url:base_url+'checkout/saveCustomerCheckoutParam',
-                    data:{product_id:product_id,product_slug:product_slug,product_size:product_size,product_cod:product_cod},
+                    data:{product_id:product_id,product_slug:product_slug,product_size:product_size,pro_category:pro_category},
                     success:function(data){
                         //alert(data);
+                        //console.log(data);
                         if(data !=''){
                             window.location.href = base_url+'checkout/express/'+data;
                         }else{

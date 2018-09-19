@@ -144,10 +144,10 @@ class Orders extends CI_Controller {
 		$data['category'] = $this->front->getAllCategoryList();
 		//$data['extra'] = $this->front->getExtrainfoById();
 
-		$this->load->view('includes/header');
+		$this->load->view('includes/header', $data);
 		$this->load->view('includes/top_header');
 		$this->load->view('includes/navbar');
-		$this->load->view('orderSummary', $data);
+		$this->load->view('orderSummary');
 		$this->load->view('includes/footer');
 	}
 }

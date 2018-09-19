@@ -1,15 +1,15 @@
 <div class="col-md-12">
   <?php if(!empty($orderStatus)){ ?>
-  <center><h3 style="margin:20px">Your Order Status</h3></center>
+  <center><h3 style="margin:20px;color:#ec5459;font-family: Fontdinerdotcom Luvable;">Your Order Status</h3></center>
   <table class="table table-responsive">
     <thead>
-      <th>S.No</th>
-      <th>Order No</th>
-      <th>Name</th>
-      <th>Product Status</th>
-      <th>Packed</th>
-      <th>Despatched</th>
-      <th>Deliverd</th>
+      <th style="color:#ec5459;">S.No</th>
+      <th style="color:#ec5459;">Order No</th>
+      <th style="color:#ec5459;">Name</th>
+      <th style="color:#ec5459;">Product Status</th>
+      <th style="color:#ec5459;">Packed</th>
+      <th style="color:#ec5459;">Despatched</th>
+      <th style="color:#ec5459;">Deliverd</th>
     </thead>
     <tbody>
     <?php $i=1; foreach($orderStatus as $status){?>

@@ -76,3 +76,29 @@ Stack trace:
 #1 [internal function]: _exception_handler(Object(ParseError))
 #2 {main}
   thrown in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php on line 190
+[24-Aug-2018 06:04:07 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of Error given, called in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php on line 658 and defined in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php:190
+Stack trace:
+#0 /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php(658): CI_Exceptions->show_exception(Object(Error))
+#1 [internal function]: _exception_handler(Object(Error))
+#2 {main}
+  thrown in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php on line 190
+[24-Aug-2018 06:04:20 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of Error given, called in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php on line 658 and defined in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php:190
+Stack trace:
+#0 /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php(658): CI_Exceptions->show_exception(Object(Error))
+#1 [internal function]: _exception_handler(Object(Error))
+#2 {main}
+  thrown in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php on line 190
+[24-Aug-2018 06:05:56 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of Error given, called in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php on line 658 and defined in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php:190
+Stack trace:
+#0 /home/zaa40p4e28q3/public_html/lovegifts/system/core/Common.php(658): CI_Exceptions->show_exception(Object(Error))
+#1 [internal function]: _exception_handler(Object(Error))
+#2 {main}
+  thrown in /home/zaa40p4e28q3/public_html/lovegifts/system/core/Exceptions.php on line 190
+[05-Sep-2018 06:18:53 Etc/GMT] PHP Fatal error:  Can't use method return value in write context in /home/loveg25h/public_html/application/controllers/admin/Products.php on line 869
+[05-Sep-2018 06:19:03 Etc/GMT] PHP Fatal error:  Can't use method return value in write context in /home/loveg25h/public_html/application/controllers/admin/Products.php on line 869
+[05-Sep-2018 06:19:14 Etc/GMT] PHP Fatal error:  Can't use method return value in write context in /home/loveg25h/public_html/application/controllers/admin/Products.php on line 869
+[05-Sep-2018 06:19:44 Etc/GMT] PHP Fatal error:  Can't use method return value in write context in /home/loveg25h/public_html/application/controllers/admin/Products.php on line 869
+[05-Sep-2018 06:20:17 Etc/GMT] PHP Fatal error:  Can't use method return value in write context in /home/loveg25h/public_html/application/controllers/admin/Products.php on line 869
+[05-Sep-2018 06:21:51 Etc/GMT] PHP Fatal error:  Can't use method return value in write context in /home/loveg25h/public_html/application/controllers/admin/Products.php on line 906
+[05-Sep-2018 06:22:29 Etc/GMT] PHP Fatal error:  Can't use method return value in write context in /home/loveg25h/public_html/application/controllers/admin/Products.php on line 940
+[05-Sep-2018 06:23:04 Etc/GMT] PHP Fatal error:  Can't use method return value in write context in /home/loveg25h/public_html/application/controllers/admin/Products.php on line 958

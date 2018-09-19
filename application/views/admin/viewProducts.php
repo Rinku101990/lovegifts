@@ -19,17 +19,17 @@
             </div>
             <!-- /.box-header -->
             <?php if(!empty($products)){ ?>
-            <div class="box-body">
+            <div class="box-body" style="overflow-x:scroll;width:100%">
             <table id="example1" class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th style="width: 10px">S.No.</th>
+                  <th>S.No.</th>
                   <th>Title</th>
                   <th>Theme</th>
                   <th>Message On Card</th>
                   <th>Offers</th>
-                  <th style="width: 40px">Videos</th>
-                  <th>Action</th>
+                  <th style="width: 30px">Videos</th>
+                  <th style="width:90px">Action</th>
                 </tr>
               </thead>
               <tbody>

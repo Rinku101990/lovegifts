@@ -159,8 +159,11 @@ class Products extends CI_Controller {
 		$category = $this->input->post();
 		//print_r($category);die;
 		if(!empty($category)){
+			$cate_title_slug = strtolower($this->input->post('pro_category'));
+			$cate_title_slug_format = str_replace(' ', '-', $cate_title_slug);
 			$cateArray = array(
 				'cate_name' => $this->input->post('pro_category'),
+				'cate_title_slug' => $cate_title_slug_format,
 				'cate_status' => $this->input->post('pro_category_status'),
 				'cate_created' => date('Y-m-d H:i:s')
 			);
@@ -866,7 +869,8 @@ class Products extends CI_Controller {
 	// UPDATE TRACK LEVEL STATUS BY TRACK LEVEL ID AND ORDER ID //
 	public function trackStatusChange()
 	{
-		if(!empty($this->input->post())){
+	        $data = $this->input->post();
+		if(!empty($data)){
 			$cat_track_id = $this->input->post('cat_track_id');
 			$ord_id = $this->input->post('ord_id');
 			//$data['track_status'] = $this->input->post('status');
@@ -902,7 +906,8 @@ class Products extends CI_Controller {
 	// UPDATE TRACK LEVEL STATUS BY TRACK LEVEL ID AND ORDER ID //
 	public function trackLevelNo()
 	{
-		if(!empty($this->input->post())){
+	        $data = $this->input->post();
+		if(!empty($data)){
 			$data['cat_track_id'] = $this->input->post('cat_track_id');
 			$data['ord_id'] = $this->input->post('ord_id');
 			$data['track_status'] = '0';
@@ -935,7 +940,8 @@ class Products extends CI_Controller {
 
 	public function photoPackedNo()
 	{
-		if(!empty($this->input->post())){
+	        $data = $this->input->post();
+		if(!empty($data)){
 			$photoStatus = $this->input->post();
 			$order_id = $this->input->post('ord_id');
 			$data['ord_photo_packed'] = '0';
@@ -952,7 +958,8 @@ class Products extends CI_Controller {
 	// PHOTO DESPATCHED STATUS //
 	public function photoDespatchedYes()
 	{
-		if(!empty($this->input->post())){
+		$data = $this->input->post();
+		if(!empty($data)){
 			$order_id = $this->input->post('ord_id');
 			$data['ord_photo_despatched'] = '1';
 			$result = $this->adPro->updatePhotoDespatchedStatusYes($order_id, $data);
@@ -968,7 +975,8 @@ class Products extends CI_Controller {
 
 	public function photoDespatchedNo()
 	{
-		if(!empty($this->input->post())){
+		$data = $this->input->post();
+		if(!empty($data)){
 			$photoStatus = $this->input->post();
 			$order_id = $this->input->post('ord_id');
 			$data['ord_photo_despatched'] = '0';

@@ -18,7 +18,7 @@
           </div>
           <div class="group">
             <div class="col-md-4 cta-button">
-              <input type="submit" class="btn btn-lg btn-block btn-danger"><span><i class="fa fa-map-marker"></i></span>&nbsp;Track</a>
+              <input type="submit" class="btn btn-lg btn-block btn-danger"></a>
             </div>
           </div>
       </form>

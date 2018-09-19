@@ -25,7 +25,7 @@
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : false,
-	  'scrollX'		: true
+      'scrollX'	    : true
     })
   })
 </script>

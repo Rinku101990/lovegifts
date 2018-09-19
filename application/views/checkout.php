@@ -121,7 +121,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h4 style="font-family:fontdinerdotcom_luvableRg; color:#ec5459"><?php echo $tempCheckout->pro_title;?></h4>
+                                <h4 style="font-family:fontdinerdotcom luvable; color:#ec5459"><?php echo $tempCheckout->pro_title;?></h4>
                                 <input type="hidden" name="cate_id" id="cate_id" value="<?php echo $tempCheckout->cate_id;?>">
                                 <input type="hidden" name="product" id="product" value="<?php echo $tempCheckout->pro_id;?>"/>
                                 <input type="hidden" name="temp_pro_id" id="temp_pro_id" value="<?php echo $tempCheckout->temp_ckout_id;?>">

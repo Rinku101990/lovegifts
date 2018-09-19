@@ -26,6 +26,9 @@ class Checkout extends CI_Controller {
 
 	public function saveCustomerCheckoutParam()
 	{
+		//$data = $this->input->post();
+		//print_r($data);
+
 		$data['pro_id'] = $this->input->post('product_id');
 		$data['cate_id'] = $this->input->post('pro_category');
 		$data['pro_title_slug'] = $this->input->post('product_slug');
@@ -33,6 +36,7 @@ class Checkout extends CI_Controller {
 		$data['pin_code'] = $this->input->post('product_cod');
 		$data['temp_ckout_created'] = date('Y-m-d H:i:s');
 
+		//print_r($data);die;
 		$temp_id = $this->front->saveCustomerCheckoutInfo($data);
 		$slug_title = $this->front->getProductsSlug($temp_id);
 		$result = $slug_title->pro_title_slug;

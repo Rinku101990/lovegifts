@@ -98,6 +98,7 @@ $(document).ready(function() {
                     url:base_url+'checkout/saveCustomerCheckoutParam',
                     data:{product_id:product_id,pro_category:pro_category,product_slug:product_slug,product_size:product_size,product_cod:product_cod},
                     success:function(data){
+						//console.log(data);
                         //alert(data);
                         if(data !=''){
                             window.location.href = base_url+'checkout/express/'+data;
@@ -141,7 +142,7 @@ $(document).ready(function() {
             dataType:"json",
             success: function (data) {
               if(data.mode !='0'){
-                window.location.href=base_url+'payumoney/index/'+data.ord_id;
+                window.location.href=base_url+'ccavenue/index/'+data.ord_id;
               }else if(data.mode=='0'){
                 window.location.href=base_url+'orders/orderSummery/'+data.ord_id;
               }else{

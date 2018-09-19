@@ -41,11 +41,12 @@ class Track extends CI_Controller {
 		$orders_no = $this->input->post('order_no');
 		$mobile_no = $this->input->post('mobile_no');
 		$data['orderStatus'] = $this->adTrack->getOrderStatuslist($orders_no, $mobile_no);
+		$data['category'] = $this->front->getAllCategoryList();
 
-		$this->load->view('includes/header');
+		$this->load->view('includes/header', $data);
 		$this->load->view('includes/top_header');
 		$this->load->view('includes/navbar');
-		$this->load->view('order_status', $data);
+		$this->load->view('order_status');
 		$this->load->view('includes/footer');
 	}
 }

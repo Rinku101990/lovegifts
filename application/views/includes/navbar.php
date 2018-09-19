@@ -11,7 +11,7 @@
           <ul class="wsmenu-submenu" >
             <?php if(!empty($category)){?>
             <?php foreach($category as $category_list){?>
-            <li ><a href="<?php echo base_url();?>"><?php echo $category_list->cate_name;?></a></li>
+            <li><a href="<?php echo base_url('category/lists/');?>/<?php echo $category_list->cate_title_slug;?>"><?php echo $category_list->cate_name;?></a></li>
             <?php } } ?>
           </ul>
         </li>

@@ -78,13 +78,32 @@ class Frontend extends CI_Model {
 
 	public function getSelectedProductPrice($proid)
 	{
-		$this->db->select('size_related_price');
+		$this->db->select('size_id,size_related_price');
 		$this->db->from('lovegift_sizes');
 		$this->db->order_by('size_related_price', 'DESC');
 		$this->db->limit('1');
 		$this->db->where('pro_id', $proid);
 		$query = $this->db->get();
 		//echo $this->db->last_query();
+		return $query->result();
+	}
+	
+	// GET ALL CATEGORY ID BY THEIR SLUG //
+	public function get_related_category_id($categoty_slug_name)
+	{
+		$this->db->select('cate_id,cate_name');
+		$this->db->from('lovegift_category');
+		$this->db->where('cate_title_slug',$categoty_slug_name);
+		$query = $this->db->get();
+		return $query->row();
+	}
+	// GET ALL PRODUCT LIST BY THEIR ID //
+	public function get_all_category_list_by_id($cateid)
+	{
+		$this->db->select('*');
+		$this->db->from('lovegift_products');
+		$this->db->where('cate_id',$cateid);
+		$query = $this->db->get();
 		return $query->result();
 	}
 	// GET ALL EXTRA FIELD LIST ACCORDING PRODUCT ID //
@@ -110,7 +129,7 @@ class Frontend extends CI_Model {
 
 	public function getDefaultPrice()
 	{
-		$this->db->select('pro_id,size_related_price');
+		$this->db->select('size_id,pro_id,size_related_price');
 		$this->db->from('lovegift_sizes');
 		$this->db->order_by('size_related_price', 'DESC');
 		$query = $this->db->get();
@@ -266,6 +285,23 @@ class Frontend extends CI_Model {
 		//echo $this->db->last_query();
 		return $query->result();
 	}
+	
+	public function send($ordno, $username, $mobile,  $product)
+	{
+			$message = "On order Hi ".$username.",(not full name only first name),Thank you for your order ".$product.".Your Order Number is ".$ordno."	Shortern url of whats app (will discuss) Click on above link to open Whatsapp and send 'pictured required from database' photos.For any query call us at 9988655011,Happy Gifting :) LoveGifts.in";
+	        $api_url = "http://manage.staticking.net/index.php/smsapi/httpapi/?uname=kamal03&password=123456&sender=LUVGFT&receiver=".$mobile."&route=TA&msgtype=1&sms=".$message."
+";			
+			$stream_options = array(
+				'http' => array(
+				   'method'  => 'POST',
+				),
+			);
+			$context  = stream_context_create($stream_options);
+			$response = file_get_contents($api_url, null, $context);
+
+			return $response;
+	}
+	
 	public function getExtrainfoById()
 	{
 		$this->db->select('*');

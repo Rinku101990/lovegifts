@@ -32,14 +32,21 @@ class Lovegift extends CI_Controller {
 		$data['price'] = $this->front->getDefaultPrice();
 		$data['category'] = $this->front->getAllCategoryList();
 		$data['banners'] = $this->front->getAllActiveBanners();
+		
 		// echo "<pre>";
-		// print_r($data);die;
+		// print_r($cate_name);
 
 		$this->load->view('includes/header', $data);
 		$this->load->view('includes/top_header');
 		$this->load->view('includes/navbar');
 		$this->load->view('index');
 		$this->load->view('includes/footer');
+	}
+	
+	public function category()
+	{
+		$cate_name = $this->uri->segment(3);
+		echo $cate_name;
 	}
 
 	public function track_order(){

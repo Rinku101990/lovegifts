@@ -21,7 +21,7 @@
 										<?php if(($picturelist->pro_id)==($productDetails->pro_id)){ ?>
 										<?php $item_class = ($i == 1) ? 'carousel-item active' : 'carousel-item'; ?>
 										<div class="<?php echo $item_class ?>" >
-											<img class="d-block w-100" src="<?php echo base_url();?><?php echo $picturelist->pic_param;?>" alt="<?php echo $productDetails->pro_title;?>" class="img-responsive"  style="width:100%;height:440px;margin:0 auto">
+											<img class="d-block w-100" src="<?php echo base_url();?><?php echo $picturelist->pic_param;?>" alt="<?php echo $productDetails->pro_title;?>" class="img-responsive"  style="width:100%;margin:0 auto">
 										</div>
 										<?php $i++; }  ?>
 									<?php } ?>
@@ -45,7 +45,7 @@
 						</div>
 					</div>
              		<div class="col-lg-7 d-none d-sm-block">
-		              <h2 class="mt-4" style="color:#ec5459"><?php echo $productDetails->pro_title;?></h2>
+		              <h2 class="mt-4" style="color:#ec5459; font-family:Fontdinerdotcom Luvable;"><?php echo $productDetails->pro_title;?></h2>
 					    <span class="fa fa-star checked"></span>
 						<span class="fa fa-star checked"></span>
 						<span class="fa fa-star checked"></span>
@@ -161,7 +161,7 @@
 								  	<div class="col-md-12">
 								  		<select class="form-control" name="productSize" id="productSize" style="margin-left:-17px">
 								  			<?php foreach($sizePrice as $size_price_list){ ?>
-									  			<option value="<?php echo $size_price_list->size_id;?>"><?php echo $size_price_list->size_param;?></option>
+									  			<option value="<?php echo $size_price_list->size_id;?>" <?php echo $leastPrice->size_id==$size_price_list->size_id?'selected':''?>><?php echo $size_price_list->size_param;?></option>
 									  		<?php } ?>
 									  	</select>
 								  	</div>
@@ -247,7 +247,7 @@
 						<div class="tab-content mt-6" id="tabContent">
 							<div class="tab-pane active" id="LoveBoxPicv" role="tabpanel">
 								<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width:100%">
-									<div class="carousel-inner" style="width:290px;height:290px;margin:0 auto">
+									<div class="carousel-inner" style="width:100%;margin:0 auto">
 									<?php $i = 1; foreach($picture as $picturelist){ ?>
 									  <?php if(($picturelist->pro_id)==($productDetails->pro_id)){ ?>
 										<?php $item_class = ($i == 1) ? 'carousel-item active' : 'carousel-item'; ?>
@@ -348,7 +348,7 @@
 							  	<div class="col-md-12">
 							  		<select class="form-control" name="productSize" id="productSize1" style="margin-left:-16px">
 							  			<?php foreach($sizePrice as $size_price_list){ ?>
-								  			<option value="<?php echo $size_price_list->size_id;?>"><?php echo $size_price_list->size_param;?></option>
+								  			<option value="<?php echo $size_price_list->size_id;?>" <?php echo $leastPrice->size_id==$size_price_list->size_id?'selected':''?>><?php echo $size_price_list->size_param;?></option>
 								  		<?php } ?>
 								  	</select>
 							  	</div>

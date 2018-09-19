@@ -17,7 +17,7 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Update Product <a href="<?php echo base_url('admin/products/view');?>" class="btn btn-info btn-sm">View Products</a> <a href="<?php echo base_url('admin/products/disabled');?>" class="btn btn-info btn-sm">Inactive Products</a></h3>
+              <h3 class="box-title">Update Product <a href="<?php echo base_url('admin/products/view');?>" class="btn btn-info btn-sm">View Products</a></h3>
               <?php $success= $this->session->flashdata('message'); if(!empty($success)) { ?>
                   <?php echo $this->session->flashdata('message'); ?>
               <?php } ?>
@@ -45,7 +45,7 @@
                     <div class="form-group">
                       <label for="pro_title">Product Title</label>
                       <input type="hidden" name="productid" id="productid" value="<?php echo $products->pro_id;?>">
-                      <input type="text" class="form-control" id="pro_title" placeholder="Enter Product Title" name="pro_title" autofocus="autofocus" value="<?php echo $products->pro_title;?>" readonly>
+                      <input type="text" class="form-control" id="pro_title" placeholder="Enter Product Title" name="pro_title" autofocus="autofocus" value="<?php echo $products->pro_title;?>">
                       <span id="error_pro_title" class="text-danger"></span>
                     </div>
                   </div>
