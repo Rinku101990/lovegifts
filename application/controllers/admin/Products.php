@@ -937,10 +937,84 @@ class Products extends CI_Controller {
 		}
 	}
 	// CHANGE PACKED ORDER STATUS //
+	
+	public function deliveryStatusChange()
+	{
+	        $data = $this->input->post();
+		if(!empty($data)){
+			$ord_id = $this->input->post('ordid');
+			$del['ord_delivery'] = $this->input->post('status');
+			
+			$result = $this->adPro->changeDeliveryStatus($ord_id, $del);
+			if($result){
+				echo "access";
+			}else{
+				echo "denied";
+			}
+		}else{
+			echo "No";
+		}
+	}
+	
+	// CHANGE DISPATCH STATUS //
+	public function dispatchStatusChange()
+	{
+	        $data = $this->input->post();
+		if(!empty($data)){
+			$ord_id = $this->input->post('ordid');
+			$dispatch['ord_photo_despatched'] = $this->input->post('status');
+			
+			$result = $this->adPro->changeDispatchStatus($ord_id, $dispatch);
+			if($result){
+				echo "access";
+			}else{
+				echo "denied";
+			}
+		}else{
+			echo "No";
+		}
+	}
+	
+	// CHANGE PHOTO PACKED STATUS //
+	public function photoPackedStatusChange()
+	{
+	        $data = $this->input->post();
+		if(!empty($data)){
+			$ord_id = $this->input->post('ordid');
+			$packed['ord_photo_packed'] = $this->input->post('status');
+			
+			$result = $this->adPro->changePhotoPackedStatus($ord_id, $packed);
+			if($result){
+				echo "access";
+			}else{
+				echo "denied";
+			}
+		}else{
+			echo "No";
+		}
+	}
+	
+	//PHOTO PACKED STATUS //
+	public function photoPackedYes()
+	{
+		$data = $this->input->post();
+		if(!empty($data)){
+			$order_id = $this->input->post('ord_id');
+			$data['ord_photo_packed'] = '1';
+			$result = $this->adPro->updatePhotoPackedStatusYes($order_id, $data);
+			if($result){
+				echo "packedYes";
+			}else{
+				echo "packedNo";
+			}
+		}else{
+			echo "No";
+		}
+	}
 
 	public function photoPackedNo()
 	{
-	        $data = $this->input->post();
+		$data = $this->input->post();
 		if(!empty($data)){
 			$photoStatus = $this->input->post();
 			$order_id = $this->input->post('ord_id');

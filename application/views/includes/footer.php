@@ -25,7 +25,7 @@
                         </tr>
                     </table>      
                 </article>
-    		</div>btnProductCheckout1
+    		</div>
 			<div class="col-md-3 widget">
         	    <h2>Gift By Occasions</h2>
                 <article class="widget_content">
@@ -105,14 +105,23 @@
                 <article>
 				    <table>
         				<tr>
-                           <td> <a href="tel:+91 99886 55011"><i class="fa fa-phone" aria-hidden="true"></i> +91-99886-55011</a> </td>
+                           <td> <strong><a href="tel:+91 99886 55011"><i class="fa fa-phone" aria-hidden="true"></i> +91-99886-55011</a> </strong></td>
         				</tr>
-    					<tr>
-    					   <td>Payment Method</td>
-    					</tr>
-    					<tr>
-    					   <td><i class="fa fa-cc-visa payments"></i><i class="fa fa-cc-mastercard payments"></i><i class="fa fa-cc-amex payments"></i></td>
-    					</tr>
+        				<tr>
+    					    <td><strong>Secure Ordering and Trasactions</strong></td></tr>
+    					    <tr><td><img src="<?php echo base_url('assets/images/comodosecure.png') ?>" alt="ComodoSecure"></td></tr>
+    						    
+    						
+<tr> 
+<td valign="top" > 
+<img src="https://www.ccavenue.com/images/ccav_secure_banner.gif" border=0>
+</td>
+</tr>
+</table>
+
+</table></td></tr>
+    					
+    				
 					</table>
                 </article>
 			</div>
@@ -122,13 +131,10 @@
 <!-- footer end here -->
 <div class="container">
     <p class="text-center"><strong> ©<?php echo date('Y');?> Kraft Point Technologies</strong></p>
+    
 </div>
-<div class="sticky d-md-none">
-    <div id="outer">
-        <div class="inner"><a href="tel:+91 99886 55011" class="btn btn-lg btn-block btn-primary"><strong><span><i class="fa fa-phone" style="color:#fff;"></i></span>&nbsp&nbsp Call Now</strong></a></div>
-        <div class="inner"><a href="https://api.whatsapp.com/send?phone=919988655011&text=Hi%20Love%20Gifts%20%E2%9D%A4%0AI%20want%20to%20Buy%20a%20Gift." class="btn btn-lg btn-block btn-success"><strong><span><i class="fa fa-whatsapp" style="color:#fff;"></i></span>&nbsp&nbsp Live Chat</strong></a></div>
-    </div>
-</div> 
+
+
 
 <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.3.1.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/owl.carousel.min.js');?>"></script>
@@ -204,11 +210,10 @@ $(document).ready(function() {
 
         $(".btnProductCheckout1").click(function(){
             var product_id   = $(this).attr("chkout1");
-			var pro_category = $(this).attr("pcate");
+	    var pro_category = $(this).attr("pcate");
             var product_slug = $(this).attr("pslug");
             var product_size = $(this).attr("psize");
-            
-            //alert(product_size);
+            //alert(product_slug);
 
             if(product_id !=''){
                 $.ajax({
@@ -217,7 +222,33 @@ $(document).ready(function() {
                     data:{product_id:product_id,product_slug:product_slug,product_size:product_size,pro_category:pro_category},
                     success:function(data){
                         //alert(data);
-                        //console.log(data);
+                        if(data !=''){
+                            window.location.href = base_url+'checkout/express/'+data;
+                        }else{
+                            alert("Failed");
+                        }
+                    }
+                });
+            }else{
+                alert("Please click on checkout link");
+            }
+            
+        });
+        
+        $(".btnProductCheckout2").click(function(){
+            var product_id   = $(this).attr("chkout1");
+	    var pro_category = $("#pro_category").val();
+            var product_slug = $("#product_slug").val();
+            var product_size = $("#product_size").val();
+            //alert(product_slug);
+
+            if(product_id !=''){
+                $.ajax({
+                    method:'POST',
+                    url:base_url+'checkout/saveCustomerCheckoutParam',
+                    data:{product_id:product_id,product_slug:product_slug,product_size:product_size,pro_category:pro_category},
+                    success:function(data){
+                        //alert(data);
                         if(data !=''){
                             window.location.href = base_url+'checkout/express/'+data;
                         }else{
@@ -260,7 +291,7 @@ $(document).ready(function() {
             dataType:"json",
             success: function (data) {
               if(data.mode !='0'){
-                window.location.href=base_url+'payumoney/index/'+data.ord_id;
+                window.location.href=base_url+'ccavenue/index/'+data.ord_id;
               }else if(data.mode=='0'){
                 window.location.href=base_url+'orders/orderSummery/'+data.ord_id;
               }else{
@@ -270,6 +301,103 @@ $(document).ready(function() {
           });
           return false;
         });
+        
+        // VERIFY ORDER FOR SEND PHOTOS //
+	$("#anchorRequestBtn").click(function(){
+		$("#verify_request_page").modal({backdrop: false});
+	});
+	$(".btnVerifyOrders").click(function(){
+	var order_no  = $("#order_no").val(); 
+	var mobile_no = $("#mobile_no").val();
+	$.ajax({
+		type:"post",
+		url:base_url+"track/verifying_order",
+		data:{order_no:order_no,mobile_no:mobile_no},
+		success:function(response){
+		if(response=="verified"){
+			$("#panel").hide();
+			var prHtm='';
+			prHtm += '<a href="https://api.whatsapp.com/send?phone=919988655011&text=Hi%20Love%20Gifts%20%E2%9D%A4%0AMy%20Order%20No%20is%20'+order_no+'." class="btn btn-danger">Send</a>';
+			$("#response").show();
+			$("#statusMsg").html(prHtm);
+		}else{
+			$("#errorMsg").text("Wrong Order Detail");
+		}
+		}
+	});
+	});
+	
+	// VERIFY ORDER DETAIL TO SEND MAIL //
+	$("#anchorRequestBtnMail").click(function(){
+		$("#verify_request_pageMail").modal({backdrop: false});
+	});
+	$(".btnVerifyOrdersMail").click(function(){
+		var order_no  = $("#order_nom").val(); 
+		var mobile_no = $("#mobile_nom").val();
+		$.ajax({
+			type:"post",
+			url:base_url+"track/verifying_order_for_mail",
+			data:{order_no:order_no,mobile_no:mobile_no},
+			success:function(data){
+				if(data=="success"){
+					$("#panelMail").hide();
+					$("#responseMail").show();
+				}else{
+					$("#errorMsgMail").text("Wrong Order Detail");
+				}
+			}
+		});
+	});
+	
+	
+	// FOR MOBILE PURPOSE //
+	// VERIFY ORDER FOR SEND PHOTOS //
+	$("#anchorRequestBtnMobile").click(function(){
+	  $("#verify_request_page_wmobile").modal({backdrop: false});
+	});
+	$(".btnVerifyOrderswmobile").click(function(){
+		var order_no  = $("#order_nowm").val(); 
+		var mobile_no = $("#mobile_nowm").val();
+		$.ajax({
+			type:"post",
+			url:base_url+"track/verifying_order",
+			data:{order_no:order_no,mobile_no:mobile_no},
+			success:function(response){
+				if(response=="verified"){
+					$("#panelwm").hide();
+					var prHtm='';
+					prHtm += '<a href="https://api.whatsapp.com/send?phone=919988655011&text=Hi%20Love%20Gifts%20%E2%9D%A4%0AMy%20Order%20No%20is%20'+order_no+'." class="btn btn-danger">Send</a>';
+					$("#responsewm").show();
+					$("#statusMsgwm").html(prHtm);
+				}else{
+					$("#errorMsgwm").text("Wrong Order Detail");
+				}
+			}
+		});
+	});
+	
+	// VERIFY ORDER FOR SEND PHOTOS //
+	$("#anchorRequestBtnMoMail").click(function(){
+	  $("#verify_request_page_emobile").modal({backdrop: false});
+	});
+	$(".btnVerifyOrdersemobile").click(function(){
+		var order_no  = $("#order_noem").val(); 
+		var mobile_no = $("#mobile_noem").val();
+		$.ajax({
+			type:"post",
+			url:base_url+"track/verifying_order_for_mail",
+			data:{order_no:order_no,mobile_no:mobile_no},
+			success:function(data){
+				if(data=="success"){
+					$("#panelem").hide();
+					$("#responseem").show();
+				}else{
+					$("#errorMsgem").text("Wrong Order Detail");
+				}
+			}
+		});
+	});
+	
     });
 </script>
 </body>

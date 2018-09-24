@@ -37,6 +37,7 @@
                   <?php } ?>
                   <th>Packed Done</th>
                   <th>Despatched</th>
+                  <th>Delivered</th>
                   <th>Remarks</th>
                   <th>Action</th>
                 </tr>
@@ -56,7 +57,7 @@
                   
                   <td>
                     <?php $date = $orderslist->ord_created;
-                          $newDate = date('d-m-Y', strtotime($date));
+                          $newDate = date('d M-Y', strtotime($date));
                           echo $newDate;
                     ?>
                   </td>
@@ -79,7 +80,7 @@
                     <?php } ?>
                   <?php } ?>
 
-                    <select id="track_status<?php echo $level_name->cat_track_id;?>" ordid="<?php echo $orderslist->ord_id;?>" cattrack="<?php echo $level_name->cat_track_id;;?>" name="track_status<?php echo $orderslist->ord_id;?>" class="track_status">
+                    <select id="track_status<?php echo $level_name->cat_track_id;?>" ordid="<?php echo $orderslist->ord_id;?>" cattrack="<?php echo $level_name->cat_track_id;?>" name="track_status<?php echo $orderslist->ord_id;?>" class="track_status">
                       <option value="">action</option>
                       <option value="0">In process</option>
                       <option value="1">Complete</option>
@@ -89,26 +90,60 @@
                 <?php } ?>
 
                 <td>
-                  <input type="hidden" name="ordid" value="<?php echo $orderslist->ord_id;?>">
-                  <?php if(($orderslist->ord_photo_packed)=="1"){?>
-                    <a href="#" class="photoPackedYes" id="photoPackedYes<?php echo $orderslist->ord_id;?>" photo_packed_yes="<?php echo $orderslist->ord_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
-                  <?php }else if(($orderslist->ord_photo_packed)=="0"){ ?>
-                    <a href="#" class="photoPackedNo" id="photoPackedNo<?php echo $orderslist->ord_id;?>" photo_packed_no="<?php echo $orderslist->ord_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
-                  <?php }else{ ?>
-                    <a href="#" class="photoPackedYes" id="photoPackedYes<?php echo $orderslist->ord_id;?>" photo_packed_yes="<?php echo $orderslist->ord_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
-                    <a href="#" class="photoPackedNo" id="photoPackedNo<?php echo $orderslist->ord_id;?>" photo_packed_no="<?php echo $orderslist->ord_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
-                  <?php } ?>
+                
+                <?php if($orderslist->ord_photo_packed=="0"){ ?>
+                	<span class="badge bg-yellow" id="packedStatus<?php echo $orderslist->ord_id;?>">Prepare</span>
+                <?php }else if($orderslist->ord_photo_packed=="1"){ ?>
+                	<span class="badge bg-blue" id="packedStatus<?php echo $orderslist->ord_id;?>">Proccesing</span>
+                <?php }else if($orderslist->ord_photo_packed=="2"){?>
+                	<span class="badge bg-green" id="packedStatus<?php echo $orderslist->ord_id;?>">Completed</span>
+                <?php }else{ ?>
+                <?php } ?>
+                
+                  <select id="packedStatus<?php echo $orderslist->ord_id;?>" ordid="<?php echo $orderslist->ord_id;?>" photoPacked="<?php echo $orderslist->ord_id;?>" name="photoPacked<?php echo $orderslist->ord_id;?>" class="packed">
+                      <option value="">action</option>
+                      <option value="0">Preparing</option>
+                      <option value="1">Proccesing</option>
+                      <option value="2">Complete</option>
+                    </select>
                 </td>
 
                 <td>
-                  <?php if(($orderslist->ord_photo_despatched)=="1"){?>
-                    <a href="#" class="photoDespatchedYes" id="photoDespatchedYes<?php echo $orderslist->ord_id;?>" photo_despatched_yes="<?php echo $orderslist->ord_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
-                  <?php }else if(($orderslist->ord_photo_despatched)=="0"){ ?>
-                    <a href="#" class="photoDespatchedNo" id="photoDespatchedNo<?php echo $orderslist->ord_id;?>" photo_despatched_no="<?php echo $orderslist->ord_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
-                  <?php }else{ ?>
-                    <a href="#" class="photoDespatchedYes" id="photoDespatchedYes<?php echo $orderslist->ord_id;?>" photo_despatched_yes="<?php echo $orderslist->ord_id;?>"><span class="badge bg-green"><i class="fa fa-check-circle"></i></span></a>
-                    <a href="#" class="photoDespatchedNo" id="photoDespatchedNo<?php echo $orderslist->ord_id;?>" photo_despatched_no="<?php echo $orderslist->ord_id;?>"><span class="badge bg-red"><i class="fa fa-times-circle"></i></span></a>
-                  <?php } ?>
+                
+                <?php if($orderslist->ord_photo_despatched=="0"){ ?>
+                	<span class="badge bg-yellow" id="DispatchStatus<?php echo $orderslist->ord_id;?>">Prepare</span>
+                <?php }else if($orderslist->ord_photo_despatched=="1"){ ?>
+                	<span class="badge bg-blue" id="DispatchStatus<?php echo $orderslist->ord_id;?>">Proccesing</span>
+                <?php }else if($orderslist->ord_photo_despatched=="2"){?>
+                	<span class="badge bg-green" id="DispatchStatus<?php echo $orderslist->ord_id;?>">Completed</span>
+                <?php }else{ ?>
+                <?php } ?>
+                
+                  <select id="photo_despatched<?php echo $orderslist->ord_id;?>" ordid="<?php echo $orderslist->ord_id;?>" photoDispatch="<?php echo $orderslist->ord_id;?>" name="photoDispatch<?php echo $orderslist->ord_id;?>" class="dispatch">
+                      <option value="">action</option>
+                      <option value="0">Preparing</option>
+                      <option value="1">Proccesing</option>
+                      <option value="2">Complete</option>
+                    </select>
+                </td>
+                
+                <td>
+                
+                <?php if($orderslist->ord_delivery=="0"){ ?>
+                	<span class="badge bg-yellow" id="delStatus<?php echo $orderslist->ord_id;?>">Prepare</span>
+                <?php }else if($orderslist->ord_delivery=="1"){ ?>
+                	<span class="badge bg-blue" id="delStatus<?php echo $orderslist->ord_id;?>">Proccesing</span>
+                <?php }else if($orderslist->ord_delivery=="2"){?>
+                	<span class="badge bg-green" id="delStatus<?php echo $orderslist->ord_id;?>">Completed</span>
+                <?php }else{ ?>
+                <?php } ?>
+                
+                  <select id="deliverd_id<?php echo $orderslist->ord_id;?>" ordid="<?php echo $orderslist->ord_id;?>" deliStatus="<?php echo $orderslist->ord_id;?>" name="delivered_status<?php echo $orderslist->ord_id;?>" class="deliverd">
+                      <option value="">action</option>
+                      <option value="0">Preparing</option>
+                      <option value="1">Proccesing</option>
+                      <option value="2">Complete</option>
+                    </select>
                 </td>
 
                   <?php if(!empty($orderslist->ord_txt_message)){?>
@@ -138,7 +173,7 @@
               </ul>
             </div>
             <?php }else{ ?>
-                <p style="text-align: center;margin-top: 20px;font-weight: bold;padding:30px">You haven't added any records yet!</p>
+                <p style="text-align: center;margin-top: 20px;font-weight: bold;padding:30px">You haven t added any records yet!</p>
             <?php } ?>
           </div>
           <!-- /.box -->

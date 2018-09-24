@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{SERVER_PORT} 80
+RewriteCond %{HTTP_HOST} ^(www\.)?lovegifts\.in
+RewriteRule ^(.*)$ https://www.lovegifts.in/$1 [L,R=301] 
+RewriteCond %{HTTP_HOST} ^lovegifts.in [NC]
+RewriteRule ^(.*)$ https://www.lovegifts.in$1 [L,R=301]
+
+RewriteBase /lovegifts.in/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+

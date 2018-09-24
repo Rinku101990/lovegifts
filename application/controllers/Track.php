@@ -49,4 +49,30 @@ class Track extends CI_Controller {
 		$this->load->view('order_status');
 		$this->load->view('includes/footer');
 	}
+	
+	// VERIFYING ORDER NO //
+	public function verifying_order()
+	{
+		$ordno = $this->input->post('order_no');
+		$mobno = $this->input->post('mobile_no');
+		$result = $this->adTrack->verifying($ordno, $mobno);
+		if($result){
+			echo "verified";
+		}else{
+			echo "wrong";
+		}
+	}
+	
+	// VERIFYING ORDER NO FOR MAIL //
+	public function verifying_order_for_mail()
+	{
+		$ordno = $this->input->post('order_no');
+		$mobno = $this->input->post('mobile_no');
+		$result = $this->adTrack->verifying_for_mail($ordno, $mobno);
+		if($result){
+			echo "success";
+		}else{
+			echo "bad";
+		}
+	}
 }

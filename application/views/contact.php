@@ -18,7 +18,7 @@
                         <div class="form-group">
                             <input type="text" name="name" class="form-control" id="name" placeholder="Enter name" required />
                         </div>
-						<div class="form-group">
+			<div class="form-group">
                             <input type="text" name="mobile" class="form-control" id="mobile" placeholder="Enter Mobile No." required />
                         </div>
                         <div class="form-group">
@@ -32,7 +32,7 @@
                                 <option selected="">Choose One</option>
                                 <option value="service">General Customer Service</option>
                                 <option value="product">Product Support</option>
-								<option value="product">Product Idea</option>
+				<option value="ideas">Product Idea</option>
                             </select>
                         </div>
                     </div>

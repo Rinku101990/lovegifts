@@ -238,6 +238,35 @@ class Frontend extends CI_Model {
 		return $query->row();
 	}
 	
+	// GET MODE OF PAYMENT BY ORDER REFERENCE //
+	public function get_payment_mode($ord_id)
+	{
+		$this->db->select('ord_mode_of_payments');
+		$this->db->from('lovegift_orders');
+		$this->db->where('ord_reference_id', $ord_id);
+		$query = $this->db->get();
+		return $query->row();
+	}
+	
+	// UPDATE ORDER STATUS BY MODE OF PAYMENT AND ORDER REFERENCE ID //
+	public function update_order_status_mode($ord_id, $data1)
+	{
+		$this->db->where('ord_reference_id', $ord_id);
+		$this->db->update('lovegift_orders', $data1);
+		//echo $this->db->last_query();
+		return $ord_id;
+	}
+	
+	// GET ORDER DETAIL FOR SESSION //
+	public function get_order_status_for_session($ord_id)
+	{
+		$this->db->select('ord_reference_id,ord_status');
+		$this->db->from('lovegift_orders');
+		$this->db->where('ord_reference_id',$ord_id);
+		$query = $this->db->get();
+		return $query->row();
+	}
+	
 	public function deleteTempCheckoutProductDetailById($tmpid)
 	{
 		$this->db->where('temp_ckout_id', $tmpid);
@@ -250,29 +279,7 @@ class Frontend extends CI_Model {
 		$this->db->delete('lovegift_temp_checkout_customers');
 		return $tempCustoId;
 	}
-	// GENERATE RANDOM NUMBER FOR ORDER //
-	// public function getOrderID()
-	// {
-	// 	$this->db->select('ord_reference_id');
-	// 	$this->db->from('lovegift_orders');
-	// 	$this->db->order_by('user_id','desc');
-	// 	$this->db->limit('1');
-
-	// 	$query = $this->db->get();
-	// 	$ORDID = '';
-	// 	$LastInsertedID = 0;
-	// 	$countID = $query->num_rows();
-	// 	if($countID > 0){
-	// 		$result = $query->row();
-	// 		$ORDID = $result->ord_reference_id;
-	// 	}else{
-	// 		$ORDID = 'ORD00000';
-	// 	}
-	// 	$LastInsertedID = substr($ORDID, 3, 5);
-	// 	$NEWIDS = 'ORD' . str_pad($LastInsertedID + 1, 5, '0', STR_PAD_LEFT);
-	// 	return $NEWIDS;
-
-	// }
+	
 
 	public function getOrderLists($ord_id)
 	{
@@ -283,23 +290,40 @@ class Frontend extends CI_Model {
 		$this->db->where('ord.ord_reference_id', $ord_id);
 		$query = $this->db->get();
 		//echo $this->db->last_query();
-		return $query->result();
+		return $query->row();
 	}
 	
-	public function send($ordno, $username, $mobile,  $product)
+	// SEND MESSAGE FOR ORDER GENERATION //
+	public function send($ordno, $username, $mobile, $product)
 	{
-			$message = "On order Hi ".$username.",(not full name only first name),Thank you for your order ".$product.".Your Order Number is ".$ordno."	Shortern url of whats app (will discuss) Click on above link to open Whatsapp and send 'pictured required from database' photos.For any query call us at 9988655011,Happy Gifting :) LoveGifts.in";
-	        $api_url = "http://manage.staticking.net/index.php/smsapi/httpapi/?uname=kamal03&password=123456&sender=LUVGFT&receiver=".$mobile."&route=TA&msgtype=1&sms=".$message."
-";			
-			$stream_options = array(
-				'http' => array(
-				   'method'  => 'POST',
-				),
-			);
-			$context  = stream_context_create($stream_options);
-			$response = file_get_contents($api_url, null, $context);
-
-			return $response;
+		$message1 = urlencode("Hi '".$username."' Thank you for your order '".$product."'.Your Order Number is '".$ordno."'.\r\n For any query call us at 9988655011,\r\n Happy Gifting :) <a href='https://api.whatsapp.com/send?phone=919988655011&text=Hi%20Love%20Gifts.My%20Name%20is%20customer%20Name.My%20order%20number%20is%204540.'>lovegifts.in</a>");
+		$message = rtrim($message1, " ");
+					
+	        $api_url ="http://manage.staticking.net/index.php/smsapi/httpapi/?uname=kamal03&password=123456&sender=LUVGFT&receiver=".$mobile."&route=TA&msgtype=1&sms=".$message."
+";				
+		$stream_options = array(
+			'http' => array(
+			   'method'  => 'POST',
+			),
+		);
+		$context  = stream_context_create($stream_options);
+		$response = file_get_contents($api_url, null, $context);
+                //print_r($response);die;
+		return $response;
+	}
+	
+	
+	
+	public function getOrderListsById($ord_id)
+	{
+		$this->db->select('usr.*,pro.pro_title,pro.pro_offers, ord.*');
+		$this->db->from('lovegift_orders ord');
+		$this->db->join('lovegift_users usr','ord.user_id=usr.user_id','left');
+		$this->db->join('lovegift_products pro','ord.pro_id=pro.pro_id','left');
+		$this->db->where('ord.ord_reference_id', $ord_id);
+		$query = $this->db->get();
+		//echo $this->db->last_query();
+		return $query->result();
 	}
 	
 	public function getExtrainfoById()

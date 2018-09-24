@@ -26,9 +26,6 @@ class Checkout extends CI_Controller {
 
 	public function saveCustomerCheckoutParam()
 	{
-		//$data = $this->input->post();
-		//print_r($data);
-
 		$data['pro_id'] = $this->input->post('product_id');
 		$data['cate_id'] = $this->input->post('pro_category');
 		$data['pro_title_slug'] = $this->input->post('product_slug');
@@ -36,7 +33,6 @@ class Checkout extends CI_Controller {
 		$data['pin_code'] = $this->input->post('product_cod');
 		$data['temp_ckout_created'] = date('Y-m-d H:i:s');
 
-		//print_r($data);die;
 		$temp_id = $this->front->saveCustomerCheckoutInfo($data);
 		$slug_title = $this->front->getProductsSlug($temp_id);
 		$result = $slug_title->pro_title_slug;
@@ -51,6 +47,13 @@ class Checkout extends CI_Controller {
 
 	public function express()
 	{
+		$ord_no = $this->session->userdata('order_no');
+		$status = $this->session->userdata('status');
+		if(isset($ord_no) && isset($status)){
+			$this->session->unset_userdata($ord_no,$status);
+			$this->session->sess_destroy();
+			redirect('','refresh');
+		}
 		$pro_slug = $this->uri->segment(3);
 		$product_id = $this->front->getTempProductIdBySlug($pro_slug);
 		//print_r($product_id);
@@ -62,6 +65,7 @@ class Checkout extends CI_Controller {
 		$data['category'] = $this->front->getAllCategoryList();
 		$data['temp_id'] = $this->front->getLastInsertedTempCustomerId();
 		//print_r($data);die;
+		
 		$this->load->view('includes/header', $data);
 		$this->load->view('includes/top_header');
 		$this->load->view('includes/navbar');

@@ -39,7 +39,7 @@ class Products extends CI_Controller {
 		$data['category'] = $this->front->getAllCategoryList();
 		$data['extra_field'] = $this->front->getAllExtraField($proid);
 
-		$this->load->view('includes/header', $data);
+		$this->load->view('includes/header_fb', $data);
 		$this->load->view('includes/top_header');
 		$this->load->view('includes/navbar');
 		$this->load->view('details');

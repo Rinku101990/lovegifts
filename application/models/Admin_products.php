@@ -416,8 +416,8 @@ class Admin_products extends CI_Model {
 	public function getAllOrderTrackLevelByCategoryId($cate_id)
 	{
 		$this->db->select('ct.cate_name,ctl.*');
-        $this->db->from('lovegift_category_track_level ctl');
-        $this->db->join('lovegift_category ct','ctl.cate_id=ct.cate_id','left');
+                $this->db->from('lovegift_category_track_level ctl');
+                $this->db->join('lovegift_category ct','ctl.cate_id=ct.cate_id','left');
 		$this->db->where('ctl.cate_id', $cate_id);
 		$query = $this->db->get();
 		//echo $this->db->last_query();
@@ -446,6 +446,7 @@ class Admin_products extends CI_Model {
         $this->db->select('pro.pro_title,ord.*');
         $this->db->from('lovegift_orders ord');
         $this->db->join('lovegift_products pro','ord.pro_id=pro.pro_id','left');
+        $this->db->order_by("ord.ord_id", "DESC");
         $this->db->where('ord.cate_id',$cate_id);
         $query = $this->db->get();
         //echo $this->db->last_query();
@@ -672,4 +673,31 @@ class Admin_products extends CI_Model {
     //     $query = $this->db->get();
     //     return $query->result();
     // }
+    
+    // UPDATE DELIVERY STATUS HERE //
+    public function changeDeliveryStatus($ord_id, $del)
+    {
+    	$this->db->where('ord_id', $ord_id);
+    	$this->db->update('lovegift_orders', $del);
+    	//echo $this->db->last_query();
+    	return $ord_id;
+    }
+    
+    // UPDATE DISPATCH STATUS HERE //
+    public function changeDispatchStatus($ord_id, $dispatch)
+    {
+    	$this->db->where('ord_id', $ord_id);
+    	$this->db->update('lovegift_orders', $dispatch);
+    	//echo $this->db->last_query();
+    	return $ord_id;
+    }
+    
+    // UPDATE PHOTO PACKED STATUS HERE //
+    public function changePhotoPackedStatus($ord_id, $packed)
+    {
+    	$this->db->where('ord_id', $ord_id);
+    	$this->db->update('lovegift_orders', $packed);
+    	//echo $this->db->last_query();
+    	return $ord_id;
+    }
 }

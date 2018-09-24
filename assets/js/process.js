@@ -340,7 +340,7 @@ $(document).ready(function(){
 			dataType:"json",
 			success: function (data) {
               if(data.mode !='0'){
-              	window.location.href=base_url+'payumoney/index/'+data.reference_id.ord_reference_id;
+              	window.location.href=base_url+'Ccavenue/index/'+data.reference_id.ord_reference_id;
               }else if(data.mode=='0'){
               	window.location.href=base_url+'orders/orderSummary/'+data.reference_id.ord_reference_id;
               }else{

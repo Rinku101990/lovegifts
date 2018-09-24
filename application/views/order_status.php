@@ -17,34 +17,38 @@
       <td><?php echo $status->ord_reference_id;?></td>
       <td><?php echo $status->pro_title;?></td>
       
-      <?php if(($status->ord_photo_checked)=='1'){?>
-         <td style="color:green;font-weight:bold"><i class="fa fa-check-circle"></i></td>
-      <?php }else if(($status->ord_photo_checked)=='0'){ ?>
-        <td style="color:red;font-weight:bold"><i class="fa fa-times-circle-o"></i></td>
+      <?php if(($status->ord_photo_packed)=='2'){?>
+         <td style="color:green;font-weight:bold"><i class="fa fa-check-circle"></i> Completed</td>
       <?php }else{ ?>
-          <td style="color:gray;font-weight:bold"><i class="fa fa-times-circle-o"></i></td>
+        <td style="color:gray;font-weight:bold"><i class="fa fa-times-circle-o"></i>Processing</td>
       <?php } ?>
       
-      <?php if(($status->ord_photo_checked)=='1'){?>
-         <td style="color:green;font-weight:bold"><i class="fa fa-check-circle"></i></td>
-      <?php }else if(($status->ord_photo_checked)=='0'){ ?>
-        <td style="color:red;font-weight:bold"><i class="fa fa-times-circle-o"></i></td>
-      <?php }else{ ?>
-          <td style="color:gray;font-weight:bold"><i class="fa fa-times-circle-o"></i></td>
-      <?php } ?>
-      
-      <?php if(($status->ord_photo_packed)=='1'){?>
-         <td style="color:green;font-weight:bold"><i class="fa fa-check-circle"></i></td>
+      <?php if(($status->ord_photo_packed)=='2'){?>
+         <td style="color:green;font-weight:bold"><i class="fa fa-check-circle"></i>Completed</td>
+      <?php }else if(($status->ord_photo_packed)=='1'){ ?>
+        <td style="color:red;font-weight:bold"><i class="fa fa-times-circle-o"></i>Processing</td>
       <?php }else if(($status->ord_photo_packed)=='0'){ ?>
-        <td style="color:red;font-weight:bold"><i class="fa fa-times-circle-o"></i></td>
+          <td style="color:gray;font-weight:bold"><i class="fa fa-times-circle-o"></i></td>
       <?php }else{ ?>
           <td style="color:gray;font-weight:bold"><i class="fa fa-times-circle-o"></i></td>
       <?php } ?>
       
-      <?php if(($status->ord_photo_despatched)=='1'){?>
-         <td style="color:green;font-weight:bold"><i class="fa fa-check-circle"></i></td>
+      <?php if(($status->ord_photo_despatched)=='2'){?>
+         <td style="color:green;font-weight:bold"><i class="fa fa-check-circle"></i>Completed</td>
+      <?php }else if(($status->ord_photo_despatched)=='1'){ ?>
+        <td style="color:red;font-weight:bold"><i class="fa fa-times-circle-o"></i>Processing</td>
       <?php }else if(($status->ord_photo_despatched)=='0'){ ?>
-        <td style="color:red;font-weight:bold"><i class="fa fa-times-circle-o"></i></td>
+          <td style="color:gray;font-weight:bold"><i class="fa fa-times-circle-o"></i>Prepare</td>
+      <?php }else{ ?>
+      	  <td style="color:gray;font-weight:bold"><i class="fa fa-times-circle-o"></i></td>
+      <?php } ?>
+      
+      <?php if(($status->ord_delivery)=='2'){?>
+         <td style="color:green;font-weight:bold"><i class="fa fa-check-circle"></i>Despatched</td>
+      <?php }else if(($status->ord_delivery)=='1'){ ?>
+        <td style="color:red;font-weight:bold"><i class="fa fa-times-circle-o"></i>Processing</td>
+      <?php }else if(($status->ord_delivery)=='0'){ ?>
+          <td style="color:gray;font-weight:bold"><i class="fa fa-times-circle-o"></i>Prepare</td>
       <?php }else{ ?>
           <td style="color:gray;font-weight:bold"><i class="fa fa-times-circle-o"></i></td>
       <?php } ?>

@@ -1,6 +1,19 @@
 <!--checkout form start-->
 <?php foreach($productView as $tempCheckout){?>
 <?php } ?>
+
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '306573526599878');
+  fbq('trackCustom', 'Intiatecheckout', {product: '<?php echo $tempCheckout->pro_title;?>',cat_id:<?php echo $tempCheckout->cate_id;?>})
+</script>
     <div id="main">
         <div class="container">
 			<div class="row">
@@ -223,7 +236,11 @@
             <div style="border: 2px solid black;"></div>
                 <div class="row">
                     <div class="col-md-12 col-xs-12 col-sm-8 col-lg-12 cta-button">
-                        <button type="submit" class="btn btn-lg btn-block btn-danger" id="btnPlaceOrder" tabindex="10">Place Order and Finish</button>
+                        <button type="submit" class="btn btn-lg btn-block btn-danger" id="btnPlaceOrder" style="background-color:#ec5459;border-color:#ec5459;font-size: 1.2em; width: 300px; font-weight: 600; border-radius: 4px; padding: 7px 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-top: 4px; margin-bottom: 0px; color: white; border-right: none; border-bottom: none;" tabindex="10">Place Order and Finish</button>
+                        
+                    </div>
+                    <div class="text-center">
+                    <img src="<?php echo base_url('assets/images/comodosecuresmall.png') ?>" alt="ComodoSecure" align="center">
                     </div>
                 </div>
                     </form>

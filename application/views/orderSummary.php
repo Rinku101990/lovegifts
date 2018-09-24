@@ -6,6 +6,18 @@
 		echo "<div class='alert alert-success' role='alert'>".$this->session->flashdata('msg_success')."<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
 	}
 ?>
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '306573526599878');
+  fbq('track', 'Purchase');
+</script>
 <br>
     <h1 class="text-center textdecorationheader">Order Details</h1>
         <div class="container">
@@ -87,8 +99,8 @@
 			<?php } ?>
 			  </table>
 		            <div class="cta-button col-md-8 container">
-                        <a  class="btn btn- btn-block btn-danger" href="https://api.whatsapp.com/send?phone=919988655011&text=Hi%20Love%20Gifts.My%20Name%20is%20customer%20Name.My%20order%20number%20is%204540." id="porder" tabindex="10"><span><i class="fa fa-whatsapp"></i></span>&nbsp Click here to Open Whatsapp</a>
-						<a  class="btn btn- btn-block btn-danger" href="mailto:hello@lovegifts.in?Subject=Hi%20Love%20Gifts.My%20Name%20is%20customer%20Name.My%20order%20number%20is%204540." id="porder" tabindex="10"><span><i class="fa fa-envelope"></i></span>&nbsp Click here to Open Mail</a>
+                        <a  class="btn btn- btn-block btn-danger" href="https://api.whatsapp.com/send?phone=919988655011&text=Hi%20Love%20Gifts.My%20order%20number%20is%20 <?php echo $orderDetail->ord_reference_id;?>%20of%20 <?php echo $orderDetail->pro_title;?>." id="porder" tabindex="10"><span><i class="fa fa-whatsapp"></i></span>&nbsp Click here to Open Whatsapp</a>
+						<a  class="btn btn- btn-block btn-danger" href="mailto:hello@lovegifts.in?Subject=Hi%20Love%20Gifts.My%20Name%20is%20customer%20Name.My%20order%20number%20is%20<?php echo $orderDetail->ord_reference_id;?>." id="porder" tabindex="10"><span><i class="fa fa-envelope"></i></span>&nbsp Click here to Open Mail</a>
 				    </div>
                 <p style="color:blue" class="text-center"><strong>Your gift will be made after we receive photos.</strong></p>
             </div>

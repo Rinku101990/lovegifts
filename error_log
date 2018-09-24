@@ -102,3 +102,40 @@ Stack trace:
 [05-Sep-2018 06:21:51 Etc/GMT] PHP Fatal error:  Can't use method return value in write context in /home/loveg25h/public_html/application/controllers/admin/Products.php on line 906
 [05-Sep-2018 06:22:29 Etc/GMT] PHP Fatal error:  Can't use method return value in write context in /home/loveg25h/public_html/application/controllers/admin/Products.php on line 940
 [05-Sep-2018 06:23:04 Etc/GMT] PHP Fatal error:  Can't use method return value in write context in /home/loveg25h/public_html/application/controllers/admin/Products.php on line 958
+[08-Sep-2018 12:57:18 Etc/GMT] PHP Parse error:  syntax error, unexpected ''&billing_cust_name='' (T_CONSTANT_ENCAPSED_STRING) in /home/loveg25h/public_html/application/views/ccavRequestHandler.php on line 37
+[08-Sep-2018 13:05:51 Etc/GMT] PHP Parse error:  syntax error, unexpected ''&billing_cust_name='' (T_CONSTANT_ENCAPSED_STRING) in /home/loveg25h/public_html/application/views/ccavRequestHandler.php on line 37
+[08-Sep-2018 13:05:52 Etc/GMT] PHP Parse error:  syntax error, unexpected ''&billing_cust_name='' (T_CONSTANT_ENCAPSED_STRING) in /home/loveg25h/public_html/application/views/ccavRequestHandler.php on line 37
+[08-Sep-2018 13:05:59 Etc/GMT] PHP Parse error:  syntax error, unexpected ''&billing_cust_name='' (T_CONSTANT_ENCAPSED_STRING) in /home/loveg25h/public_html/application/views/ccavRequestHandler.php on line 37
+[10-Sep-2018 05:52:43 Etc/GMT] PHP Fatal error:  Call to undefined function random_string() in /home/loveg25h/public_html/application/views/payment_confirm.php on line 16
+[10-Sep-2018 05:58:29 Etc/GMT] PHP Fatal error:  Call to undefined function random_string() in /home/loveg25h/public_html/application/views/payment_confirm.php on line 16
+[10-Sep-2018 05:59:30 Etc/GMT] PHP Fatal error:  Call to undefined function random_string() in /home/loveg25h/public_html/application/views/payment_confirm.php on line 16
+[10-Sep-2018 06:00:48 Etc/GMT] PHP Fatal error:  Call to undefined function random_string() in /home/loveg25h/public_html/application/views/payment_confirm.php on line 16
+[10-Sep-2018 06:00:52 Etc/GMT] PHP Fatal error:  Call to undefined function random_string() in /home/loveg25h/public_html/application/views/payment_confirm.php on line 16
+[10-Sep-2018 06:03:35 Etc/GMT] PHP Fatal error:  Call to undefined function random_string() in /home/loveg25h/public_html/application/views/payment_confirm.php on line 16
+[10-Sep-2018 06:06:53 Etc/GMT] PHP Fatal error:  Call to undefined function random_string() in /home/loveg25h/public_html/application/views/payment_confirm.php on line 16
+[10-Sep-2018 07:23:36 Etc/GMT] PHP Parse error:  syntax error, unexpected '?>', expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in /home/loveg25h/public_html/application/views/payment_confirm.php on line 25
+[10-Sep-2018 10:54:39 Etc/GMT] PHP Parse error:  syntax error, unexpected 'publiv' (T_STRING), expecting function (T_FUNCTION) in /home/loveg25h/public_html/application/models/Frontend.php on line 290
+[10-Sep-2018 10:54:50 Etc/GMT] PHP Parse error:  syntax error, unexpected 'publiv' (T_STRING), expecting function (T_FUNCTION) in /home/loveg25h/public_html/application/models/Frontend.php on line 290
+[10-Sep-2018 10:54:52 Etc/GMT] PHP Parse error:  syntax error, unexpected 'publiv' (T_STRING), expecting function (T_FUNCTION) in /home/loveg25h/public_html/application/models/Frontend.php on line 290
+[10-Sep-2018 10:54:55 Etc/GMT] PHP Parse error:  syntax error, unexpected 'publiv' (T_STRING), expecting function (T_FUNCTION) in /home/loveg25h/public_html/application/models/Frontend.php on line 290
+[10-Sep-2018 11:08:38 Etc/GMT] PHP Parse error:  syntax error, unexpected ';' in /home/loveg25h/public_html/application/controllers/Orders.php on line 103
+[10-Sep-2018 11:09:12 Etc/GMT] PHP Parse error:  syntax error, unexpected ';' in /home/loveg25h/public_html/application/controllers/Orders.php on line 103
+[10-Sep-2018 11:35:06 Etc/GMT] PHP Parse error:  syntax error, unexpected end of file in /home/loveg25h/public_html/application/models/Frontend.php on line 348
+[10-Sep-2018 11:58:18 Etc/GMT] PHP Parse error:  syntax error, unexpected '"' in /home/loveg25h/public_html/application/controllers/Orders.php on line 103
+[10-Sep-2018 12:10:30 Etc/GMT] PHP Parse error:  syntax error, unexpected ''.$username.'' (T_CONSTANT_ENCAPSED_STRING) in /home/loveg25h/public_html/application/models/Frontend.php on line 293
+[10-Sep-2018 12:24:30 Etc/GMT] PHP Parse error:  syntax error, unexpected 'Product' (T_STRING) in /home/loveg25h/public_html/application/models/Frontend.php on line 294
+[10-Sep-2018 14:05:52 Etc/GMT] PHP Parse error:  syntax error, unexpected '}' in /home/loveg25h/public_html/application/views/details.php on line 380
+[11-Sep-2018 10:29:02 Etc/GMT] PHP Parse error:  syntax error, unexpected '=', expecting identifier (T_STRING) in /home/loveg25h/public_html/application/views/details.php on line 187
+[11-Sep-2018 10:34:48 Etc/GMT] PHP Parse error:  syntax error, unexpected '=', expecting identifier (T_STRING) in /home/loveg25h/public_html/application/views/details.php on line 187
+[18-Sep-2018 14:25:50 Etc/GMT] PHP Parse error:  syntax error, unexpected 'Contains' (T_STRING) in /home/loveg25h/public_html/application/views/index.php on line 148
+[18-Sep-2018 14:25:56 Etc/GMT] PHP Parse error:  syntax error, unexpected 'Contains' (T_STRING) in /home/loveg25h/public_html/application/views/index.php on line 148
+[19-Sep-2018 13:04:22 Etc/GMT] PHP Parse error:  syntax error, unexpected '?' in /home/loveg25h/public_html/application/views/index.php on line 99
+[19-Sep-2018 13:04:34 Etc/GMT] PHP Parse error:  syntax error, unexpected '?' in /home/loveg25h/public_html/application/views/index.php on line 99
+[19-Sep-2018 13:20:10 Etc/GMT] PHP Parse error:  syntax error, unexpected '?' in /home/loveg25h/public_html/application/views/index.php on line 99
+[19-Sep-2018 13:20:10 Etc/GMT] PHP Parse error:  syntax error, unexpected '?' in /home/loveg25h/public_html/application/views/index.php on line 99
+[19-Sep-2018 13:20:19 Etc/GMT] PHP Parse error:  syntax error, unexpected '?' in /home/loveg25h/public_html/application/views/index.php on line 99
+[19-Sep-2018 14:18:05 Etc/GMT] PHP Parse error:  syntax error, unexpected '404' (T_LNUMBER), expecting identifier (T_STRING) in /home/loveg25h/public_html/application/controllers/404.php on line 4
+[24-Sep-2018 07:17:13 Etc/GMT] PHP Fatal error:  Can't use method return value in write context in /home/loveg25h/public_html/application/controllers/admin/Products.php on line 944
+[24-Sep-2018 07:58:17 Etc/GMT] PHP Fatal error:  Cannot redeclare Products::trackStatusChange() in /home/loveg25h/public_html/application/controllers/admin/Products.php on line 941
+[24-Sep-2018 08:13:02 Etc/GMT] PHP Parse error:  syntax error, unexpected ')' in /home/loveg25h/public_html/application/views/admin/orderCategoryList.php on line 116
+[24-Sep-2018 08:51:26 Etc/GMT] PHP Parse error:  syntax error, unexpected '==' (T_IS_EQUAL) in /home/loveg25h/public_html/application/views/order_status.php on line 30

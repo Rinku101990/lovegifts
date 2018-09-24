@@ -996,3 +996,9 @@ margin:3px;
     /* symbol for "collapsed" panels */
     content: "\f067"; 
 }
+.fixBottom {
+    position: fixed;
+    bottom: -7px;
+    width: 100%;
+    text-align: center;
+}

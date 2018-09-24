@@ -50,5 +50,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'Lovegift';
-$route['404_override'] = '';
+$route['404_override'] = 'my404';
+$route['category/lists'] = 'my404';
+$route['products/details'] = 'my404';
+$route['checkout/express'] = 'my404';
+$route['Ccavenue/index'] = 'my404';
 $route['translate_uri_dashes'] = FALSE;

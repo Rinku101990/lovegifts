@@ -476,6 +476,66 @@ $(document).ready(function(){
     		}
     	});
     });
+    
+    
+    $(".deliverd").on("change",function(){
+        var ordid  = $(this).attr("deliStatus");
+        //var ord_id = $(this).attr("ordid");
+        var status = $(this).val();
+        //alert(status);
+        $.ajax({
+    		method:"post",
+    		url:base_url+"products/deliveryStatusChange",
+    		data:{ordid:ordid,status:status},
+    		success: function(data){
+                //alert(data);
+    			if(data=="access"){
+                   location. reload(true);
+    			}else if(data=="denied"){
+                    location. reload(true);
+    			}else{
+
+                }
+    		}
+    	});
+    });
+    
+    $(".dispatch").on("change",function(){
+        var ordid  = $(this).attr("photoDispatch");
+        var status = $(this).val();
+        $.ajax({
+    		method:"post",
+    		url:base_url+"products/dispatchStatusChange",
+    		data:{ordid:ordid,status:status},
+    		success: function(data){
+		if(data=="access"){
+                   location. reload(true);
+    			}else if(data=="denied"){
+                    location. reload(true);
+    			}else{
+                }
+    		}
+    	});
+    });
+    
+    $(".packed").on("change",function(){
+        var ordid  = $(this).attr("photoPacked");
+        var status = $(this).val();
+        $.ajax({
+    		method:"post",
+    		url:base_url+"products/photoPackedStatusChange",
+    		data:{ordid:ordid,status:status},
+    		success: function(data){
+		if(data=="access"){
+                   location. reload(true);
+    			}else if(data=="denied"){
+                    location. reload(true);
+    			}else{
+                }
+    		}
+    	});
+    });
+    
 
     $(".photoPackedYes").click(function(){
     	var ord_id = $(this).attr("photo_packed_yes");
@@ -485,11 +545,7 @@ $(document).ready(function(){
     		url:base_url+"products/photoPackedYes",
     		data:{ord_id:ord_id},
     		success: function(data){
-    			if(data=="packedYes"){
-    				$("#photoPackedNo"+ord_id).hide();
-    			}else{
-
-    			}
+    			alert(data);
     		}
     	});
     });

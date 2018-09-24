@@ -47,7 +47,7 @@ class Contacts extends CI_Controller {
 			$user_message = $this->input->post('message');
 
 			// ---------------- SEND MAIL FORM ---------------- //
-			$To = 'rinku@ordiusits.com';
+			$To = 'hello@lovegifts.in';
 			$SubjectLine = "Query For LoveGifts.com"; 
 			$EmailFrom = $user_email; 
 			
@@ -55,10 +55,10 @@ class Contacts extends CI_Controller {
 			$EmailHeader  = 'MIME-Version: 1.0' . "\r\n"; 
 			$EmailHeader .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 			// EMAIL HEDING TO EMAIL CONTENT HERE //
-			$EmailHeader .= 'From: '."LoveGifts.com <no-reply@ordiusits.com>"."\r\n".'Reply-To: '."no-reply@ordiusits.com"."\r\n" . 'X-Mailer: PHP/' . phpversion();
+			$EmailHeader .= 'From: '."LoveGifts.in<no-reply@lovegifts.in>"."\r\n".'Reply-To: '."no-reply@lovegifts.in"."\r\n" . 'X-Mailer: PHP/' . phpversion();
 			
 			// EMAIL CONNECT WHAT YOU WRITE HERE //
-			$EmailBody = "<html><body>Hi LoveGifts.com". "<br><br>"; 
+			$EmailBody = "<html><body>Hi lovegifts.in". "<br><br>"; 
 			$EmailBody .= "<strong>Name:</strong> "."$user_name". "<br><br>";
 			$EmailBody .= "<strong>Email:</strong> ". " $user_email." ."<br><br>";
 			$EmailBody .= "<strong>Mobile No:</strong> ". " $user_mobile." ."<br><br>";

@@ -1,166 +1,133 @@
-<?php
-// Merchant key here as provided by Payu
-$MERCHANT_KEY = "rjQUPktU";
-
-// Merchant Salt as provided by Payu
-$SALT = "e5iIg1jwi8";
-
-// End point - change to https://secure.payu.in for LIVE mode
-$PAYU_BASE_URL = "https://test.payu.in";
-
-$action = '';
-
-$posted = array();
-
-//Generate random transaction id
-$txnid = random_string('numeric', 5);
-
-$ord_id = $this->uri->segment(3);
-//print_r($ord_id);die;
-
-if(!empty($_POST)) {
-		
-		$posted['amount'] = $_POST['amount'];
-		$posted['phone'] = $_POST['phone'];
-		$posted['firstname'] = $_POST['firstname'];
-		$posted['email'] = $_POST['email'];
-		$posted['key'] = $MERCHANT_KEY;
-		$posted['txnid'] = $txnid;
-		$posted['productinfo'] = 'This is a Test Product';
-		$posted['email'] = $_POST['email'];
-		$posted['firstname'] = $_POST['firstname'];
-		$posted['phone'] = $_POST['phone'];
-		$posted['surl'] = base_url("orders/success/".$ord_id);
-		$posted['furl'] = base_url("orders/error/".$ord_id);
-		$posted['curl'] = base_url("orders/cancel".$ord_id);
-		$posted['service_provider'] = 'payu_paisa';
-
-}
-
-$hash = '';
-
-// Hash Sequence
-$hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10";
-
-if(empty($posted['hash']) && sizeof($posted) > 0) {
-	if(
-			  empty($posted['key'])
-			  || empty($posted['txnid'])
-			  || empty($posted['amount'])
-			  || empty($posted['firstname'])
-			  || empty($posted['email'])
-			  || empty($posted['phone'])
-			  || empty($posted['productinfo'])
-			  || empty($posted['surl'])
-			  || empty($posted['furl'])
-			  || empty($posted['service_provider'])
-	  ) {
-		//echo "Fail";
-		redirect('payumoney/');
-	  }
-	else{
-		
-		$hashVarsSeq = explode('|', $hashSequence);
-		$hash_string = '';
-		foreach($hashVarsSeq as $hash_var){
-			  $hash_string .= isset($posted[$hash_var]) ? $posted[$hash_var] : '';
-			  $hash_string .= '|';
-		}
-
-		$hash_string .= $SALT;
-		$hash = strtolower(hash('sha512', $hash_string));
-		$posted['hash'] = $hash;
-		$action = $PAYU_BASE_URL . '/_payment';
-	}
-}
-elseif(!empty($posted['hash'])){
-  $hash = $posted['hash'];
-  $action = $PAYU_BASE_URL . '/_payment';
-}
-
-?>
-<!DOCTYPE HTML>
-<html>
-<head>
-<title>Make Payment Confirm :: Love Gift</title>
-<!-- Custom Theme files -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-<meta name="keywords" content="" />
-<!--google fonts-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link href="<?php echo base_url('assets/pay_confirm/css/style.css');?>" rel="stylesheet" type="text/css" media="all"/>
-<link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700' rel='stylesheet' type='text/css'>
-<script>
-    var hash = '<?php echo $hash ?>';
-    function submitPayuForm() {
-     if(hash == '') {
-        return;
-      }
-      var payuForm = document.forms.payuForm;
-      payuForm.submit();
-    }
- </script>
-</head>
-<body>
-	<h1>Payment Confirmation</h1>
-<div class="check">
-    <div class="check-head">
-       <h2>Payment Method: <span class="header-text">Online</span></h2>
-	   <small class="strip"> </small>
-	</div>
-	<div class="check-bottom">
-		<?php
-				if($this->session->flashdata('msg_error')){
-					echo "<div class='alert alert-danger' role='alert'>".$this->session->flashdata('msg_error')."<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
-				}
-				elseif($this->session->flashdata('msg_success')){
-					echo "<div class='alert alert-success' role='alert'>".$this->session->flashdata('msg_success')."<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
-				}
-			?>
-			<?php foreach($orders as $orderDetail){  ?>
-	     <form method="post" class="form-horizontal" action="<?php echo $action; ?>" name="payuForm">
-		     	<input type="hidden" name="key" value="<?php echo (!isset($posted['key'])) ? '' : $posted['key'] ?>" />
-				<input type="hidden" id="hash" name="hash" value="<?php echo (!isset($posted['hash'])) ? '' : $posted['hash'] ?>"/>
-				<input type="hidden" name="txnid" value="<?php echo (!isset($posted['txnid'])) ? '' : $posted['txnid'] ?>" />
-
-				<input type="hidden" name="productinfo" id="productinfo" value="<?php echo (!isset($posted['productinfo'])) ? '' : $posted['productinfo'] ?>">
-				<input type="hidden" name="surl" value="<?php echo (!isset($posted['surl'])) ? '' : $posted['surl'] ?>" size="64" />
-				<input type="hidden" name="curl" value="<?php echo (!isset($posted['curl'])) ? '' : $posted['curl'] ?>" size="64" />
-				<input type="hidden" id="furl" name="furl" value="<?php echo (!isset($posted['furl'])) ? '' : $posted['furl'] ?>" size="64" />
-				<input type="hidden" name="service_provider" value="<?php echo (!isset($posted['service_provider'])) ? '' : $posted['service_provider'] ?>" size="64" />
-				<div class="form-group">
-				    <p>Name</p>
-				    <div class="col-sm-10">
-				      <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Your Name" required value="<?php echo $orderDetail->user_name; ?>">
+<br />
+<div id="main">
+        <div class="container">
+			<div class="row">
+			  <div class="col-lg-8">
+			     <div class="d-md-none">
+				<h4 style="color:green" class="text-center"><strong>Easy Check out Process</strong></h4></div>
+				  <div class="card checkoutpanelred">
+				    <div class="card-title">
+					<h3>Payment Confirmation</h3>
 				    </div>
-			  	</div>
-			  	<div class="form-group">
-				    <p>Email</p>
-				    <div class="col-sm-10">
-				      <input type="text" name="email" id="email" class="form-control" placeholder="Your Email" value="<?php echo $orderDetail->user_email; ?>" required>
-				    </div>
-			  	</div>
-				<div class="form-group">
-				    <p>Mobile</p>
-				    <div class="col-sm-10">
-				      <input type="text" name="phone" class="form-control" id="inputPassword3" placeholder="Your Mobile Number" value="<?php echo $orderDetail->user_mobile_no; ?>" required>
-				    </div>
+                        <div class="card-body">
+                        <form method="post" name="customerData" action="<?php echo base_url('ccavenue/ccavRequestHandler');?>">
+                            <div class="form-horizontal">
+                                <div class="form-row">
+                                    <div class="col-md-12 topspace">
+                                         <input type="hidden" name="merchant_id" value="185715"/>
+                                        <label class="control-label"><strong>Full Name <span class="required" style="color: red;">*</span></strong></label>
+                                        <input name="billing_name" type="text" tabindex="1" class="form-control" value="<?php echo $orders->user_name;?>" />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 mt-2">
+                                        <input type="hidden" name="order_id" value="<?php echo $orders->ord_id;?>"/>
+                                        <label class="control-label"><strong>Address Line 1<span class="required" style="color: red;">*</span></strong></label>
+                                        <input name="billing_address" type="text" id="add1" class="form-control" tabindex="3" value="<?php echo $orders->user_address1.' '.$orders->user_address2.','.$orders->user_nearby_landmark;;?>" />
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="col-md-4 mt-2">
+                                        <input type="hidden" name="billing_country" value="India"/>
+                                        <label class="control-label"><strong>State <span class="required" style="color: red;">*</span></strong></label>
+                                        <input name="billing_state" type="text" class="form-control" value="<?php echo $orders->user_state;?>"/>
+                                    </div>
+                                    <div class="col-md-4 mt-2">
+                                        <label class="control-label"><strong>City <span class="required" style="color: red;">*</span></strong></label>
+                                        <input name="billing_city" type="text" class="form-control"  value="<?php echo $orders->user_city;?>"/>
+                                    </div>
+                                    <div class="col-md-4 mt-2">
+                                        <label class="control-label"><strong>Pincode / Zipcode <span class="required" style="color: red;">*</span></strong>
+                                        </label>
+                                        <input name="billing_zip" type="text" maxlength="6" tabindex="6" class="form-control" value="<?php echo $orders->user_pincode;?>"/>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="col-md-6 mt-2">
+                                        <label class="control-label"><strong>Email Address</strong></label>
+                                        <input name="billing_email" type="text" tabindex="9" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" value="<?php echo $orders->user_email;?>" />
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label class="control-label"><strong>Calling Mobile No. <span class="required" style="color: red;">*</span></strong></label>
+                                        <input name="billing_tel" type="text" pattern="[0-9]{10}" maxlength="10" id="cmob" tabindex="7" class="form-control" value="<?php echo $orders->user_mobile_no;?>"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 mt-2">
+                                        <label class="control-label"><strong>Delivery customer notes</strong></label>
+                                        <textarea class="form-control" cols="10" rows="5"><?php echo $orders->ord_txt_message;?></textarea>
+                                        <input type="hidden" name="redirect_url" value="https://www.lovegifts.in/orders/orderSummary/<?php echo $orders->ord_reference_id;?>"/>
+                                        <input type="hidden" name="cancel_url" value="https://www.lovegifts.in/orders/cancel/<?php echo $orders->ord_reference_id;?>"/>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+				
+            </div>
+               <div class="col-lg-4">
+                <div class="card checkoutpanelred" style="height:100%">
+                    <div class="card-title">
+                        <h3>Order Summary</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h4 style="font-family:fontdinerdotcom luvable; color:#ec5459"><?php echo $orders->pro_title;?></h4>
+                                <span>(<?php echo $orders->ord_product_size;?>)</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <table class="table" style="margin-bottom: 5px">
+                                    <tr>
+                                        <th>Total Price: </th>
+                                        <td>
+                                            <input type="hidden" name="amount" value="<?php echo $orders->ord_total_price;?>"/>
+                                            <input type="hidden" name="currency" value="INR"/>
+                                            <span style="margin-left: 30px;"><i class="fa fa-inr"></i></span></span>
+                                            <?php echo $orders->ord_total_price;?>                                       
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Qty :</th>
+                                        <td style="width: 10px">
+                                            <div class="input-group">
+                                            <input type="text" value="1" disabled="disabled" class="form-control text-center qty" style="width:90px;" />
+                                            <input type="hidden" name="qty" id="qty" value="<?php echo $orders->ord_qty;?>">
+                                        </div>
+                                        </td>
+                                    </tr>
+                                   <input type="hidden" name="offerAmount" id="offerAmount" value="">
+                                    <tr>
+                                        <th>
+                                            <label class="control-label price">Total Amount:</label></th>
+                                            <td style="text-align: right">
+                                            <div class="price">
+                                                <span><i class="fa fa-inr"></i> 
+                                                    <input type="hidden" name="totalPrice" id="totalPrice" value="">
+                                                    <span id="grandTotal" style="font-weight: bold"><?php echo $orders->ord_total_price;?></span>
+                                                </span>
+                                                <span id=""></span>
+                                            </div>
+                                        </td>
+                                    </tr>
 				</div>
-				<div class="form-group">
-				    <p>Amount</p>
-				    <div class="col-sm-10">
-				      <input type="text" name="amount" class="form-control" id="inputPassword3" placeholder="Amount to Pay" value="<?php echo $orderDetail->ord_total_price; ?>" required>
-				    </div>
-				</div>
-			<input type="submit" value="Confirm Payment">
-		 </form>
-		<?php } ?>
-	</div>
-</div>
-
-</body>
-</html>
+			    </div>
+                        </table>
+                    </div>
+                </div>
+            <div style="border: 2px solid black;"></div>
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 col-sm-8 col-lg-12 cta-button">
+                        <button type="submit" class="btn btn-lg btn-block btn-danger" tabindex="10">Make Payment</button>
+                    </div>
+                </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--checkout form start--><br>

@@ -16,7 +16,7 @@
 					</nav>
 					<div class="tab-content mt-6" id="tabContent">
 						<div class="tab-pane active" id="LoveBoxPic<?php echo $catelist->pro_id;?>" role="tabpanel">
-							<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width:100%">
+							<div id="carouselExampleControls<?php echo $catelist->pro_id;?>" class="carousel slide" data-ride="carousel" style="width:100%">
 								<div class="carousel-inner">
 									<?php $i = 1; foreach($picture as $picturelist){ ?>
 										<?php if(($picturelist->pro_id)==($catelist->pro_id)){ ?>
@@ -27,11 +27,11 @@
 										<?php $i++; }  ?>
 									<?php } ?>
 								</div>
-								<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+								<a class="carousel-control-prev" href="#carouselExampleControls<?php echo $catelist->pro_id;?>" role="button" data-slide="prev">
 									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 									<span class="sr-only">Previous</span>
 								</a>
-								<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+								<a class="carousel-control-next" href="#carouselExampleControls<?php echo $catelist->pro_id;?>" role="button" data-slide="next">
 									<span class="carousel-control-next-icon" aria-hidden="true"></span>
 									<span class="sr-only">Next</span>
 								</a>
@@ -78,8 +78,14 @@
                             		<a href="<?php echo base_url('products/details');?>/<?php echo $catelist->pro_title_slug;?>" class="btn btn-lg btn-block btn-danger"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;View Product</a>
                         		</div>
 								<div class="col-md-6 cta-button">
-									<input type="hidden" name="product_slug" id="product_slug" value="<?php echo $catelist->pro_title_slug;?>">
-									<a href="javascript:(void);" chkout1="<?php echo $catelist->pro_id;?>" class="btn btn-lg btn-block btn-danger btnProductCheckout1"><span><i class="fa fa-shopping-bag"></i></span>&nbsp; Buy Now</a>
+									
+									<?php $i = 0; foreach($price as $pricelist){ ?>
+			   						<?php if(($catelist->pro_id)==($pricelist->pro_id)){ ?>
+			   							<?php if($i < 1) {?>
+										<a href="javascript:(void)" chkout1="<?php echo $catelist->pro_id;?>" pcate="<?php echo $catelist->cate_id;?>" pslug="<?php echo $catelist->pro_title_slug;?>" psize="<?php echo $pricelist->size_id;?>" class="btn btn-lg btn-block btn-danger btnProductCheckout1"><span><i class="fa fa-shopping-bag"></i></span>&nbsp; Buy Now</a>
+			                        			<?php }$i++; ?>
+			                        			<?php } ?>
+			                        		<?php } ?>
 		                        </div>
                      	</div><br>
                 </div>

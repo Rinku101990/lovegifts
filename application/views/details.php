@@ -1,3 +1,4 @@
+
 <section class="pv-30">
     <div class="container">
 		<!-- for Desktop -->
@@ -27,11 +28,13 @@
 									<?php } ?>
 									</div>
 									<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<!--	<span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
+									<span><i class="fa fa-chevron-left" style="font-size:24px;color:#e61a21"></i></span>
 										<span class="sr-only">Previous</span>
 									</a>
 									<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-										<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<!--	<span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+									<span><i class="fa fa-chevron-right" style="font-size:24px;color:#e61a21"></i></span>
 										<span class="sr-only">Next</span>
 									</a>
 								</div>
@@ -61,7 +64,7 @@
 						 					<span id="productPrice"><?php foreach($selectedPrice as $leastPrice){ echo $leastPrice->size_related_price;}?></span>
 						 			   </h3></td>
 								<td>
-                            <!-- <a href="checkout.php" class="btn btn-md-3 btn-block btn-primary"><span><i class="fa fa-shopping-bag"></i></span>&nbsp Buy Now</a> -->
+                            <a onclick="ga('send', 'event', 'DetailPageDesktop Buy Now', '<?php echo $productDetails->pro_title;?> Click', 'Buy Now Product');" href="javascript:(void);" chkout="<?php echo $productDetails->pro_id;?>" class="btn btn-md-3 btn-block btn-primary btnProductCheckout"><span><i class="fa fa-shopping-bag"></i></span>&nbsp Buy Now</a>
                            </td>
 						</tr>
 						</table>
@@ -117,7 +120,7 @@
 							    <th scope="row">Cash On Delivery</th>
 							    <td>
 							  	<?php if(($productDetails->pro_cash_on_delivery)=='0'){?>
-							  		<p class="text-success"><b>Yes, Cash On Delivery is Available.</b>  
+							  		<font color="#ec5459"><p><b>Check Your Cash on Delivery Status >> </b> </font> 
 							  			<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#checkOutPincode">Check Pincode</button>
 							  		</p> 
 							  		<p id="codMsg"></p>
@@ -180,36 +183,88 @@
 						<div class="col-lg-12 cta-button">
 							<input type="hidden" name="pro_category" id="pro_category" value="<?php echo $productDetails->cate_id;?>">
 							<input type="hidden" name="product_slug" id="product_slug" value="<?php echo $productDetails->pro_title_slug;?>">
-                            <a href="javascript:(void);" chkout="<?php echo $productDetails->pro_id;?>" class="btn btn-lg btn-block btn-danger btnProductCheckout"><span><i class="fa fa-shopping-bag"></i></span>&nbsp Click here to Buy this Gift</a>
+                            <a onclick="ga('send', 'event', 'DetailPageDesktop Bottom Buy Now', '<?php echo $productDetails->pro_title;?> Click', 'Clickheretobuy Product');" href="javascript:(void);" chkout="<?php echo $productDetails->pro_id;?>" class="btn btn-lg btn-block btn-danger btnProductCheckout"><span><i class="fa fa-shopping-bag"></i></span>&nbsp Click here to Buy this Gift</a>
                         </div>
+						
 				   </div>
+				   
 	            </div>
         	<?php } ?>
         <?php } ?>
           </div>
-		  <!-- for mobile -->
+		  <!-- mobile -->
 		  <div class="row d-block d-sm-none" >
 			<?php if(!empty($productView)) { ?>
         	<?php foreach($productView as $productDetails){ ?>
 			<div class="col-lg-7 paddingdiv2">
-              <h2 class="mt-4" style="color:#ec5459"><?php echo $productDetails->pro_title;?></h2>
+              <h1 class="mt-4" style="color:#ec5459; font-family:Fontdinerdotcom Luvable;"><?php echo $productDetails->pro_title;?></h1>
 			    <span class="fa fa-star checked"></span>
 				<span class="fa fa-star checked"></span>
 				<span class="fa fa-star checked"></span>
 				<span class="fa fa-star checked"></span>
 				<span class="fa fa-star checked"></span>
-			  <p><?php echo $productDetails->pro_message_on_card;?> It contains <?php echo $productDetails->pro_required_picture;?> Photos.</p>
+			  <h4><?php echo $productDetails->pro_message_on_card;?> It contains <?php echo $productDetails->pro_required_picture;?> Photos.</h4>
+			  
+			  <div class="col-lg-7 mt-2 paddingdiv2">
+				<div class="panel1<?php echo $productDetails->pro_id;?>" id="panel1">
+						<nav class="nav nav-pills flex-column flex-sm-row myTabs" role="tablist" id="myTabs">
+							<a class="flex-sm-fill text-sm-center nav-link active" href="#LoveBoxPicv" role="tab"><i class="fa fa-picture-o" aria-hidden="true"></i>&nbspPhoto</a>
+							<?php if(($productDetails->pro_videos)!=''){?>
+							<a class="flex-sm-fill text-sm-center nav-link" href="#LoveBoxVideov" role="tab"><i class="fa fa-video-camera" aria-hidden="true"></i>&nbspVideo</a>
+							<?php }else{ ?>
+							<?php } ?>
+						</nav>
+						<div class="tab-content mt-2" id="tabContent">
+							<div class="tab-pane active" id="LoveBoxPicv" role="tabpanel">
+								<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width:100%">
+									<div class="carousel-inner" style="width:100%;margin:0 auto">
+									<?php $i = 1; foreach($picture as $picturelist){ ?>
+									  <?php if(($picturelist->pro_id)==($productDetails->pro_id)){ ?>
+										<?php $item_class = ($i == 1) ? 'carousel-item active' : 'carousel-item'; ?>
+										<div class="<?php echo $item_class ?>">
+											<img class="d-block w-100" src="<?php echo base_url();?><?php echo $picturelist->pic_param;?>" alt="<?php echo $productDetails->pro_title;?>" class="img-responsive" style="width:100%;margin:0 auto">
+										</div>
+										<?php $i++; }  ?>
+									<?php } ?>
+									</div>
+									<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+										<!--<span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
+										<span><i class="fa fa-chevron-left" style="font-size:24px;color:#e61a21"></i></span>
+										<span class="sr-only">Previous</span>
+									</a>
+									<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+									<!--	<span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+									<span><i class="fa fa-chevron-right" style="font-size:24px;color:#e61a21"></i></span>
+										<span class="sr-only">Next</span>
+									</a>
+								</div>
+							</div>
+							<div class="tab-pane" id="LoveBoxVideov" role="tabpanel">
+								<div class="embed-responsive embed-responsive-16by9">
+									<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $productDetails->pro_videos;?>" frameborder="0" allowfullscreen></iframe>
+                               </div>
+							</div>
+						</div>
+					</div>
+			  </div>
 			   <div class="inner-info">
 			             <table>
 						 <tr>
                         
-						  <td>  <h3 style="color:#ec5459"><i class="fa fa-rupee"></i><span id="productPrice1">&nbsp<?php foreach($selectedPrice as $leastPrice){ echo $leastPrice->size_related_price;}?> </span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h3></td>
+						  <td>  <h1 style="color:#ec5459"><i class="fa fa-rupee"></i><span id="productPrice1">&nbsp<?php foreach($selectedPrice as $leastPrice){ echo $leastPrice->size_related_price;}?> </span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h1></td>
+                           </td>
+						</tr>
+						<tr>
+						<td>  <h5 style="color:#ec5459"><span style="color:black">OFFER:</span> <i class="fa fa-rupee"></i><span id="productPrice1">&nbsp </span><span style="color:#5c9ae5"><?php echo $productDetails->pro_offers;?> <?php echo $productDetails->pro_offer_desc;?></span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h5></td>
 							<td>
-                            <!-- <a href="checkout.php" class="btn btn-md-3 btn-block btn-primary"><span><i class="fa fa-shopping-bag"></i></span>&nbsp Buy Now</a> -->
+						</tr>
+						<tr>
+						  <td colspan="2">
+                            <a onclick="ga('send', 'event', 'DetailPageMobile Top Buy Now', '<?php echo $productDetails->pro_title;?> Click', ' Buy Now and Send Photos');" href="javascript:(void);" chkout1="<?php echo $productDetails->pro_id;?>" class="btn btn-lg btn-block btn-danger btnProductCheckout2" style="background-color:#ec5459;border-color:#ec5459;font-size: 1.2em; width: 300px; font-weight: 600; border-radius: 4px; padding: 7px 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-top: 4px; margin-bottom: 0px; color: white; border-right: none; border-bottom: none;"><span><i class="fa fa-shopping-bag"></i></span>&nbsp Buy Now & Send Photos</a>
                            </td>
 						</tr>
 						</table>
-						<div class="row align-items-center">
+						<div class="row align-items-center mt-2">
 
 						<?php if(($productDetails->pro_free_shipping)=='0'){ ?>
 							<div class="col-md-3 paddingdiv2" id="promisepanelred">
@@ -235,52 +290,13 @@
 						</div>
                </div>	
 			  </div>
-              <div class="col-lg-7 mt-2 paddingdiv2">
-				<div class="panel1<?php echo $productDetails->pro_id;?>" id="panel1">
-						<nav class="nav nav-pills flex-column flex-sm-row myTabs" role="tablist" id="myTabs">
-							<a class="flex-sm-fill text-sm-center nav-link active" href="#LoveBoxPicv" role="tab"><i class="fa fa-picture-o" aria-hidden="true"></i>&nbspPhoto</a>
-							<?php if(($productDetails->pro_videos)!=''){?>
-							<a class="flex-sm-fill text-sm-center nav-link" href="#LoveBoxVideov" role="tab"><i class="fa fa-video-camera" aria-hidden="true"></i>&nbspVideo</a>
-							<?php }else{ ?>
-							<?php } ?>
-						</nav>
-						<div class="tab-content mt-6" id="tabContent">
-							<div class="tab-pane active" id="LoveBoxPicv" role="tabpanel">
-								<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width:100%">
-									<div class="carousel-inner" style="width:100%;margin:0 auto">
-									<?php $i = 1; foreach($picture as $picturelist){ ?>
-									  <?php if(($picturelist->pro_id)==($productDetails->pro_id)){ ?>
-										<?php $item_class = ($i == 1) ? 'carousel-item active' : 'carousel-item'; ?>
-										<div class="<?php echo $item_class ?>" style="height: 290px;">
-											<img class="d-block w-100" src="<?php echo base_url();?><?php echo $picturelist->pic_param;?>" alt="<?php echo $productDetails->pro_title;?>" class="img-responsive" style="height:250px;width:280px">
-										</div>
-										<?php $i++; }  ?>
-									<?php } ?>
-									</div>
-									<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-										<span class="sr-only">Previous</span>
-									</a>
-									<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-										<span class="carousel-control-next-icon" aria-hidden="true"></span>
-										<span class="sr-only">Next</span>
-									</a>
-								</div>
-							</div>
-							<div class="tab-pane" id="LoveBoxVideov" role="tabpanel">
-								<div class="embed-responsive embed-responsive-16by9">
-									<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $productDetails->pro_videos;?>" frameborder="0" allowfullscreen></iframe>
-                               </div>
-							</div>
-						</div>
-					</div>
-			  </div>			   
-			   <div class="row col-lg-7 mt-2">
+              			   
+			   <div class="row col-lg-8 mt-2">
 						<table class="table" style="margin-left: 5px;">
 							
 							<tr>
 							  <th style="width:157px">Required Pictures</th>
-							  <td colspan="2"><?php echo $productDetails->pro_required_picture;?></td>
+							  <td colspan="4"><?php echo $productDetails->pro_required_picture;?> Photos (Send on WhatsApp or e-mail)</td>
 							</tr>
 
 							<!-- <tr>
@@ -296,13 +312,13 @@
 							<tr>
 							    <th scope="row">Cash On Delivery</th>
 							    <td>
-								  	<p class="text-success"><b>Yes, Cash On Delivery is Available.</b>  
+								 <font color="#ec5459"><p><b>Check Your Cash on Delivery Status 👉🏻 👉🏻</b> </font>  
 								  		<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#checkOutPincodeMini">Check Pincode</button>
 								  	</p>
 							    </td>
 							</tr>
 							<tr>
-								<td colspan="3"><p id="codMsg1"></p></td>
+								<td colspan="4"><p id="codMsg1"></p></td>
 							</tr>
 						    <?php }else{ ?>
 						  	    <tr>
@@ -322,31 +338,31 @@
 
 							<tr>
 							  <th scope="row">Delivery Time</th>
-							  <td colspan="3"><?php echo $productDetails->pro_delivery_days_to;?> to <?php echo $productDetails->pro_delivery_days_from;?></td>
+							  <td colspan="4"><?php echo $productDetails->pro_delivery_days_to;?> to <?php echo $productDetails->pro_delivery_days_from;?> days (after receiving your photos)</td>
 							</tr>
 
 							<?php if(($productDetails->pro_theme)!=''){?>
 							<tr>
 							    <th scope="row">Theme</th>
-							    <td colspan="3"><?php echo $productDetails->pro_theme;?></td>
+							    <td colspan="4"><?php echo $productDetails->pro_theme;?></td>
 							</tr>
 							<?php }else{ ?>
 							<?php }?>
 
 							<!-- <tr>
 							  <th scope="row">Theme</th>
-							  <td colspan="3"><?php echo $productDetails->pro_theme;?></td>
+							  <td colspan="4"><?php echo $productDetails->pro_theme;?></td>
 							</tr> -->
 							
 							<tr>
 							  <th scope="row">Specifications</th>
-							  <td colspan="3"><p style="text-align:justify"><?php echo $productDetails->pro_description;?></p><td>
+							  <td colspan="4"><p style="text-align:justify"><?php echo $productDetails->pro_description;?></p><td>
 							</tr>
 							<tr>
 							  <th scope="row">Size</th>
-							  <td colspan="3">
+							  <td colspan="4">
 							  	<div class="col-md-12">
-							  		<select class="form-control" name="productSize" id="productSize1" style="margin-left:-16px">
+							  		<select class="form-control" name="productSize" id="productSize1" style="margin-left:-16px;width: 220px;">
 							  			<?php foreach($sizePrice as $size_price_list){ ?>
 								  			<option value="<?php echo $size_price_list->size_id;?>" <?php echo $leastPrice->size_id==$size_price_list->size_id?'selected':''?>><?php echo $size_price_list->size_param;?></option>
 								  		<?php } ?>
@@ -364,19 +380,16 @@
 							<?php } ?>
 						</table>
 						<center>
-						<div class="col-lg-12 cta-button">
+						<div class="col-md-5 text-center cta-button">
 							<input type="hidden" name="pro_category" id="pro_category" value="<?php echo $productDetails->cate_id;?>">
-                            <input type="hidden" name="product_slug" id="product_slug" value="<?php echo $productDetails->pro_title_slug;?>">
-                            <a href="javascript:(void);" chkout1="<?php echo $productDetails->pro_id;?>" class="btn btn-lg btn-block btn-danger btnProductCheckout1"><span><i class="fa fa-shopping-bag"></i></span>&nbsp Click here to Buy this Gift</a>
+                                                        <input type="hidden" name="product_slug" id="product_slug" value="<?php echo $productDetails->pro_title_slug;?>">
+                                                        <input type="hidden" name="product_size" id="product_size" value="<?php echo $leastPrice->size_id;?>">
+                        <!--    <a href="javascript:(void);" chkout1="<?php echo $productDetails->pro_id;?>" class="btn btn-lg btn-block btn-danger btnProductCheckout2" style="background-color:#ec5459;border-color:#ec5459;font-size: 1.2em; width: 300px; font-weight: 600; border-radius: 4px; padding: 7px 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-top: 4px; margin-bottom: 0px; color: white; border-right: none; border-bottom: none;"><span><i class="fa fa-shopping-bag"></i></span>&nbsp Click here to Buy this Gift</a> -->
                         </div>
 						<!--<div class="col-lg-12 paddingdiv cta-button">
                             <a href="checkout.php" class="btn btn-lg btn-block btn-success"><i class="fa fa-gift"></i>&nbspSave Gift</a>
                         </div>
 						-->
-						<div class="text-center">
-						<h4> <strong> OFFER:</strong></h4>
-						<h5 class="mt-2 paddingdiv" style="color:#5c9ae5" >Choose Online Payment to get Rs.150 discount</h5>
-						</div>
 					
 			   </div>
 				<?php } ?>
@@ -518,7 +531,7 @@
 		    <!-- Modal content-->
 		    <div class="modal-content">
 		      <div class="modal-header">
-		      	<h4 class="modal-title">Check Shipping Pincode</h4>
+		      	<h4 class="modal-title">COD SERVICE</h4>
 		        <button type="button" class="close" data-dismiss="modal">&times;</button>
 		    </div>
 		    <div class="modal-body">
@@ -540,7 +553,7 @@
 		    <!-- Modal content-->
 		    <div class="modal-content">
 		      <div class="modal-header">
-		      	<h4 class="modal-title">Check Shipping Pincode</h4>
+		      	<h4 class="modal-title">COD SERVICE</h4>
 		        <button type="button" class="close" data-dismiss="modal">&times;</button>
 		    </div>
 		    <div class="modal-body">
@@ -548,7 +561,8 @@
 				  	<div class="col-md-9">
 				  		<input type="text" name="cod" id="cod1" maxlength="6" class="form-control" placeholder="Enter Area Pin Code" required="required">
 				  	</div>
-				  	<div class="col-md-3">
+				  	<div class="col-md-3 container">
+				  	    <br>
 				  		<button class="btn btn-info" id="checkPinCodeMini">Check</button>
 				  	</div>
 			  	</div>
@@ -559,3 +573,9 @@
 	</div>
 	<!--End of the Pincode Check Out Pop Up Modal -->
 </section>
+                    
+                    <div class="sticky d-md-none">
+    <div id="outer">
+         <a onclick="ga('send', 'event', 'DetailPageMobile Bottomfix Buy Now', '<?php echo $productDetails->pro_title;?> Click', ' Buy Now for Someone');" href="javascript:(void);" chkout1="<?php echo $productDetails->pro_id;?>" class="btn btn-lg btn-block btn-danger btnProductCheckout2" style="font-size: 24px; background-color: #e61a21; border-radius: 5px; color: #fff; font-weight: 600; padding: 3px 5px 12px; outline: none; text-decoration: none"><span><i class="fa fa-shopping-bag"></i></span>&nbsp Buy Now For Someone ❤</a>
+    </div>
+</div>

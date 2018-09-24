@@ -2,12 +2,6 @@
 <div class="container">
     <p class="text-center"><strong> ©<?php echo date('Y');?> Kraft Point Technologies</strong></p>
 </div>
-<div class="sticky d-md-none">
-    <div id="outer">
-        <div class="inner"><a href="tel:+91 99886 55011" class="btn btn-lg btn-block btn-primary"><strong><span><i class="fa fa-phone" style="color:#fff;"></i></span>&nbsp&nbsp Call Now</strong></a></div>
-        <div class="inner"><a href="https://api.whatsapp.com/send?phone=919988655011&text=Hi%20Love%20Gifts%20%E2%9D%A4%0AI%20want%20to%20Buy%20a%20Gift." class="btn btn-lg btn-block btn-success"><strong><span><i class="fa fa-whatsapp" style="color:#fff;"></i></span>&nbsp&nbsp Live Chat</strong></a></div>
-    </div>
-</div> 
 
 <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.3.1.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/owl.carousel.min.js');?>"></script>
@@ -98,7 +92,6 @@ $(document).ready(function() {
                     url:base_url+'checkout/saveCustomerCheckoutParam',
                     data:{product_id:product_id,pro_category:pro_category,product_slug:product_slug,product_size:product_size,product_cod:product_cod},
                     success:function(data){
-						//console.log(data);
                         //alert(data);
                         if(data !=''){
                             window.location.href = base_url+'checkout/express/'+data;
