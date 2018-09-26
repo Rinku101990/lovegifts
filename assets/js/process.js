@@ -20,7 +20,6 @@ $(document).ready(function(){
 				return false;
         }
     }
-
 	$("#productSize").on("change", function(){
 		var pro_size_id = $(this).val();
 		//alert(pro_size_id);
